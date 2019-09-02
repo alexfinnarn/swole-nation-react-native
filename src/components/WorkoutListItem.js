@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import { Text, Button } from "react-native";
 
-export default function WorkoutListItem({ name, id, navigation }) {
+export default function WorkoutListItem({workout, navigation}) {
+
   return (
-    <>
-      <Text>{name}</Text>
-      <Button onPress={() => navigation.navigate('Workout', {id})}>Edit</Button>
-    </>
+    <Fragment>
+      <Text>{workout.item.name}</Text>
+      <Button onPress={() => navigation.navigate('Workout', {workout: workout.item})} title="Edit" />
+    </Fragment>
   );
 }

@@ -2,20 +2,25 @@ import React from 'react';
 import {StyleSheet, FlatList, View} from "react-native";
 import WorkoutListItem from "./WorkoutListItem";
 
-export default function WorkoutsList(props) {
-  const workouts = [
+export default function WorkoutsList({ navigation }) {
+  let workouts = navigation.getParam('workouts', [
     {
-      id: 1,
-      name: 'No workouts',
-      description: ''
+      id: 100,
+      name: 'Fake name',
+      description: 'Fake description'
     }
-  ];
+  ]);
+
+  workouts = workouts.map((workout) => {
+    workout.key = workout.id.toString();
+    return workout;
+  });
 
   return (
     <View style={styles.container}>
       <FlatList
         data={workouts}
-        renderItem={(item) => <WorkoutListItem props={item} />}
+        renderItem={(item) => <WorkoutListItem workout={item} navigation={navigation}/>}
       />
     </View>
   )

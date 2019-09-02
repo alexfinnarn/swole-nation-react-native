@@ -9,6 +9,7 @@ import WorkoutsList from "./src/components/WorkoutsList";
 import Workout from "./src/components/Workout";
 
 export default function App() {
+  console.log('foo');
 
   const store = createStore(mainStore);
 
