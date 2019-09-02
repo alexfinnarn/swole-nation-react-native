@@ -1,26 +1,32 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import React from 'react';
+import { Provider } from 'react-redux';
+import store from './src/store';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+import Home from "./src/components/Home";
+import WorkoutsList from "./src/components/WorkoutsList";
 
 export default function App() {
 
-  const [neener, setNeener] = useState(1);
+  const AppNavigator = createStackNavigator(
+    {
+      Home: {
+        screen: Home
+      },
+      WorkoutsList: {
+        screen: WorkoutsList
+      }
+    },
+    {
+      initialRouteName: 'Home'
+    }
+  );
+
+  const AppContainer = createAppContainer(AppNavigator);
 
   return (
-    <View style={styles.container}>
-      <Text onPress={() => setNeener(neener + 1)}>You're gonna be so cool {neener} times infinity!!!</Text>
-      <Image
-        source={pic}
-        style={{width: 300, height: 300}}
-      />
-    </View>
+    <Provider store={store}>
+      <AppContainer/>
+    </Provider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
