@@ -1,12 +1,17 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import store from './src/store';
+import { createStore } from 'redux';
+import mainStore from './src/store/main';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import Home from "./src/components/Home";
 import WorkoutsList from "./src/components/WorkoutsList";
+import Workout from "./src/components/Workout";
 
 export default function App() {
+  console.log('foo');
+
+  const store = createStore(mainStore);
 
   const AppNavigator = createStackNavigator(
     {
@@ -15,7 +20,10 @@ export default function App() {
       },
       WorkoutsList: {
         screen: WorkoutsList
-      }
+      },
+      Workout: {
+        screen: Workout
+      },
     },
     {
       initialRouteName: 'Home'
