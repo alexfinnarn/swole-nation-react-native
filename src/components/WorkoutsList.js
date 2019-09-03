@@ -1,16 +1,10 @@
 import React from 'react';
 import {StyleSheet, FlatList, View} from "react-native";
 import WorkoutListItem from "./WorkoutListItem";
+import {styles} from './Styles';
 
-export default function WorkoutsList({ navigation }) {
-  let workouts = navigation.getParam('workouts', [
-    {
-      id: 100,
-      name: 'Fake name',
-      description: 'Fake description'
-    }
-  ]);
-
+export default function WorkoutsList({ navigation, workouts }) {
+  // Add key that is needed for rendering the <FlatList /> component.
   workouts = workouts.map((workout) => {
     workout.key = workout.id.toString();
     return workout;
@@ -26,11 +20,3 @@ export default function WorkoutsList({ navigation }) {
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
