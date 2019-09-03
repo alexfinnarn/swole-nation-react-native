@@ -5,8 +5,8 @@ import mainStore from './src/store/main';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import Home from "./src/components/Home";
-import WorkoutsList from "./src/components/WorkoutsList";
 import Workout from "./src/components/Workout";
+import WorkoutsListProvider from "./src/components/WorkoutsListProvider";
 
 export default function App() {
   console.log('foo');
@@ -19,7 +19,7 @@ export default function App() {
         screen: Home
       },
       WorkoutsList: {
-        screen: WorkoutsList
+        screen: WorkoutsListProvider
       },
       Workout: {
         screen: Workout
