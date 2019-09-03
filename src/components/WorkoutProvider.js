@@ -1,10 +1,14 @@
 import { connect } from 'react-redux'
-import WorkoutsList from './WorkoutsList';
+import Workout from './Workout';
 
-const mapStateToProps = state => {
-  // console.log(state.workouts);
+function getWorkout(workouts, otherProps) {
+  const id = otherProps.navigation.getParam('workoutId', 0);
+  return workouts.find((el) => el.id === id);
+}
+
+const mapStateToProps = (state, otherProps) => {
   return {
-    workouts: state.workouts
+    workout: getWorkout(state.workouts, otherProps)
   }
 };
 
@@ -19,6 +23,6 @@ const mapStateToProps = state => {
 const WorkoutsListProvider = connect(
   mapStateToProps,
   // mapDispatchToProps
-)(WorkoutsList);
+)(Workout);
 
 export default WorkoutsListProvider;

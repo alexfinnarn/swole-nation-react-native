@@ -1,17 +1,19 @@
-import { WorkoutActions } from "./actions";
+import {WorkoutActions} from "./actions";
 
 const initialWorkouts = [
   {
+    id: 1,
     name: 'Stronglifts A',
     description: 'Squats, Overhead Press, Deadlifts'
   },
   {
+    id: 2,
     name: 'Stronglifts B',
     description: 'Squats, Bench Press, Barbell Row'
   }
 ];
 
-export default function Workouts(state = initialWorkouts, action) {
+function workouts(state = initialWorkouts, action) {
   switch (action.type) {
     case WorkoutActions.UPDATE_WORKOUT:
       return state.map((workout, index) => {
@@ -24,3 +26,5 @@ export default function Workouts(state = initialWorkouts, action) {
       return state;
   }
 }
+
+export default workouts;
