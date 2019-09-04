@@ -5,15 +5,39 @@ const initialState = {
     {
       id: 1,
       name: 'Stronglifts A',
-      description: 'Squats, Overhead Press, Deadlifts'
+      description: 'Squats, Overhead Press, Deadlifts',
+      exercises: []
     },
     {
       id: 2,
       name: 'Stronglifts B',
-      description: 'Squats, Bench Press, Barbell Row'
+      description: 'Squats, Bench Press, Barbell Row',
+      exercises: []
     }
   ],
-  exercises: []
+  exercises: [
+    {
+      id: 1,
+      name: 'Squats Warmup',
+      instructions: 'Do with a barbell',
+      sets: [
+        { reps: 5, weight: 45.0 },
+        { reps: 5, weight: 45.0 },
+      ]
+    },
+    {
+      id: 2,
+      name: 'Squats',
+      instructions: 'Do with a barbell',
+      sets: [
+        { reps: 5, weight: 200.0 },
+        { reps: 5, weight: 200.0 },
+        { reps: 5, weight: 200.0 },
+        { reps: 5, weight: 200.0 },
+        { reps: 5, weight: 200.0 },
+      ]
+    },
+  ]
 };
 
 function mainStore(state = initialState, action) {
@@ -41,6 +65,24 @@ function mainStore(state = initialState, action) {
           return workout;
         }
       });
+      return Object.assign({}, state, {workouts: newWorkouts});
+
+    case WorkoutActions.TOGGLE_EXERCISE:
+      newWorkouts = state.workouts.map((workout) => {
+        if (workout.id === action.workout.id) {
+          let tempWorkout = action.workout;
+          if (action.selection) {
+            tempWorkout.exercises.push(action.exercise.name)
+          } else {
+            tempWorkout.exercises = tempWorkout.exercises.filter((exercise) => {
+              return exercise !== action.exercise.name;
+            });
+          }
+          return tempWorkout;
+        }
+        return workout;
+      });
+
       return Object.assign({}, state, {workouts: newWorkouts});
 
     default:
