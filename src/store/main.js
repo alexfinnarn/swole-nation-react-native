@@ -1,21 +1,51 @@
-import { combineReducers } from 'redux';
 import { WorkoutActions } from "./actions";
-import workouts from "./workouts";
 
-function exercises(state = [], action) {
+const initialState = {
+  workouts: [
+    {
+      id: 1,
+      name: 'Stronglifts A',
+      description: 'Squats, Overhead Press, Deadlifts'
+    },
+    {
+      id: 2,
+      name: 'Stronglifts B',
+      description: 'Squats, Bench Press, Barbell Row'
+    }
+  ],
+  exercises: []
+};
+
+function mainStore(state = initialState, action) {
+  let newWorkouts = [];
+
   switch (action.type) {
+
+    case WorkoutActions.CREATE_WORKOUT:
+      let newWorkout = action.workout;
+      newWorkout.id = state.workouts.length + 1;
+      return Object.assign({}, state, {workouts: [...state.workouts, action.workout]});
+
     case WorkoutActions.UPDATE_WORKOUT:
-      return state.map((workout, index) => {
-        if (workout.name === action.workout.name) {
-          return Object.assign({}, action.workout)
+      newWorkouts = state.workouts.map((workout) => {
+        if (workout.id === action.workout.id) {
+          return action.workout;
         }
         return workout;
       });
+      return Object.assign({}, state, {workouts: newWorkouts});
+
+    case WorkoutActions.DELETE_WORKOUT:
+      newWorkouts = state.workouts.filter((workout) => {
+        if (workout.id !== action.workout.id) {
+          return workout;
+        }
+      });
+      return Object.assign({}, state, {workouts: newWorkouts});
+
     default:
       return state;
   }
 }
-
-const mainStore = combineReducers({workouts, exercises});
 
 export default mainStore;
