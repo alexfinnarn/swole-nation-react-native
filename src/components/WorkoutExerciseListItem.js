@@ -3,8 +3,6 @@ import {Text, View, Switch, TextInput} from "react-native";
 import {styles} from "./Styles";
 
 export default function WorkoutExerciseListItem({ exercise, updater, workout }) {
-
-  console.log(workout);
   const [switchValue, setSwitchValue] = useState(workout.exercises.includes(exercise.item.name));
   const [weight, setWeight] = useState(exercise.index.toString());
 

@@ -18,7 +18,7 @@ export default function App() {
       Workout: { screen: WorkoutProvider },
     },
     {
-      initialRouteName: 'WorkoutsList'
+      initialRouteName: 'Home'
     }
   );
 
