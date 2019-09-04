@@ -31,7 +31,7 @@ export default function Workout({ workout, handleUpdate, navigation }) {
         ]}
         multiline
         placeholder="Workout Description"
-        onChangeText={(text) => setDescription(text)}s
+        onChangeText={(text) => setDescription(text)}
         value={description}
       />
       <Text style={[styles.bold, {marginTop: 15, fontSize: 20}]}>Exercises</Text>

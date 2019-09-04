@@ -23,10 +23,6 @@ function mainStore(state = initialState, action) {
 
     case WorkoutActions.CREATE_WORKOUT:
       let newWorkout = action.workout;
-
-      // console.log(newWorkout);
-      // console.log(state.workouts.length);
-
       newWorkout.id = state.workouts.length + 1;
       return Object.assign({}, state, {workouts: [...state.workouts, action.workout]});
 

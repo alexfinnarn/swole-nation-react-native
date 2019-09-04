@@ -4,8 +4,6 @@ import WorkoutListItem from "./WorkoutListItem";
 import {styles} from './Styles';
 
 export default function WorkoutsList({ workouts, navigation }) {
-  // console.log(workouts);
-
   // Add key that is needed for rendering the <FlatList /> component.
   workouts = workouts.map((workout) => {
     workout.key = workout.id.toString();
