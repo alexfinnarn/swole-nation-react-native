@@ -5,8 +5,8 @@ import mainStore from './src/store/main';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import Home from "./src/components/Home";
-import WorkoutsListProvider from "./src/components/WorkoutsListProvider";
-import WorkoutProvider from "./src/components/WorkoutProvider";
+import WorkoutsListProvider from "./src/components/workouts/WorkoutsListProvider";
+import WorkoutProvider from "./src/components/workouts/WorkoutProvider";
 
 export default function App() {
   const store = createStore(mainStore);

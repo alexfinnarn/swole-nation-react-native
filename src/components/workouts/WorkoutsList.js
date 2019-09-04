@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, FlatList, View} from "react-native";
 import WorkoutListItem from "./WorkoutListItem";
-import {styles} from './Styles';
+import {styles} from '../Styles';
 
 export default function WorkoutsList({ workouts, navigation }) {
   // Add key that is needed for rendering the <FlatList /> component.
