@@ -5,7 +5,7 @@ function getWorkout(workouts, otherProps) {
   const id = otherProps.navigation.getParam('workoutId', 0);
 
   if (id === 0) {
-    return {id: 0, name: '', description: ''};
+    return {id: 0, name: '', description: '', exercises: []};
   } else {
     return workouts.find((el) => el.id === id);
   }
