@@ -11,6 +11,8 @@ import WorkoutProvider from "./src/components/WorkoutProvider";
 export default function App() {
   const store = createStore(mainStore);
 
+  // console.log(store.getState());
+
   const AppNavigator = createStackNavigator(
     {
       Home: { screen: Home },
@@ -18,7 +20,7 @@ export default function App() {
       Workout: { screen: WorkoutProvider },
     },
     {
-      initialRouteName: 'Workout'
+      initialRouteName: 'Home'
     }
   );
 

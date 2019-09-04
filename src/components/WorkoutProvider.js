@@ -3,7 +3,12 @@ import Workout from './Workout';
 
 function getWorkout(workouts, otherProps) {
   const id = otherProps.navigation.getParam('workoutId', 0);
-  return workouts.find((el) => el.id === id);
+
+  if (id === 0) {
+    return {id: 0, name: '', description: ''};
+  } else {
+    return workouts.find((el) => el.id === id);
+  }
 }
 
 const mapStateToProps = (state, otherProps) => {
@@ -12,17 +17,17 @@ const mapStateToProps = (state, otherProps) => {
   }
 };
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     onTodoClick: id => {
-//       dispatch(toggleTodo(id))
-//     }
-//   }
-// };
+const mapDispatchToProps = dispatch => {
+  return {
+    handleUpdate: (updatedWorkout, action) => {
+      dispatch({workout: updatedWorkout, type: action });
+    }
+  }
+};
 
 const WorkoutsListProvider = connect(
   mapStateToProps,
-  // mapDispatchToProps
+  mapDispatchToProps
 )(Workout);
 
 export default WorkoutsListProvider;

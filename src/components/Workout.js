@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
 import {Text, View, TextInput, StyleSheet, Button} from "react-native";
 
-export default function Workout({ navigation }) {
-  const workout =   {
-    id: 1,
-    name: 'Stronglifts A',
-    description: 'Squats, Overhead Press, Deadlifts'
-  };
+export default function Workout({ workout, handleUpdate, navigation }) {
+  function update(action) {
+    handleUpdate({id: workout.id, name, description}, action);
+    navigation.goBack();
+  }
 
   const [name, setName] = useState(workout.name);
   const [description, setDescription] = useState(workout.description);
-
-  function handleSave() {
-
-  }
 
   return (
     <View style={{padding: 20}}>
@@ -36,14 +31,20 @@ export default function Workout({ navigation }) {
         ]}
         multiline
         placeholder="Workout Description"
-        onChangeText={(text) => setDescription(text)}
+        onChangeText={(text) => setDescription(text)}s
         value={description}
       />
       <Text style={[styles.bold, {marginTop: 15, fontSize: 20}]}>Exercises</Text>
-      <View style={{alignItems: 'flex-end', marginTop: 20}}>
-        <Button onPress={handleSave} title="Save" />
+      <View style={{marginTop: 20}}>
+        {workout.id !== 0
+         ? <Button onPress={() => update('UPDATE_WORKOUT')} title="Save" />
+         : <Button onPress={() => update('CREATE_WORKOUT')} title="Add" />
+        }
+        { workout.id !== 0
+          ? <Button style={{marginTop: 10}} onPress={() => update('DELETE_WORKOUT')} title="Delete" />
+          : <Text></Text>
+        }
       </View>
-
     </View>
   );
 }
