@@ -46,7 +46,7 @@ export default function Workout({workout, handleUpdate, navigation}) {
       </View>
       <View style={{marginTop: 20, flex: 1, width: 125, flexDirection: 'row-reverse', alignItems: 'flex-end', justifyContent: 'space-between'}}>
         {workout.id !== 0
-          ? <Button style={{ backgroundColor: 'red'}} onPress={() => update('DELETE_WORKOUT')} title="Delete"/>
+          ? <Button style={{ backgroundColor: 'red', }} onPress={() => update('DELETE_WORKOUT')} title="Delete"/>
           : <Text></Text>
         }
         {workout.id !== 0
