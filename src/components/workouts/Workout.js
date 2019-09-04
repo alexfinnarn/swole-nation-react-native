@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
-import {Text, View, TextInput, StyleSheet, Button} from "react-native";
-import WorkoutExerciseListProvider from "./WorkoutExerciseListProvider";
-import { styles } from './Styles';
+import {Text, View, TextInput, Button} from "react-native";
+import WorkoutExerciseListProvider from "../exercises/WorkoutExerciseListProvider";
+import { styles } from '../Styles';
 
 
-export default function Workout({workout, handleUpdate, navigation}) {
+export default function Workout({workout = {id: 0, name: '', description: '', exercises: []}, handleUpdate, navigation}) {
   function update(action) {
     let newWorkout = workout;
     newWorkout.name = name;

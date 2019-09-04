@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {Text, View, Switch, TextInput} from "react-native";
-import {styles} from "./Styles";
+import {styles} from "../Styles";
 
 export default function WorkoutExerciseListItem({ exercise, updater, workout }) {
   const [switchValue, setSwitchValue] = useState(workout.exercises.includes(exercise.item.name));
