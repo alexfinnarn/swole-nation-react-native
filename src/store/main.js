@@ -1,4 +1,4 @@
-import { WorkoutActions } from "./actions";
+import {WorkoutActions} from "./actions";
 
 const initialState = {
   workouts: [
@@ -21,8 +21,8 @@ const initialState = {
       name: 'Squats Warmup',
       instructions: 'Do with a barbell',
       sets: [
-        { reps: 5, weight: 45.0 },
-        { reps: 5, weight: 45.0 },
+        {reps: 5, weight: 45.0},
+        {reps: 5, weight: 45.0},
       ]
     },
     {
@@ -30,13 +30,59 @@ const initialState = {
       name: 'Squats',
       instructions: 'Do with a barbell',
       sets: [
-        { reps: 5, weight: 200.0 },
-        { reps: 5, weight: 200.0 },
-        { reps: 5, weight: 200.0 },
-        { reps: 5, weight: 200.0 },
-        { reps: 5, weight: 200.0 },
+        {reps: 5, weight: 200.0},
+        {reps: 5, weight: 200.0},
+        {reps: 5, weight: 200.0},
+        {reps: 5, weight: 200.0},
+        {reps: 5, weight: 200.0},
       ]
     },
+  ],
+  sessions: [
+    {
+      id: 1,
+      name: new Date(Date.now()).toLocaleString('en-US'),
+      workoutIds: [1],
+      exercises: [
+        {
+          shortName: 'SQ',
+          sets: '5x5',
+          weight: 200.0
+        },
+        {
+          shortName: 'OH',
+          sets: '5x5',
+          weight: 100.0
+        },
+        {
+          shortName: 'DL',
+          sets: '5x5',
+          weight: 200.0
+        },
+      ]
+    },
+    {
+      id: 2,
+      name: 'Next Workout',
+      workoutIds: [2],
+      exercises: [
+        {
+          shortName: 'SQ',
+          sets: '5x5',
+          weight: 205.0
+        },
+        {
+          shortName: 'BP',
+          sets: '5x5',
+          weight: 160.0
+        },
+        {
+          shortName: 'BR',
+          sets: '5x5',
+          weight: 90.0
+        },
+      ]
+    }
   ]
 };
 
@@ -72,7 +118,7 @@ function mainStore(state = initialState, action) {
         if (workout.id === action.workout.id) {
           let tempWorkout = action.workout;
           if (action.selection) {
-            tempWorkout.exercises.push(action.exercise.name)
+            tempWorkout.exercises.push(action.exercise.name);
           } else {
             tempWorkout.exercises = tempWorkout.exercises.filter((exercise) => {
               return exercise !== action.exercise.name;

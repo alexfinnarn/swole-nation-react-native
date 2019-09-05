@@ -7,6 +7,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import Home from "./src/components/Home";
 import WorkoutsListProvider from "./src/components/workouts/WorkoutsListProvider";
 import WorkoutProvider from "./src/components/workouts/WorkoutProvider";
+import SessionProvider from "./src/components/sessions/SessionProvider";
 
 export default function App() {
   const store = createStore(mainStore);
@@ -14,6 +15,7 @@ export default function App() {
   const AppNavigator = createStackNavigator(
     {
       Home: { screen: Home },
+      Session: { screen: SessionProvider },
       WorkoutsList: { screen: WorkoutsListProvider },
       Workout: { screen: WorkoutProvider },
     },
