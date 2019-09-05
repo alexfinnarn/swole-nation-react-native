@@ -3,7 +3,6 @@ import {Button, Text, View} from "react-native";
 import {styles} from "../Styles";
 
 export default function SessionTeaser({ session, navigation }) {
-  console.log(navigation);
   return (
     <View style={[styles.container, {flex: 1, flexDirection: 'column', justifyContent: 'space-evenly'}]}>
       <View style={{flex: 2, padding: 10, flexDirection: 'row', justifyContent: 'space-between'}}>
