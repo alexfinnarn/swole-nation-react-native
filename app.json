@@ -24,7 +24,11 @@
       "**/*"
     ],
     "ios": {
+      "bundleIdentifier": "io.finnsweb.swoleNation",
       "supportsTablet": true
+    },
+    "android": {
+      "package": "io.finnsweb.swoleNation"
     }
   }
 }
