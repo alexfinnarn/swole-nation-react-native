@@ -1,7 +1,9 @@
 {
   "expo": {
     "name": "Swole Nation",
-    "slug": "LiftingAndExercise",
+    "slug": "swole-nation",
+    "owner": "afinnarn",
+    "githubUrl": "https://github.com/alexfinnarn/swole-nation-react-native",
     "privacy": "public",
     "sdkVersion": "34.0.0",
     "platforms": [
@@ -25,6 +27,14 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "io.finnsweb.swoleNation",
+      "googleServicesFile": "./google-services.json"
+    },
+    "androidStatusBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#bf1d11"
     }
   }
 }

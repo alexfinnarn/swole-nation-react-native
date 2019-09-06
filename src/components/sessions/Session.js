@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Text, View, Button} from "react-native";
+import * as Speech from 'expo-speech';
 import {styles} from "../Styles";
 
 export default function Session({session}) {
@@ -9,8 +10,12 @@ export default function Session({session}) {
   const [completedSets, updateCompletedSets] = useState(0);
 
   function handleSets(forward) {
-    console.log('sets length:  ' + session.exercises[exercise].sets.length);
-    console.log('set:  ' + set);
+    // console.log('sets length:  ' + session.exercises[exercise].sets.length);
+    // console.log('set:  ' + set);
+
+    // const say = `Set ${set + 1} of ${session.exercises[exercise].sets.length} for ${session.exercises[exercise].name}`;
+    // Speech.speak(say);
+
     if (set === session.exercises[exercise].sets.length - 1) {
       updateExercise(exercise + 1);
       updateSet(0);

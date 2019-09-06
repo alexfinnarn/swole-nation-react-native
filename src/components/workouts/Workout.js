@@ -5,6 +5,8 @@ import { styles } from '../Styles';
 
 
 export default function Workout({workout = {id: 0, name: '', description: '', exercises: []}, handleUpdate, navigation}) {
+  console.log(workout);
+
   function update(action) {
     let newWorkout = workout;
     newWorkout.name = name;

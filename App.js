@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import mainStore from './src/store/main';
@@ -8,9 +8,14 @@ import Home from "./src/components/Home";
 import WorkoutsListProvider from "./src/components/workouts/WorkoutsListProvider";
 import WorkoutProvider from "./src/components/workouts/WorkoutProvider";
 import SessionProvider from "./src/components/sessions/SessionProvider";
+import registerForPushNotificationsAsync from './src/RegisterPush';
 
 export default function App() {
   const store = createStore(mainStore);
+
+  useEffect(() => {
+    // registerForPushNotificationsAsync();
+  });
 
   const AppNavigator = createStackNavigator(
     {
