@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Text, View, Button} from "react-native";
+import BackgroundTimer from 'react-native-background-timer';
 import {styles} from "../Styles";
 
 export default function Session({session}) {
@@ -10,12 +11,19 @@ export default function Session({session}) {
 
   function handleSets(forward) {
     console.log('sets length:  ' + session.exercises[exercise].sets.length);
-    console.log('set:  ' + set);
+    console.log('setsss:  ' + set);
     if (set === session.exercises[exercise].sets.length - 1) {
       updateExercise(exercise + 1);
       updateSet(0);
       return;
     }
+
+    BackgroundTimer.stopBackgroundTimer();
+
+    let seconds = new Date();
+    BackgroundTimer.runBackgroundTimer(() => {
+      console.log(Math.abs((seconds - new Date()) /1000) + ' seconds have passed' );
+    }, 1000);
 
     forward ? updateSet(set + 1) : updateSet(set - 1);
   }
