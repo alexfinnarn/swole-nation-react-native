@@ -83,7 +83,8 @@ const initialState = {
         },
       ]
     }
-  ]
+  ],
+  tempExerciseList: []
 };
 
 function mainStore(state = initialState, action) {
@@ -94,11 +95,13 @@ function mainStore(state = initialState, action) {
     case WorkoutActions.CREATE_WORKOUT:
       let newWorkout = action.workout;
       newWorkout.id = state.workouts.length + 1;
-      return Object.assign({}, state, {workouts: [...state.workouts, action.workout]});
+      newWorkout.exercises = state.tempExerciseList;
+      return Object.assign({}, state, {workouts: [...state.workouts, newWorkout]});
 
     case WorkoutActions.UPDATE_WORKOUT:
       newWorkouts = state.workouts.map((workout) => {
         if (workout.id === action.workout.id) {
+          action.workout.exercises = state.tempExerciseList;
           return action.workout;
         }
         return workout;
@@ -114,22 +117,32 @@ function mainStore(state = initialState, action) {
       return Object.assign({}, state, {workouts: newWorkouts});
 
     case WorkoutActions.TOGGLE_EXERCISE:
-      newWorkouts = state.workouts.map((workout) => {
-        if (workout.id === action.workout.id) {
-          let tempWorkout = action.workout;
-          if (action.selection) {
-            tempWorkout.exercises.push(action.exercise.name);
-          } else {
-            tempWorkout.exercises = tempWorkout.exercises.filter((exercise) => {
-              return exercise !== action.exercise.name;
-            });
-          }
-          return tempWorkout;
-        }
-        return workout;
-      });
+      let tempExerciseList = state.tempExerciseList;
+      if (action.selection) {
+        tempExerciseList.push(action.exercise.name);
+      } else {
+        tempExerciseList = tempExerciseList.filter((exercise) => {
+          return exercise !== action.exercise.name;
+        });
+      }
 
-      return Object.assign({}, state, {workouts: newWorkouts});
+      return Object.assign({}, state, {tempExerciseList});
+
+    // newWorkouts = state.workouts.map((workout) => {
+    //   if (workout.id === action.workout.id) {
+    //     let tempWorkout = action.workout;
+    //     if (action.selection) {
+    //       tempWorkout.exercises.push(action.exercise.name);
+    //     } else {
+    //       tempWorkout.exercises = tempWorkout.exercises.filter((exercise) => {
+    //         return exercise !== action.exercise.name;
+    //       });
+    //     }
+    //     return tempWorkout;
+    //   }
+    //   return workout;
+    // });
+    // return Object.assign({}, state, {workouts: newWorkouts});
 
     default:
       return state;

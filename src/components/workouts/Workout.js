@@ -10,7 +10,12 @@ export default function Workout({workout = {id: 0, name: '', description: '', ex
     newWorkout.name = name;
     newWorkout.description = description;
     handleUpdate(newWorkout, action);
-    navigation.goBack();
+
+    if (action === 'CREATE_WORKOUT') {
+      navigation.navigate('Session');
+    } else {
+      navigation.goBack();
+    }
   }
 
   const [name, setName] = useState(workout.name);
@@ -51,7 +56,7 @@ export default function Workout({workout = {id: 0, name: '', description: '', ex
         }
         {workout.id !== 0
           ? <Button  onPress={() => update('UPDATE_WORKOUT')} title="Save"/>
-          : <Button  onPress={() => update('CREATE_WORKOUT')} title="Add"/>
+          : <Button  onPress={() => update('CREATE_WORKOUT')} title="Go"/>
         }
       </View>
     </View>

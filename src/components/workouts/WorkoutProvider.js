@@ -13,7 +13,7 @@ function getWorkout(workouts, otherProps) {
 
 const mapStateToProps = (state, otherProps) => {
   return {
-    workout: getWorkout(state.workouts, otherProps)
+    workout: getWorkout(state.workouts, otherProps),
   }
 };
 
