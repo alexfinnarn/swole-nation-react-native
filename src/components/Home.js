@@ -10,7 +10,14 @@ export default function Home({ navigation }) {
         <SessionTeaserProvider type="last" navigation={navigation}/>
       </View>
       <View style={{flex: 1, padding: 10, flexDirection: 'row'}}>
-        <SessionTeaserProvider type="next" navigation={navigation}/>
+        <View style={{flex: 1,  padding: 10, flexDirection: 'row'}}>
+          <Text style={{flex: 3}}>Next Workout</Text>
+          <Button
+            style={{flex: 1}}
+            title="Go"
+            onPress={() => navigation.navigate('Workout')}
+          />
+        </View>
       </View>
       <View style={{flex: 1,  padding: 10, flexDirection: 'row'}}>
         <Text style={{flex: 3}}>Workouts</Text>
