@@ -10,3 +10,5 @@ npm-debug.*
 *.idea
 web-build/
 web-report/
+
+google-services.json
