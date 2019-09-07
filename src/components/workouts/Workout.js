@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Text, View, TextInput, Button} from "react-native";
 import WorkoutExerciseListProvider from "../exercises/WorkoutExerciseListProvider";
 import { styles } from '../Styles';
+import AddExercise from "../exercises/AddExercise";
 
 
 export default function Workout({workout = {id: 0, name: '', description: '', exercises: []}, handleUpdate, navigation}) {
@@ -48,6 +49,10 @@ export default function Workout({workout = {id: 0, name: '', description: '', ex
         />
         <Text style={[styles.bold, {marginTop: 15, fontSize: 20}]}>Exercises</Text>
         <WorkoutExerciseListProvider workout={workout}/>
+        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', }}>
+          <Text style={{flex: 2, fontSize: 20}} >Add Exercise</Text>
+          <Button style={{flex: 1}} onPress={() => {navigation.navigate('AddExercise')}} title="Plus Icon"/>
+        </View>
       </View>
       <View style={{marginTop: 20, flex: 1, width: 125, flexDirection: 'row-reverse', alignItems: 'flex-end', justifyContent: 'space-between'}}>
         {workout.id !== 0

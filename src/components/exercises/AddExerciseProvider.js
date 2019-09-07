@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import Workout from './Workout';
+import AddExercise from './AddExercise';
 
 function getWorkout(workouts, otherProps) {
   const id = otherProps.navigation.getParam('workoutId', 0);
@@ -27,9 +27,9 @@ const mapDispatchToProps = dispatch => {
   }
 };
 
-const WorkoutsListProvider = connect(
+const AddExerciseProvider = connect(
   mapStateToProps,
   mapDispatchToProps
-)(Workout);
+)(AddExercise);
 
-export default WorkoutsListProvider;
+export default AddExerciseProvider;
