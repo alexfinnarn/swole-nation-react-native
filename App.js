@@ -20,7 +20,7 @@ export default function App() {
       Workout: { screen: WorkoutProvider },
     },
     {
-      initialRouteName: 'Home'
+      initialRouteName: 'Session'
     }
   );
 

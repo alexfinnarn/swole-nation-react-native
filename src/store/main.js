@@ -12,7 +12,10 @@ const initialState = {
       id: 2,
       name: 'Stronglifts B',
       description: 'Squats, Bench Press, Barbell Row',
-      exercises: []
+      exercises: [
+        'Squats Warmup',
+        'Squats'
+      ]
     }
   ],
   exercises: [
