@@ -22,7 +22,7 @@ export default function App() {
       AddExercise: { screen: AddExerciseProvider },
     },
     {
-      initialRouteName: 'AddExerciseProvider'
+      initialRouteName: 'AddExercise'
     }
   );
 

@@ -24,8 +24,8 @@ const initialState = {
       name: 'Squats Warmup',
       instructions: 'Do with a barbell',
       sets: [
-        {reps: 5, weight: 45.0},
-        {reps: 5, weight: 45.0},
+        {key: 1, reps: 5, weight: 45.0},
+        {key: 2, reps: 5, weight: 45.0},
       ]
     },
     {
@@ -33,11 +33,11 @@ const initialState = {
       name: 'Squats',
       instructions: 'Do with a barbell',
       sets: [
-        {reps: 5, weight: 200.0},
-        {reps: 5, weight: 200.0},
-        {reps: 5, weight: 200.0},
-        {reps: 5, weight: 200.0},
-        {reps: 5, weight: 200.0},
+        {key: 1, reps: 5, weight: 200.0},
+        {key: 2, reps: 5, weight: 200.0},
+        {key: 3, reps: 5, weight: 200.0},
+        {key: 4, reps: 5, weight: 200.0},
+        {key: 5, reps: 5, weight: 200.0},
       ]
     },
   ],

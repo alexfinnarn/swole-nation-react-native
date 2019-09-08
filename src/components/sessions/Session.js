@@ -100,12 +100,12 @@ export default function Session({session, navigation}) {
             }} title="Previous"/>
           }
           {onLastExercise()
-              ? <Button onPress={() => {
-                finishWorkout();
-              }} title="Finish Workout"/>
-              : <Button onPress={() => {
-                handleSets(true);
-              }} title="Complete Set"/>
+            ? (<Button onPress={() => {
+              finishWorkout();
+            }} title="Finish Workout"/>)
+            : (<Button onPress={() => {
+              handleSets(true);
+            }} title="Complete Set"/>)
           }
           {onLastExercise()
             ? <Text>Disabled</Text>

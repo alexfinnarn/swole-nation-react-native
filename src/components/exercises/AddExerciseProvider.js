@@ -16,6 +16,7 @@ function getWorkout(workouts, otherProps) {
 const mapStateToProps = (state, otherProps) => {
   return {
     workout: getWorkout(state.workouts, otherProps),
+    exercises: state.exercises,
   }
 };
 

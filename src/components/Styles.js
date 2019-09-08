@@ -2,9 +2,9 @@ import {StyleSheet} from "react-native";
 
 export const styles = StyleSheet.create({
   container: {
+    backgroundColor: '#F5FCFF',
     flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
+    paddingTop: 15
   },
   editText: {
     // alignSelf: 'flex-start',
@@ -25,5 +25,16 @@ export const styles = StyleSheet.create({
   },
   bold: {
     fontWeight: 'bold'
-  }
+  },
+  autocompleteContainer: {
+    left: 0,
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    zIndex: 1
+  },
+  itemText: {
+    fontSize: 18,
+    margin: 2
+  },
 });
