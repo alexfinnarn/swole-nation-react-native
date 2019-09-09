@@ -1,18 +1,16 @@
 import React, {useState, useEffect} from 'react';
-import {Text, View, TouchableOpacity, Keyboard, Switch, TextInput, Button, FlatList, Picker} from "react-native";
-import Autocomplete from 'react-native-autocomplete-input';
-import shortId from 'shortid';
+import {Text, View, Switch, TextInput, Button, FlatList, Picker} from "react-native";
 import {styles} from "../Styles";
 import AddExerciseSet from "./AddExerciseSet";
 
 export default function AddExercise({exercises, thing, handleUpdate, addExercise, navigation, theExercise}) {
-  const [query, setQuery] = useState(theExercise.name);
+  const [choice, setChoice] = useState(theExercise.name);
   const [exercise, setExercise] = useState(theExercise);
   const [switchValue, setSwitchValue] = useState(true);
-  const [pickerEnabled, setPickerEnabled] = useState(theExercise.name === '');
+  const pickerEnabled = theExercise.name === '';
 
   function updateExercisePicker(name) {
-    setQuery(name);
+    setChoice(name);
     setExercise(exercises.find(exercise => exercise.name.toLowerCase().trim() === name.toLowerCase().trim()));
   }
 
@@ -22,16 +20,16 @@ export default function AddExercise({exercises, thing, handleUpdate, addExercise
         {switchValue
           ? <Picker
             enabled={pickerEnabled}
-            selectedValue={query}
+            selectedValue={choice}
             style={{height: 60, width: 120}}
             onValueChange={(itemValue) => updateExercisePicker(itemValue)}>
-            {exercises.map((exer, index) => <Picker.Item key={exer.key} label={exer.name} value={exer.name}/>)}
+            {exercises.map((exer) => <Picker.Item key={exer.key} label={exer.name} value={exer.name}/>)}
           </Picker>
           : <TextInput
             style={[styles.editText, styles.smallTextInputFont, {flex: 4}]}
             placeholder="Enter Exercise"
-            onChangeText={(text) => setQuery(text)}
-            value={query}
+            onChangeText={(text) => setChoice(text)}
+            value={choice}
           />
         }
         <Switch style={{flex: 1}} onValueChange={(value) => setSwitchValue(value)} value={switchValue}/>
