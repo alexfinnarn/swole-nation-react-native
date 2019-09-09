@@ -1,11 +1,11 @@
 import React, {useState} from 'react';
 import {Text, View, TextInput, Button} from "react-native";
 import WorkoutExerciseListProvider from "../exercises/WorkoutExerciseListProvider";
-import { styles } from '../Styles';
+import {styles} from '../Styles';
 import AddExercise from "../exercises/AddExercise";
 
 
-export default function Workout({workout = {id: 0, name: '', description: '', exercises: []}, handleUpdate, navigation}) {
+export default function Workout({workout = {id: '', name: '', description: '', exercises: []}, handleUpdate, navigation}) {
   const [name, setName] = useState(workout.name);
   const [description, setDescription] = useState(workout.description);
 
@@ -24,7 +24,7 @@ export default function Workout({workout = {id: 0, name: '', description: '', ex
 
   return (
     <View style={{padding: 20, flex: 1}}>
-      <View style={{flex: 9}}>
+      <View style={{flex: 2}}>
         <Text style={styles.bold}>Workout Name</Text>
         <TextInput
           style={[styles.editText, styles.mediumTextInputFont]}
@@ -40,22 +40,22 @@ export default function Workout({workout = {id: 0, name: '', description: '', ex
           onChangeText={(text) => setDescription(text)}
           value={description}
         />
-        <Text style={[styles.bold, {fontSize: 20}]}>Exercises</Text>
-        <WorkoutExerciseListProvider style={{flex: 1}} workout={workout} navigation={navigation}/>
-        <View style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end', }}>
-          <Text style={{flex: 2, fontSize: 20}} >Add Exercise</Text>
-          <Button style={{flex: 1}} onPress={() => {navigation.navigate('AddExercise')}} title="Plus Icon"/>
-        </View>
       </View>
-      <View style={{marginTop: 20, flex: 1, width: 125, flexDirection: 'row-reverse', alignItems: 'flex-end', justifyContent: 'space-between'}}>
-        {workout.id !== 0
-          ? <Button style={{ backgroundColor: 'red'}} onPress={() => update('DELETE_WORKOUT')} title="Delete"/>
+      <View style={{flex: 6}}>
+        <WorkoutExerciseListProvider workout={workout} navigation={navigation}/>
+      </View>
+      <View style={{marginTop: 20, flex: 1, flexDirection: 'row', alignContent: 'flex-start', justifyContent: 'space-between'}}>
+        {workout.id !== ''
+          ? <Button style={{flex: 1}} onPress={() => update('UPDATE_WORKOUT')} title="Save"/>
+          : <Button style={{flex: 1}} onPress={() => update('CREATE_WORKOUT')} title="Go"/>
+        }
+        {workout.id !== ''
+          ? <Button style={{flex: 1}} onPress={() => update('DELETE_WORKOUT')} title="Delete"/>
           : <Text></Text>
         }
-        {workout.id !== 0
-          ? <Button  onPress={() => update('UPDATE_WORKOUT')} title="Save"/>
-          : <Button  onPress={() => update('CREATE_WORKOUT')} title="Go"/>
-        }
+        <Button style={{flex: 1, alignSelf: "flex-end"}} onPress={() => {
+          navigation.navigate('AddExercise', {pickerEnabled: true, workout: workout});
+        }} title="Add Exercise"/>
       </View>
     </View>
   );

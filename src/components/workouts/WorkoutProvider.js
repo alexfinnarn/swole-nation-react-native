@@ -1,13 +1,14 @@
 import { connect } from 'react-redux'
 import Workout from './Workout';
+import shortId from "shortid";
 
 function getWorkout(workouts, otherProps) {
-  const id = otherProps.navigation.getParam('workoutId', 0);
+  const id = otherProps.navigation.getParam('workoutId', '');
 
   return workouts[1];
 
-  if (id === 0) {
-    return {id: 0, name: '', description: '', exercises: []};
+  if (id === '') {
+    return {id: shortId.generate(), name: '', description: '', exercises: []};
   } else {
     return workouts.find((el) => el.id === id);
   }
