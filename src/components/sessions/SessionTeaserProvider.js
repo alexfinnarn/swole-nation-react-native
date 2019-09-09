@@ -7,7 +7,7 @@ function getSession(sessions, otherProps) {
   }
 
   if (otherProps.type === 'last') {
-    return sessions.find((session) => session.id === 1);
+    return sessions[1];
   }
 }
 

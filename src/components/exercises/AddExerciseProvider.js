@@ -1,29 +1,34 @@
 import { connect } from 'react-redux'
 import AddExercise from './AddExercise';
+import shortId from "shortid";
 
-function getWorkout(workouts, otherProps) {
-  const id = otherProps.navigation.getParam('workoutId', 0);
+function getExercise(exercises, otherProps) {
+  const id = otherProps.navigation.getParam('exerciseId', 0);
 
-  return workouts[1];
+  return exercises[1];
 
   if (id === 0) {
-    return {id: 0, name: '', description: '', exercises: []};
+    return {id: shortId.generate(), name: '', instructions: '', sets: []};
   } else {
-    return workouts.find((el) => el.id === id);
+    return exercises.find((el) => el.id === id);
   }
 }
 
 const mapStateToProps = (state, otherProps) => {
   return {
-    workout: getWorkout(state.workouts, otherProps),
+    theExercise: getExercise(state.exercises, otherProps),
     exercises: state.exercises,
+    thing: state.theThing
   }
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleUpdate: (updatedWorkout, action) => {
-      dispatch({workout: updatedWorkout, type: action });
+    handleUpdate: (updatedSet, exercise, thing, action) => {
+      dispatch({set: updatedSet, exercise, thing, type: action });
+    },
+    addExercise: (exercise) => {
+      dispatch({ exercise, type: 'ADD_EXERCISE' });
     }
   }
 };

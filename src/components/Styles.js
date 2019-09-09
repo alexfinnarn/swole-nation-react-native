@@ -29,8 +29,8 @@ export const styles = StyleSheet.create({
   autocompleteContainer: {
     left: 0,
     position: 'absolute',
-    right: 0,
-    top: 0,
+    right: 50,
+    top: 20,
     zIndex: 1
   },
   itemText: {
