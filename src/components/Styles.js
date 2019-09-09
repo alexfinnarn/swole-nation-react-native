@@ -9,7 +9,7 @@ export const styles = StyleSheet.create({
   editText: {
     // alignSelf: 'flex-start',
     color: 'black',
-    marginBottom: 20,
+    // marginBottom: 20,
     marginTop: 5,
     borderBottomColor: 'grey',
     borderBottomWidth: 2

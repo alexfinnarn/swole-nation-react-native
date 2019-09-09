@@ -3,15 +3,14 @@ import {Text, View, Switch, TextInput, Button, FlatList, Picker} from "react-nat
 import {styles} from "../Styles";
 import AddExerciseSet from "./AddExerciseSet";
 
-export default function AddExercise({exercises, thing, handleUpdate, addExercise, navigation, theExercise}) {
-  const [choice, setChoice] = useState(theExercise.name);
+export default function AddExercise({exercises, thing, handleUpdate, addExercise, navigation, theExercise, pickerEnabled}) {
+  const [choice, setChoice] = useState(theExercise.id);
   const [exercise, setExercise] = useState(theExercise);
   const [switchValue, setSwitchValue] = useState(true);
-  const pickerEnabled = theExercise.name === '';
 
-  function updateExercisePicker(name) {
-    setChoice(name);
-    setExercise(exercises.find(exercise => exercise.name.toLowerCase().trim() === name.toLowerCase().trim()));
+  function updateExercisePicker(id) {
+    setChoice(id);
+    setExercise(exercises.find(exercise => exercise.id === id));
   }
 
   return (
@@ -21,9 +20,9 @@ export default function AddExercise({exercises, thing, handleUpdate, addExercise
           ? <Picker
             enabled={pickerEnabled}
             selectedValue={choice}
-            style={{height: 60, width: 120}}
+            style={{height: 70, width: 300}}
             onValueChange={(itemValue) => updateExercisePicker(itemValue)}>
-            {exercises.map((exer) => <Picker.Item key={exer.key} label={exer.name} value={exer.name}/>)}
+            {exercises.map((exer) => <Picker.Item key={exer.id} label={exer.name} value={exer.id}/>)}
           </Picker>
           : <TextInput
             style={[styles.editText, styles.smallTextInputFont, {flex: 4}]}
@@ -35,11 +34,11 @@ export default function AddExercise({exercises, thing, handleUpdate, addExercise
         <Switch style={{flex: 1}} onValueChange={(value) => setSwitchValue(value)} value={switchValue}/>
       </View>
       <View style={{flex: 6}}>
-        {exercise.name && <Text>Sets</Text>}
+        <Text>Sets</Text>
         <FlatList
           data={exercise.sets}
           extraData={thing}
-          keyExtractor={(item, index) => item.key}
+          keyExtractor={(item) => item.key}
           renderItem={({item}) => <AddExerciseSet updater={handleUpdate} exercise={exercise} item={item}/>}
         />
       </View>
@@ -51,7 +50,7 @@ export default function AddExercise({exercises, thing, handleUpdate, addExercise
         <Button onPress={() => {
           addExercise(exercise);
           navigation.goBack();
-        }} title="Add"/>
+        }} title="Save"/>
       </View>
     </View>
   );

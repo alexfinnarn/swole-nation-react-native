@@ -41,6 +41,24 @@ const initialState = {
         {key: shortId.generate(), reps: 5, weight: 200.0},
       ]
     },
+    {
+      id: shortId.generate(),
+      name: 'Bench Press Warmup',
+      instructions: 'Do with a barbell',
+      sets: [
+        {key: shortId.generate(), reps: 5, weight: 110.0},
+        {key: shortId.generate(), reps: 5, weight: 135.0},
+      ]
+    },
+    {
+      id: shortId.generate(),
+      name: 'Bench Press',
+      instructions: 'Do with a barbell',
+      sets: [
+        {key: shortId.generate(), reps: 5, weight: 160.0},
+        {key: shortId.generate(), reps: 5, weight: 160.0},
+      ]
+    },
   ],
   sessions: [
     {
@@ -121,9 +139,8 @@ function mainStore(state = initialState, action) {
       return Object.assign({}, state, {workouts: newWorkouts});
 
     case WorkoutActions.ADD_EXERCISE:
-      // newExercises.push(action.exercise);
-      // return Object.assign({}, state, {exercises: newExercises});
-      return state;
+      // Trigger the workout list to reload...should contain more sensible functionality later.
+      return Object.assign({}, state, {theThing: shortId.generate()});
 
     case WorkoutActions.ADD_SET:
       let newSet = action.set;
@@ -152,6 +169,16 @@ function mainStore(state = initialState, action) {
       let newSets = state.exercises[index].sets.filter(set => set.key !== action.set.key);
 
       newExercises[index].sets = newSets;
+      return Object.assign({}, state, {exercises: newExercises, theThing: action.thing});
+
+    case WorkoutActions.UPDATE_SET:
+      newExercises = state.exercises.map((exercise) => {
+        if (exercise.id === action.exercise.id) {
+          exercise.sets = exercise.sets.map(set => set.key === action.set.key ? action.set : set);
+          return exercise;
+        }
+        return exercise;
+      });
       return Object.assign({}, state, {exercises: newExercises, theThing: action.thing});
 
     default:

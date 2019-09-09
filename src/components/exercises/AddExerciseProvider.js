@@ -2,23 +2,27 @@ import { connect } from 'react-redux'
 import AddExercise from './AddExercise';
 import shortId from "shortid";
 
-function getExercise(exercises, otherProps) {
-  const id = otherProps.navigation.getParam('exerciseId', 0);
+function getExercise(exercises, navigation) {
+  const id = navigation.getParam('exerciseId', '');
 
-  return exercises[1];
-
-  if (id === 0) {
-    return {id: shortId.generate(), name: '', instructions: '', sets: []};
+  if (id === '') {
+    return exercises[0];
   } else {
     return exercises.find((el) => el.id === id);
   }
 }
 
+function getExercises(exercises, navigation) {
+  const workout = navigation.getParam('workout', {id: shortId.generate(), name: '', description: '', exercises: []});
+  return exercises.filter(exercise => workout.exercises.includes(exercise.name) === false);
+}
+
 const mapStateToProps = (state, otherProps) => {
   return {
-    theExercise: getExercise(state.exercises, otherProps),
-    exercises: state.exercises,
-    thing: state.theThing
+    theExercise: getExercise(getExercises(state.exercises, otherProps.navigation), otherProps.navigation),
+    exercises: getExercises(state.exercises, otherProps.navigation),
+    thing: state.theThing,
+    pickerEnabled: otherProps.navigation.getParam('pickerEnabled', true)
   }
 };
 

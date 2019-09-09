@@ -1,10 +1,15 @@
 import { connect } from 'react-redux'
 import WorkoutExerciseList from './WorkoutExerciseList';
 
+function getExercises(exercises, workout) {
+  return exercises.filter(exercise => workout.exercises.includes(exercise.name));
+}
+
 const mapStateToProps = (state, otherProps) => {
   return {
-    exercises: state.exercises,
-    workout: otherProps.workout
+    exercises: getExercises(state.exercises, otherProps.workout),
+    workout: otherProps.workout,
+    thing: state.theThing
   }
 };
 

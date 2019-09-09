@@ -2,7 +2,7 @@ import React from 'react';
 import {FlatList, View} from "react-native";
 import WorkoutExerciseListItem from "./WorkoutExerciseListItem";
 
-export default function WorkoutExerciseList({ exercises, workout, handleSelection, navigation }) {
+export default function WorkoutExerciseList({ exercises, workout, handleSelection, navigation, thing }) {
   // Add key that is needed for rendering the <FlatList /> component.
   exercises = exercises.map((exercise) => {
     exercise.key = exercise.id.toString();
@@ -12,6 +12,7 @@ export default function WorkoutExerciseList({ exercises, workout, handleSelectio
   return (
     <View>
       <FlatList
+        extraData={thing}
         data={exercises}
         renderItem={(item) => <WorkoutExerciseListItem navigation={navigation} exercise={item} updater={handleSelection} workout={workout}/>}
       />
