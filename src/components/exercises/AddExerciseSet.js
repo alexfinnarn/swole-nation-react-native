@@ -4,7 +4,6 @@ import shortId from 'shortid';
 import {styles} from "../Styles";
 
 export default function AddExerciseSet({item = {key: "0", reps: 0, weight: 100}, exercise, toAdd, updater}) {
-  // console.log(item);
   const [reps, setReps] = useState(item.reps.toString());
   const [weight, setWeight] = useState(item.weight.toString());
 

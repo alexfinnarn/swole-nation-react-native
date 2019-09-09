@@ -145,8 +145,6 @@ function mainStore(state = initialState, action) {
     case WorkoutActions.ADD_SET:
       let newSet = action.set;
       let newExercise = action.exercise;
-      console.log(newExercise);
-
       newExercises = state.exercises;
       state.exercises.forEach((ex, ind) => {
         if (ex.name === action.exercise.name) {
