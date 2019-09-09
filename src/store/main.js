@@ -1,15 +1,16 @@
 import {WorkoutActions} from "./actions";
+import shortId from 'shortid';
 
 const initialState = {
   workouts: [
     {
-      id: 1,
+      id: shortId.generate(),
       name: 'Stronglifts A',
       description: 'Squats, Overhead Press, Deadlifts',
       exercises: []
     },
     {
-      id: 2,
+      id: shortId.generate(),
       name: 'Stronglifts B',
       description: 'Squats, Bench Press, Barbell Row',
       exercises: [
@@ -20,30 +21,30 @@ const initialState = {
   ],
   exercises: [
     {
-      id: 1,
+      id: shortId.generate(),
       name: 'Squats Warmup',
       instructions: 'Do with a barbell',
       sets: [
-        {reps: 5, weight: 45.0},
-        {reps: 5, weight: 45.0},
+        {key: shortId.generate(), reps: 5, weight: 45.0},
+        {key: shortId.generate(), reps: 5, weight: 45.0},
       ]
     },
     {
-      id: 2,
+      id: shortId.generate(),
       name: 'Squats',
       instructions: 'Do with a barbell',
       sets: [
-        {reps: 5, weight: 200.0},
-        {reps: 5, weight: 200.0},
-        {reps: 5, weight: 200.0},
-        {reps: 5, weight: 200.0},
-        {reps: 5, weight: 200.0},
+        {key: shortId.generate(), reps: 5, weight: 200.0},
+        {key: shortId.generate(), reps: 5, weight: 200.0},
+        {key: shortId.generate(), reps: 5, weight: 200.0},
+        {key: shortId.generate(), reps: 5, weight: 200.0},
+        {key: shortId.generate(), reps: 5, weight: 200.0},
       ]
     },
   ],
   sessions: [
     {
-      id: 1,
+      id: shortId.generate(),
       name: new Date(Date.now()).toLocaleString('en-US'),
       workoutIds: [1],
       exercises: [
@@ -65,7 +66,7 @@ const initialState = {
       ]
     },
     {
-      id: 2,
+      id: shortId.generate(),
       name: 'Next Workout',
       workoutIds: [2],
       exercises: [
@@ -87,17 +88,21 @@ const initialState = {
       ]
     }
   ],
-  tempExerciseList: []
+  tempExerciseList: [],
+  theThing: ''
 };
 
 function mainStore(state = initialState, action) {
   let newWorkouts = [];
+  let exercise = {};
+  let index = 0;
+  let newExercises = state.exercises;
 
   switch (action.type) {
 
     case WorkoutActions.CREATE_WORKOUT:
       let newWorkout = action.workout;
-      newWorkout.id = state.workouts.length + 1;
+      newWorkout.id = shortId.generate();
       newWorkout.exercises = state.tempExerciseList;
       return Object.assign({}, state, {workouts: [...state.workouts, newWorkout]});
 
@@ -112,40 +117,42 @@ function mainStore(state = initialState, action) {
       return Object.assign({}, state, {workouts: newWorkouts});
 
     case WorkoutActions.DELETE_WORKOUT:
-      newWorkouts = state.workouts.filter((workout) => {
-        if (workout.id !== action.workout.id) {
-          return workout;
-        }
-      });
+      newWorkouts = state.workouts.filter(workout => workout.id !== action.workout.id);
       return Object.assign({}, state, {workouts: newWorkouts});
 
-    case WorkoutActions.TOGGLE_EXERCISE:
-      let tempExerciseList = state.tempExerciseList;
-      if (action.selection) {
-        tempExerciseList.push(action.exercise.name);
-      } else {
-        tempExerciseList = tempExerciseList.filter((exercise) => {
-          return exercise !== action.exercise.name;
-        });
-      }
+    case WorkoutActions.ADD_EXERCISE:
+      // newExercises.push(action.exercise);
+      // return Object.assign({}, state, {exercises: newExercises});
+      return state;
 
-      return Object.assign({}, state, {tempExerciseList});
+    case WorkoutActions.ADD_SET:
+      let newSet = action.set;
+      let newExercise = action.exercise;
+      newExercises = state.exercises;
+      state.exercises.forEach((ex, ind) => {
+        if (ex.name === action.exercise.name) {
+          index = ind;
+          exercise = ex;
+        }
+      });
+      newSet.key = shortId.generate();
+      newExercise.sets.push(newSet);
+      newExercises[index] = newExercise;
 
-    // newWorkouts = state.workouts.map((workout) => {
-    //   if (workout.id === action.workout.id) {
-    //     let tempWorkout = action.workout;
-    //     if (action.selection) {
-    //       tempWorkout.exercises.push(action.exercise.name);
-    //     } else {
-    //       tempWorkout.exercises = tempWorkout.exercises.filter((exercise) => {
-    //         return exercise !== action.exercise.name;
-    //       });
-    //     }
-    //     return tempWorkout;
-    //   }
-    //   return workout;
-    // });
-    // return Object.assign({}, state, {workouts: newWorkouts});
+      return Object.assign({}, state, {exercises: newExercises, theThing: action.thing});
+
+    case WorkoutActions.REMOVE_SET:
+      newExercises = state.exercises;
+      state.exercises.forEach((ex, ind) => {
+        if (ex.name === action.exercise.name) {
+          index = ind;
+          exercise = ex;
+        }
+      });
+      let newSets = state.exercises[index].sets.filter(set => set.key !== action.set.key);
+
+      newExercises[index].sets = newSets;
+      return Object.assign({}, state, {exercises: newExercises, theThing: action.thing});
 
     default:
       return state;

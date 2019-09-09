@@ -4,6 +4,8 @@ import Workout from './Workout';
 function getWorkout(workouts, otherProps) {
   const id = otherProps.navigation.getParam('workoutId', 0);
 
+  return workouts[1];
+
   if (id === 0) {
     return {id: 0, name: '', description: '', exercises: []};
   } else {
