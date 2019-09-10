@@ -6,7 +6,7 @@ function getExercise(exercises, navigation) {
   const id = navigation.getParam('exerciseId', '');
 
   if (id === '') {
-    return exercises[0];
+    return exercises[0] ?? {id: shortId.generate(), new: true, name: '', instructions: '', sets: []};
   } else {
     return exercises.find((el) => el.id === id);
   }
