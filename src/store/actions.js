@@ -7,4 +7,5 @@ export const WorkoutActions = {
   ADD_SET: 'ADD_SET',
   UPDATE_SET: 'UPDATE_SET',
   REMOVE_SET: 'REMOVE_SET',
+  CREATE_SESSION: 'CREATE_SESSION'
 };

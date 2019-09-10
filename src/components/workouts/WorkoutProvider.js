@@ -21,8 +21,13 @@ const mapStateToProps = (state, otherProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleUpdate: (updatedWorkout, action) => {
-      dispatch({workout: updatedWorkout, type: action });
+    handle: {
+      update: (updatedWorkout, action) => {
+        dispatch({workout: updatedWorkout, type: action });
+      },
+      createSession: () => {
+        dispatch({type: 'CREATE_SESSION' });
+      }
     }
   }
 };

@@ -4,7 +4,7 @@ import WorkoutExerciseListProvider from "../exercises/WorkoutExerciseListProvide
 import {styles} from '../Styles';
 import AddExercise from "../exercises/AddExercise";
 
-export default function Workout({workout = {id: '', name: '', description: '', exercises: []}, handleUpdate, navigation}) {
+export default function Workout({workout = {id: '', name: '', description: '', exercises: []}, handle, navigation}) {
   const [name, setName] = useState(workout.name);
   const [description, setDescription] = useState(workout.description);
 
@@ -12,9 +12,10 @@ export default function Workout({workout = {id: '', name: '', description: '', e
     let newWorkout = workout;
     newWorkout.name = name;
     newWorkout.description = description;
-    handleUpdate(newWorkout, action);
+    handle.update(newWorkout, action);
 
-    if (action === 'CREATE_WORKOUT') {
+    if (action !== 'CREATE_WORKOUT') {
+      handle.createSession();
       navigation.navigate('Session');
     } else {
       navigation.goBack();
@@ -43,10 +44,10 @@ export default function Workout({workout = {id: '', name: '', description: '', e
       <View style={{flex: 6}}>
         <WorkoutExerciseListProvider workout={workout} navigation={navigation}/>
       </View>
-      <View style={{marginTop: 20, flex: 1, flexDirection: 'row', alignContent: 'flex-start', justifyContent: 'space-between'}}>
+      <View style={{marginTop: 20, flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
         {workout.id !== ''
-          ? <Button style={{flex: 1}} onPress={() => update('UPDATE_WORKOUT')} title="Save"/>
-          : <Button style={{flex: 1}} onPress={() => update('CREATE_WORKOUT')} title="Go"/>
+          ? <Button style={{flex: 1}} onPress={() => update('UPDATE_WORKOUT')} title="Go"/>
+          : <Button style={{flex: 1}} onPress={() => update('CREATE_WORKOUT')} title="Save"/>
         }
         {workout.id !== ''
           ? <Button style={{flex: 1}} onPress={() => update('DELETE_WORKOUT')} title="Delete"/>
