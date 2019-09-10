@@ -4,7 +4,6 @@ import WorkoutExerciseListProvider from "../exercises/WorkoutExerciseListProvide
 import {styles} from '../Styles';
 import AddExercise from "../exercises/AddExercise";
 
-
 export default function Workout({workout = {id: '', name: '', description: '', exercises: []}, handleUpdate, navigation}) {
   const [name, setName] = useState(workout.name);
   const [description, setDescription] = useState(workout.description);

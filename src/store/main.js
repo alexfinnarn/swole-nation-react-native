@@ -64,7 +64,7 @@ const initialState = {
     {
       id: shortId.generate(),
       name: new Date(Date.now()).toLocaleString('en-US'),
-      workoutIds: [1],
+      workoutIds: [],
       exercises: [
         {
           shortName: 'SQ',
@@ -107,7 +107,8 @@ const initialState = {
     }
   ],
   tempExerciseList: [],
-  theThing: ''
+  theThing: '',
+  activeWorkoutId: '',
 };
 
 function mainStore(state = initialState, action) {
@@ -137,6 +138,9 @@ function mainStore(state = initialState, action) {
     case WorkoutActions.DELETE_WORKOUT:
       newWorkouts = state.workouts.filter(workout => workout.id !== action.workout.id);
       return Object.assign({}, state, {workouts: newWorkouts});
+
+    case WorkoutActions.SET_ACTIVE_WORKOUT:
+      return Object.assign({}, state, {activeWorkoutId: action.id});
 
     case WorkoutActions.ADD_EXERCISE:
       // Trigger the workout list to reload...should contain more sensible functionality later.

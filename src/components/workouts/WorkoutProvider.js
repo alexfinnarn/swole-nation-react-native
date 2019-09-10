@@ -2,21 +2,20 @@ import { connect } from 'react-redux'
 import Workout from './Workout';
 import shortId from "shortid";
 
-function getWorkout(workouts, otherProps) {
-  const id = otherProps.navigation.getParam('workoutId', '');
+function getWorkout(workouts, activeWorkoutId) {
+  // const id = otherProps.navigation.getParam('workoutId', '');
+  // if (id === '') {
+  //   return {id: shortId.generate(), name: '', description: '', exercises: []};
+  // } else {
+  //   return workouts.find((el) => el.id === id);
+  // }
 
-  return workouts[1];
-
-  if (id === '') {
-    return {id: shortId.generate(), name: '', description: '', exercises: []};
-  } else {
-    return workouts.find((el) => el.id === id);
-  }
+  return workouts.find((workout => workout.id === activeWorkoutId));
 }
 
 const mapStateToProps = (state, otherProps) => {
   return {
-    workout: getWorkout(state.workouts, otherProps),
+    workout: getWorkout(state.workouts, state.activeWorkoutId),
   }
 };
 
