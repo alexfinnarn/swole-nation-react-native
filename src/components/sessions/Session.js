@@ -13,7 +13,9 @@ export default function Session({session, navigation}) {
   const [seconds, setSeconds] = useState(0);
   const [sessionDuration, setSessionDuration] = useState(0);
   const [isActive, setIsActive] = useState(false);
-  const [sessionActive, sessionIsActive] = useState(true);
+  const [weightPlateString, setWeightPlateString] = useState('Each Side: ');
+  const weightPlates = [45, 25, 10, 5, 2.5];
+  let thePlatesString = 'Each Side: ';
 
   function toggle() {
     setIsActive(!isActive);
@@ -23,6 +25,27 @@ export default function Session({session, navigation}) {
     setSessionDuration(sessionDuration + seconds);
     setSeconds(0);
     // setIsActive(false);
+  }
+
+  function calculateWeightPlates(weight, platesString = 'Each Side: ', counter = 0) {
+    if (weight <= 0 && counter >= weightPlates.length) {
+      thePlatesString = platesString;
+      setWeightPlateString(thePlatesString);
+      return null;
+    } else {
+
+      let multiplier = 1;
+      if ((weight / weightPlates[counter]) >= 2 && [45, 10].includes(weightPlates[counter])) {
+        multiplier = Math.floor(weight / weightPlates[counter]);
+      }
+
+      if ((weight - weightPlates[counter]) >= 0) {
+        weight = weight - (weightPlates[counter] * multiplier);
+        platesString = `${platesString} - ${multiplier.toString()}x${weightPlates[counter].toString()}`;
+      }
+
+      calculateWeightPlates(weight, platesString, counter + 1);
+    }
   }
 
   useEffect(() => {
@@ -39,7 +62,8 @@ export default function Session({session, navigation}) {
 
   useEffect(() => {
     setTimeout(() => {
-      toggle();
+      // toggle();
+      calculateWeightPlates((session.exercises[exercise].sets[set].weight - 45.0) / 2);
     }, 200);
   }, []);
 
@@ -50,6 +74,7 @@ export default function Session({session, navigation}) {
       resetTimer();
       updateExercise(exercise + 1);
       updateSet(0);
+      calculateWeightPlates((session.exercises[exercise + 1].sets[0].weight - 45.0) / 2);
       return;
     }
 
@@ -57,6 +82,7 @@ export default function Session({session, navigation}) {
     if (!forward && set === 0) {
       updateExercise(exercise - 1);
       updateSet(session.exercises[exercise - 1].sets.length - 1);
+      calculateWeightPlates((session.exercises[exercise - 1].sets[session.exercises[exercise - 1].sets.length - 1].weight - 45.0) / 2);
       return;
     }
 
@@ -68,8 +94,10 @@ export default function Session({session, navigation}) {
     if (forward) {
       resetTimer();
       updateSet(set + 1);
+      calculateWeightPlates((session.exercises[exercise].sets[set].weight - 45.0) / 2);
     } else {
       updateSet(set - 1);
+      calculateWeightPlates((session.exercises[exercise].sets[set].weight - 45.0) / 2);
     }
   }
 
@@ -90,6 +118,7 @@ export default function Session({session, navigation}) {
       </View>
       <View style={{flex: 2, padding: 10, flexDirection: 'column', justifyContent: 'space-between'}}>
         <Text style={{flex: 1}}>Current Set: {set + 1}/{session.exercises[exercise].sets.length} - {session.exercises[exercise].sets[set].reps} reps at {session.exercises[exercise].sets[set].weight}lbs</Text>
+        <Text style={{flex: 1}}>{weightPlateString}</Text>
         <Text style={{flex: 1}}>Time on set: {seconds}</Text>
         <Text style={{flex: 1}}>Time on session: {seconds + sessionDuration}</Text>
         <View style={{flex: 2, padding: 10, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'flex-end'}}>

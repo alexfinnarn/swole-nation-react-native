@@ -71,20 +71,28 @@ const initialState = {
       workoutIds: [],
       exercises: [
         {
-          shortName: 'SQ',
-          sets: '5x5',
-          weight: 200.0
+          id: shortId.generate(),
+          new: false,
+          name: 'Squats Warmup',
+          instructions: 'Do with a barbell',
+          sets: [
+            {key: shortId.generate(), reps: 5, weight: 45.0},
+            {key: shortId.generate(), reps: 5, weight: 45.0},
+          ]
         },
         {
-          shortName: 'OH',
-          sets: '5x5',
-          weight: 100.0
-        },
-        {
-          shortName: 'DL',
-          sets: '5x5',
-          weight: 200.0
-        },
+          id: shortId.generate(),
+          new: false,
+          name: 'Squats',
+          instructions: 'Do with a barbell',
+          sets: [
+            {key: shortId.generate(), reps: 5, weight: 200.0},
+            {key: shortId.generate(), reps: 5, weight: 200.0},
+            {key: shortId.generate(), reps: 5, weight: 200.0},
+            {key: shortId.generate(), reps: 5, weight: 200.0},
+            {key: shortId.generate(), reps: 5, weight: 200.0},
+          ]
+        }
       ]
     },
     {
