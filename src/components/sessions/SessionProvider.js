@@ -1,6 +1,5 @@
 import { connect } from 'react-redux'
 import Session from './Session';
-import shortId from "shortid";
 
 function getSession(sessions, index) {
   return sessions[index];
