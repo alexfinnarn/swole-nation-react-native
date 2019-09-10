@@ -130,14 +130,9 @@ function mainStore(state = initialState, action) {
       return Object.assign({}, state, {workouts: [...state.workouts, newWorkout]});
 
     case WorkoutActions.UPDATE_WORKOUT:
-      newWorkouts = state.workouts.map((workout) => {
-        if (workout.id === action.workout.id) {
-          action.workout.exercises = state.tempExerciseList;
-          return action.workout;
-        }
-        return workout;
-      });
-      return Object.assign({}, state, {workouts: newWorkouts});
+      newWorkouts = state.workouts;
+      newWorkouts[state.activeWorkoutIndex] = action.workout;
+      return Object.assign({}, state, {workouts: newWorkouts, theThing: shortId.generate()});
 
     case WorkoutActions.DELETE_WORKOUT:
       newWorkouts = state.workouts.filter(workout => workout.id !== action.workout.id);
