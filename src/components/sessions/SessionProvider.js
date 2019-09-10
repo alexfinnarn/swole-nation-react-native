@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import Session from './Session';
 
 function getSession(sessions, index) {
-  return sessions[index];
+  return sessions[0];
 }
 
 const mapStateToProps = (state, otherProps) => {

@@ -11,7 +11,7 @@ export default function Home({navigation, workouts, handle, thing}) {
   return (
     <View style={[styles.container, {flex: 1, flexDirection: 'column', justifyContent: 'space-evenly'}]}>
       <View style={{flex: 1, padding: 10, flexDirection: 'row'}}>
-        <SessionTeaserProvider type="last" navigation={navigation}/>
+        {/*<SessionTeaserProvider type="last" navigation={navigation}/>*/}
       </View>
       <View style={{flex: 1, padding: 10, flexDirection: 'row'}}>
         <View style={{flex: 3, flexDirection: 'column'}}>
