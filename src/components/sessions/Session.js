@@ -15,7 +15,6 @@ export default function Session({session, navigation}) {
   const [isActive, setIsActive] = useState(false);
   const [weightPlateString, setWeightPlateString] = useState('Each Side: ');
   const weightPlates = [45, 25, 10, 5, 2.5];
-  let thePlatesString = 'Each Side: ';
 
   function toggle() {
     setIsActive(!isActive);
@@ -29,8 +28,7 @@ export default function Session({session, navigation}) {
 
   function calculateWeightPlates(weight, platesString = 'Each Side: ', counter = 0) {
     if (weight <= 0 && counter >= weightPlates.length) {
-      thePlatesString = platesString;
-      setWeightPlateString(thePlatesString);
+      setWeightPlateString(platesString);
       return null;
     } else {
 
@@ -62,7 +60,7 @@ export default function Session({session, navigation}) {
 
   useEffect(() => {
     setTimeout(() => {
-      // toggle();
+      toggle();
       calculateWeightPlates((session.exercises[exercise].sets[set].weight - 45.0) / 2);
     }, 200);
   }, []);
