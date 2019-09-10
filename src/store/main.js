@@ -113,6 +113,7 @@ const initialState = {
   tempExerciseList: [],
   theThing: '',
   activeWorkoutIndex: 0,
+  activeSessionIndex: 0,
 };
 
 function mainStore(state = initialState, action) {
@@ -197,6 +198,18 @@ function mainStore(state = initialState, action) {
         return exercise;
       });
       return Object.assign({}, state, {exercises: newExercises, theThing: action.thing});
+
+    case WorkoutActions.CREATE_SESSION:
+      const session = {
+        id: shortId.generate(),
+        name: new Date(Date.now()).toLocaleString('en-US'),
+        workoutIds: [state.workouts[state.activeWorkoutIndex].id],
+        exercises: state.workouts[state.activeWorkoutIndex].exercises.map(name =>
+          state.exercises.find(exercise => exercise.name === name))
+      };
+      let newSessions = state.sessions;
+      newSessions.push(session);
+      return Object.assign({}, state, {sessions: newSessions, activeSessionIndex: newSessions.length - 1});
 
     default:
       return state;

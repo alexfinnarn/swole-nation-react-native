@@ -1,22 +1,14 @@
 import { connect } from 'react-redux'
 import Session from './Session';
+import shortId from "shortid";
 
-function getSession(workouts, exercises, otherProps) {
-  // const id = otherProps.navigation.getParam('workoutId', 0);
-  // let session = workouts.find((workout) => workout.id === id) || null;
-  let session = workouts[workouts.length - 1];
-
-  if (session) {
-    session.exercises = session.exercises.map((exercise) => exercises.find((ex) => ex.name === exercise));
-    return session;
-  }
-
-  return {};
+function getSession(sessions, index) {
+  return sessions[index];
 }
 
 const mapStateToProps = (state, otherProps) => {
   return {
-    session: getSession(state.workouts, state.exercises, otherProps)
+    session: getSession(state.sessions, state.activeSessionIndex)
   }
 };
 
