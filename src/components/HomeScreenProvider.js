@@ -3,7 +3,8 @@ import Home from './Home';
 
 const mapStateToProps = (state, otherProps) => {
   return {
-    workouts: state.workouts
+    workouts: state.workouts,
+    thing: state.theThing
   }
 };
 

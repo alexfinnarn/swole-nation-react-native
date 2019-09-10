@@ -3,8 +3,10 @@ import {Button, Picker, Text, View} from "react-native";
 import {styles} from './Styles';
 import SessionTeaserProvider from "./sessions/SessionTeaserProvider";
 
-export default function Home({navigation, workouts, handle}) {
+export default function Home({navigation, workouts, handle, thing}) {
   const [nextWorkoutId, setNextWorkoutId] = useState(workouts[0].id);
+
+  console.log(workouts);
 
   return (
     <View style={[styles.container, {flex: 1, flexDirection: 'column', justifyContent: 'space-evenly'}]}>
