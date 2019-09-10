@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import Workout from './Workout';
 import shortId from "shortid";
 
-function getWorkout(workouts, activeWorkoutId) {
+function getWorkout(workouts, activeWorkoutIndex) {
   // const id = otherProps.navigation.getParam('workoutId', '');
   // if (id === '') {
   //   return {id: shortId.generate(), name: '', description: '', exercises: []};
@@ -10,12 +10,12 @@ function getWorkout(workouts, activeWorkoutId) {
   //   return workouts.find((el) => el.id === id);
   // }
 
-  return workouts.find((workout => workout.id === activeWorkoutId));
+  return workouts[activeWorkoutIndex];
 }
 
 const mapStateToProps = (state, otherProps) => {
   return {
-    workout: getWorkout(state.workouts, state.activeWorkoutId),
+    workout: getWorkout(state.workouts, state.activeWorkoutIndex),
   }
 };
 

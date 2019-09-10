@@ -4,9 +4,10 @@ import {styles} from "../Styles";
 import AddExerciseSet from "./AddExerciseSet";
 
 export default function AddExercise({exercises, thing, handleUpdate, addExercise, navigation, theExercise, pickerEnabled}) {
+  const exerciseSelected = theExercise.name !== '';
   const [choice, setChoice] = useState(theExercise.id);
+  const [name, setName] = useState(theExercise.name);
   const [exercise, setExercise] = useState(theExercise);
-  const [switchValue, setSwitchValue] = useState(true);
 
   function updateExercisePicker(id) {
     setChoice(id);
@@ -16,22 +17,21 @@ export default function AddExercise({exercises, thing, handleUpdate, addExercise
   return (
     <View style={{flex: 1, flexDirection: 'column'}}>
       <View style={{flex: 1, flexDirection: 'row'}}>
-        {switchValue
+        {exerciseSelected
           ? <Picker
             enabled={pickerEnabled}
             selectedValue={choice}
             style={{height: 70, width: 300}}
             onValueChange={(itemValue) => updateExercisePicker(itemValue)}>
-            {exercises.map((exer) => <Picker.Item key={exer.id} label={exer.name} value={exer.id}/>)}
+            {exercises.map((exercise) => <Picker.Item key={exercise.id} label={exercise.name} value={exercise.id}/>)}
           </Picker>
           : <TextInput
             style={[styles.editText, styles.smallTextInputFont, {flex: 4}]}
             placeholder="Enter Exercise"
-            onChangeText={(text) => setChoice(text)}
-            value={choice}
+            onChangeText={(text) => setName(text)}
+            value={name}
           />
         }
-        <Switch style={{flex: 1}} onValueChange={(value) => setSwitchValue(value)} value={switchValue}/>
       </View>
       <View style={{flex: 6}}>
         <Text>Sets</Text>
