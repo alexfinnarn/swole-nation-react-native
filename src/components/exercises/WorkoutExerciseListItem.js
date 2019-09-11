@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
-import {Text, View, Button, TouchableOpacity} from "react-native";
+import {Text, View} from "react-native";
 import {styles, home} from "../Styles";
+import ActionButton from "../utility/ActionButton";
 
 export default function WorkoutExerciseListItem({exercise, updater, workout, navigation}) {
   const [switchValue, setSwitchValue] = useState(workout.exercises.includes(exercise.item.name));
@@ -23,15 +24,8 @@ export default function WorkoutExerciseListItem({exercise, updater, workout, nav
           );
         })}
       </View>
-      <View style={{flex: 1, flexDirection: 'column'}}>
-        <TouchableOpacity
-          style={[{backgroundColor: '#21897E'}, home.actionButton]}
-          onPress={() =>  navigation.navigate('AddExercise', {exerciseId: exercise.item.id, pickerEnabled: false})}>
-          <View style={{flex: 1, justifyContent: 'center'}}>
-            <Text style={home.actionButtonText}>Edit</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+      <ActionButton text="Edit" action={() =>
+        navigation.navigate('AddExercise', {exerciseId: exercise.item.id, pickerEnabled: false})}/>
     </View>
   );
 }

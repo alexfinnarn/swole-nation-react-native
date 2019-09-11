@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-import {Text, View, TextInput, Button, TouchableOpacity} from "react-native";
+import {Text, View, TextInput} from "react-native";
 import WorkoutExerciseListProvider from "../exercises/WorkoutExerciseListProvider";
 import {home, styles} from '../Styles';
 import AddExercise from "../exercises/AddExercise";
+import ActionButton from "../utility/ActionButton";
 
 export default function Workout({workout = {id: '', name: '', description: '', exercises: []}, handle, navigation}) {
   const [name, setName] = useState(workout.name);
@@ -23,46 +24,17 @@ export default function Workout({workout = {id: '', name: '', description: '', e
   }
 
   function ActionButtons(workout) {
-    let add, remove, button = '';
+    let add, remove = '';
     if (workout.id !== '') {
-      add = (
-        <View key="add" style={{flex: 1, flexDirection: 'column', padding: 2}}>
-          <TouchableOpacity
-            style={[{backgroundColor: '#21897E'}, home.actionButton]}
-            onPress={() => update('UPDATE_WORKOUT')}>
-            <View style={{flex: 1, justifyContent: 'center'}}>
-              <Text style={home.actionButtonText}>Go</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-      );
-      remove = (
-        <View key="remove" style={{flex: 1, flexDirection: 'column', padding: 2}}>
-          <TouchableOpacity
-            style={[{backgroundColor: '#21897E'}, home.actionButton]}
-            onPress={() => update('DELETE_WORKOUT')}>
-            <View style={{flex: 1, justifyContent: 'center'}}>
-              <Text style={home.actionButtonText}>Delete</Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-      );
+      add = <ActionButton styles={{ paddingRight: 5 }} key="add" text="Go" action={() => update('UPDATE_WORKOUT')}/>;
+      remove = <ActionButton styles={{ paddingRight: 5 }} key="remove" text="Delete" action={() => update('DELETE_WORKOUT')}/>;
     } else {
-      add = <Button key='add' style={{flex: 1}} onPress={() => update('CREATE_WORKOUT')} title="Save"/>;
-      remove = <Text key='remove'></Text>;
+      add = <ActionButton key="add" text="Save" action={() => update('CREATE_WORKOUT')}/>;
+      remove = <Text key="remove"></Text>;
     }
 
-    button = (
-      <View key="action" style={{flex: 1, flexDirection: 'column', padding: 2}}>
-        <TouchableOpacity
-          style={[{backgroundColor: '#21897E'}, home.actionButton]}
-          onPress={() => navigation.navigate('AddExercise', {pickerEnabled: true, workout: workout})}>
-          <View style={{flex: 1, justifyContent: 'center'}}>
-            <Text style={home.actionButtonText}>Add</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
-    );
+    const button = <ActionButton key="button" text="Add" action={() =>
+      navigation.navigate('AddExercise', {pickerEnabled: true, workout: workout})}/>;
 
     return ([add, remove, button]);
   }

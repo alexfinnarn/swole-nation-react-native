@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
-import {Text, View, Switch, TextInput, Button, FlatList, Picker, TouchableOpacity} from "react-native";
-import {home, styles} from "../Styles";
+import React, {useState} from 'react';
+import {Text, View, TextInput, FlatList, Picker} from "react-native";
+import {styles} from "../Styles";
 import AddExerciseSet from "./AddExerciseSet";
-import shortId from "shortid";
+import ActionButton from "../utility/ActionButton";
 
 export default function AddExercise({exercises, thing, handleUpdate, addExercise, navigation, theExercise, pickerEnabled}) {
   const exerciseSelected = theExercise.name !== '';
@@ -47,18 +47,10 @@ export default function AddExercise({exercises, thing, handleUpdate, addExercise
         <Text style={{fontSize: 16}}>Add Exercise:</Text>
         <AddExerciseSet updater={handleUpdate} exercise={exercise} toAdd={true}/>
       </View>
-      <View key="remove" style={{flex: 1, flexDirection: 'column', padding: 2}}>
-        <TouchableOpacity
-          style={[{backgroundColor: '#21897E'}, home.actionButton]}
-          onPress={() => {
-            addExercise(exercise);
-            navigation.goBack();
-          }}>
-          <View style={{flex: 1, justifyContent: 'center'}}>
-            <Text style={home.actionButtonText}>Save</Text>
-          </View>
-        </TouchableOpacity>
-      </View>
+      <ActionButton text="Save" action={() => {
+        addExercise(exercise);
+        navigation.goBack();
+      }}/>
     </View>
   );
 }
