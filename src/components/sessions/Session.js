@@ -3,6 +3,7 @@ import {Text, View, Button} from "react-native";
 import BackgroundTimer from 'react-native-background-timer';
 import * as Speech from 'expo-speech';
 import {styles} from "../Styles";
+import Table from "../utility/Table";
 
 export default function Session({session, navigation, finishSession}) {
 
@@ -133,28 +134,19 @@ export default function Session({session, navigation, finishSession}) {
         </View>
       </View>
       <View style={{flex: 2, padding: 10, flexDirection: 'column', justifyContent: 'space-between'}}>
-        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', borderWidth: 1, borderColor: '#d6d7da', borderRadius: 2}}>
-          <Text style={{flex: 1, alignSelf: 'stretch'}}>Completed</Text>
-          <Text style={{flex: 1, alignSelf: 'stretch'}}>Sets</Text>
-          <Text style={{flex: 1, alignSelf: 'stretch'}}>Reps</Text>
-          <Text style={{flex: 1, alignSelf: 'stretch'}}>Weight</Text>
-        </View>
-        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', borderWidth: 1, borderColor: '#d6d7da', borderRadius: 2, marginBottom: 20}}>
-          <Text style={{flex: 1, alignSelf: 'stretch'}}>{session.exercises[exercise].sets[set].completed.toString()}</Text>
-          <Text style={{flex: 1, alignSelf: 'stretch'}}>{set + 1}/{session.exercises[exercise].sets.length}</Text>
-          <Text style={{flex: 1, alignSelf: 'stretch'}}>{session.exercises[exercise].sets[set].reps}</Text>
-          <Text style={{flex: 1, alignSelf: 'stretch'}}>{session.exercises[exercise].sets[set].weight} lbs</Text>
-        </View>
-        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', borderWidth: 1, borderColor: '#d6d7da', borderRadius: 2}}>
-          <Text style={{flex: 1, alignSelf: 'stretch'}}>Set Time</Text>
-          <Text style={{flex: 1, alignSelf: 'stretch'}}>Weight Plates</Text>
-          <Text style={{flex: 1, alignSelf: 'stretch'}}>Session Time</Text>
-        </View>
-        <View style={{flex: 1, alignSelf: 'stretch', flexDirection: 'row', borderWidth: 1, borderColor: '#d6d7da', borderRadius: 2}}>
-          <Text style={{flex: 1, alignSelf: 'stretch'}}>{seconds}</Text>
-          <Text style={{flex: 1, alignSelf: 'stretch'}}>{weightPlateString}</Text>
-          <Text style={{flex: 1, alignSelf: 'stretch'}}>{seconds + sessionDuration}</Text>
-        </View>
+        <Table
+          headers={['Completed', 'Sets', 'Reps', 'Weight']}
+          rowData={[
+            session.exercises[exercise].sets[set].completed.toString(),
+            `${set + 1}/${session.exercises[exercise].sets.length}`,
+            session.exercises[exercise].sets[set].reps,
+            `${session.exercises[exercise].sets[set].weight} lbs`
+          ]}
+        />
+        <Table
+          headers={['Set Time', 'Weight Plates', 'Session Time']}
+          rowData={[seconds, weightPlateString, seconds + sessionDuration]}
+        />
         <View style={{flex: 2, padding: 10, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'flex-end'}}>
           {!session.exercises[exercise - 1] && set === 0
             ? <Text>Disabled</Text>
