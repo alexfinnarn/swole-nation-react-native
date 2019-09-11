@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
   container: {
     backgroundColor: '#F5FCFF',
     flex: 1,
-    paddingTop: 15
+    paddingTop: 5
   },
   editText: {
     // alignSelf: 'flex-start',
@@ -75,4 +75,8 @@ export const home = StyleSheet.create({
     padding: 10,
     flexDirection: 'column'
   }
+});
+
+export const workouts = StyleSheet.create({
+
 });
