@@ -90,7 +90,7 @@ export default function Workout({workout = {id: '', name: '', description: '', e
         <WorkoutExerciseListProvider workout={workout} navigation={navigation}/>
       </View>
       <View style={{marginTop: 20, flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
-        <ActionButtons/>
+        <ActionButtons workout={workout}/>
       </View>
     </View>
   );
