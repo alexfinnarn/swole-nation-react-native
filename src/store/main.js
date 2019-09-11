@@ -95,28 +95,6 @@ const initialState = {
         }
       ]
     },
-    {
-      id: shortId.generate(),
-      name: 'Next Workout',
-      workoutIds: [2],
-      exercises: [
-        {
-          shortName: 'SQ',
-          sets: '5x5',
-          weight: 205.0
-        },
-        {
-          shortName: 'BP',
-          sets: '5x5',
-          weight: 160.0
-        },
-        {
-          shortName: 'BR',
-          sets: '5x5',
-          weight: 90.0
-        },
-      ]
-    }
   ],
   tempExerciseList: [],
   theThing: '',
@@ -129,6 +107,7 @@ function mainStore(state = initialState, action) {
   let exercise = {};
   let index = 0;
   let newExercises = state.exercises;
+  let newSessions = state.sessions;
 
   switch (action.type) {
 
@@ -210,14 +189,29 @@ function mainStore(state = initialState, action) {
     case WorkoutActions.CREATE_SESSION:
       const session = {
         id: shortId.generate(),
+        duration: 0,
         name: new Date(Date.now()).toLocaleString('en-US'),
         workoutIds: [state.workouts[state.activeWorkoutIndex].id],
         exercises: state.workouts[state.activeWorkoutIndex].exercises.map(name =>
           state.exercises.find(exercise => exercise.name === name))
       };
-      let newSessions = state.sessions;
+
+      // Add completed property. Not added to workout because it only makes sense to record in a session.
+      session.exercises.map((exercise) => {
+        exercise.sets = exercise.sets.map((set) => {
+          set.completed = false;
+          return set;
+        });
+        return exercise;
+      });
+
+
       newSessions.push(session);
       return Object.assign({}, state, {sessions: newSessions, activeSessionIndex: newSessions.length - 1});
+
+    case WorkoutActions.FINISH_SESSION:
+      newSessions[state.activeSessionIndex] = action.session;
+      return Object.assign({}, state, {sessions: newSessions});
 
     default:
       return state;

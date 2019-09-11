@@ -9,6 +9,7 @@ import WorkoutProvider from "./src/components/workouts/WorkoutProvider";
 import SessionProvider from "./src/components/sessions/SessionProvider";
 import AddExerciseProvider from "./src/components/exercises/AddExerciseProvider";
 import HomeScreenProvider from "./src/components/HomeScreenProvider";
+import SessionsListProvider from "./src/components/sessions/SessionsListProvider";
 
 export default function App() {
   const store = createStore(mainStore);
@@ -17,6 +18,7 @@ export default function App() {
     {
       Home: { screen: HomeScreenProvider },
       Session: { screen: SessionProvider },
+      SessionsList: { screen: SessionsListProvider },
       WorkoutsList: { screen: WorkoutsListProvider },
       Workout: { screen: WorkoutProvider },
       AddExercise: { screen: AddExerciseProvider },

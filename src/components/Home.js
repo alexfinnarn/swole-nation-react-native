@@ -1,52 +1,78 @@
-import React, { useState } from 'react';
-import {Button, Picker, Text, View} from "react-native";
-import {styles} from './Styles';
+import React, {useState} from 'react';
+import {Button, Picker, Text, View, TouchableOpacity} from "react-native";
+import {styles, home} from './Styles';
 import SessionTeaserProvider from "./sessions/SessionTeaserProvider";
 
 export default function Home({navigation, workouts, handle, thing}) {
   const [nextWorkoutId, setNextWorkoutId] = useState(workouts[0].id);
 
-  console.log(workouts);
-
   return (
-    <View style={[styles.container, {flex: 1, flexDirection: 'column', justifyContent: 'space-evenly'}]}>
-      <View style={{flex: 1, padding: 10, flexDirection: 'row'}}>
-        {/*<SessionTeaserProvider type="last" navigation={navigation}/>*/}
-      </View>
-      <View style={{flex: 1, padding: 10, flexDirection: 'row'}}>
-        <View style={{flex: 3, flexDirection: 'column'}}>
-          <Text>Next Workout</Text>
-          <Picker
-            selectedValue={nextWorkoutId}
-            style={{height: 70, width: 200}}
-            onValueChange={(value) => setNextWorkoutId(value)}>
-            {workouts.map((workout) => <Picker.Item key={workout.id} label={workout.name} value={workout.id}/>)}
-          </Picker>
+    <View style={[styles.container, {flex: 1, flexDirection: 'column', justifyContent: 'space-around'}]}>
+      <View style={home.sectionContainer}>
+        <View style={home.sectionLeft}>
+          <Text style={home.sectionHeaderText}>Sessions</Text>
         </View>
-        <Button
-          style={{flex: 1}}
-          title="Go"
-          onPress={() => {
-            handle.nextWorkoutInteraction(nextWorkoutId);
-            navigation.navigate('Workout');
-          }}
-        />
+        <View style={{flex: 1, flexDirection: 'column'}}>
+          <TouchableOpacity
+            style={[{backgroundColor: '#21897E'}, home.actionButton]}
+            onPress={() => navigation.navigate('WorkoutsList')}>
+            <View style={{flex: 1, justifyContent: 'center'}}>
+              <Text style={home.actionButtonText}>List</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
-      <View style={{flex: 1, padding: 10, flexDirection: 'row'}}>
-        <Text style={{flex: 3}}>Workouts</Text>
-        <Button
-          style={{flex: 1}}
-          title="Edit"
-          onPress={() => navigation.navigate('WorkoutsList')}
-        />
+      <View style={home.sectionContainer}>
+        <View style={home.sectionLeft}>
+          <Text style={home.sectionHeaderText}>Next Workout</Text>
+          <View style={{flex: 2}}>
+            <Picker
+              selectedValue={nextWorkoutId}
+              style={{height: 70, width: 160}}
+              onValueChange={(value) => setNextWorkoutId(value)}>
+              {workouts.map((workout) => <Picker.Item key={workout.id} label={workout.name} value={workout.id}/>)}
+            </Picker>
+          </View>
+        </View>
+        <View style={{flex: 1, flexDirection: 'column'}}>
+          <TouchableOpacity
+            style={[{backgroundColor: '#21897E'}, home.actionButton]}
+            onPress={() => {
+              handle.nextWorkoutInteraction(nextWorkoutId);
+              navigation.navigate('Workout');
+            }}>
+            <View style={{flex: 1, justifyContent: 'center'}}>
+              <Text style={home.actionButtonText}>Go</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
-      <View style={{flex: 1, padding: 10, flexDirection: 'row'}}>
-        <Text style={{flex: 3}}>Exercises</Text>
-        <Button
-          style={{flex: 1}}
+      <View style={home.sectionContainer}>
+        <View style={home.sectionLeft}>
+          <Text style={home.sectionHeaderText}>Workouts</Text>
+        </View>
+        <View style={{flex: 1, flexDirection: 'column'}}>
+          <TouchableOpacity
+            style={[{backgroundColor: '#21897E'}, home.actionButton]}
+            onPress={() => navigation.navigate('WorkoutsList')}>
+            <View style={{flex: 1, justifyContent: 'center'}}>
+              <Text style={home.actionButtonText}>Edit</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      </View>
+      <View style={home.sectionContainer}>
+        <View style={home.sectionLeft}>
+          <Text style={home.sectionHeaderText}>Exercises</Text>
+        </View>
+        <TouchableOpacity
+          style={[{backgroundColor: '#21897E'}, home.actionButton]}
           title="Edit"
-          onPress={() => navigation.navigate('WorkoutsList')}
-        />
+          onPress={() => navigation.navigate('WorkoutsList')}>
+          <View style={{flex: 1, justifyContent: 'center'}}>
+            <Text style={home.actionButtonText}>Edit</Text>
+          </View>
+        </TouchableOpacity>
       </View>
     </View>
   );
