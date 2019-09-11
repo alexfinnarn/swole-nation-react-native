@@ -14,7 +14,7 @@ function getExercise(exercises, navigation) {
 
 function getExercises(exercises, navigation) {
   const workout = navigation.getParam('workout', {id: shortId.generate(), name: '', description: '', exercises: []});
-  return exercises.filter(exercise => workout.exercises.includes(exercise.name) === false);
+  return exercises.filter(exercise => workout.workout.exercises.includes(exercise.name) === false);
 }
 
 const mapStateToProps = (state, otherProps) => {
