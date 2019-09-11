@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import {Text, View, TextInput, Button} from "react-native";
+import {Text, View, TextInput, Button, TouchableOpacity} from "react-native";
 import WorkoutExerciseListProvider from "../exercises/WorkoutExerciseListProvider";
-import {styles} from '../Styles';
+import {home, styles} from '../Styles';
 import AddExercise from "../exercises/AddExercise";
 
 export default function Workout({workout = {id: '', name: '', description: '', exercises: []}, handle, navigation}) {
@@ -22,8 +22,53 @@ export default function Workout({workout = {id: '', name: '', description: '', e
     }
   }
 
+  function ActionButtons(workout) {
+    let add, remove, button = '';
+    if (workout.id !== '') {
+      add = (
+        <View key="add" style={{flex: 1, flexDirection: 'column', padding: 2}}>
+          <TouchableOpacity
+            style={[{backgroundColor: '#21897E'}, home.actionButton]}
+            onPress={() => update('UPDATE_WORKOUT')}>
+            <View style={{flex: 1, justifyContent: 'center'}}>
+              <Text style={home.actionButtonText}>Go</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      );
+      remove = (
+        <View key="remove" style={{flex: 1, flexDirection: 'column', padding: 2}}>
+          <TouchableOpacity
+            style={[{backgroundColor: '#21897E'}, home.actionButton]}
+            onPress={() => update('DELETE_WORKOUT')}>
+            <View style={{flex: 1, justifyContent: 'center'}}>
+              <Text style={home.actionButtonText}>Delete</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
+      );
+    } else {
+      add = <Button key='add' style={{flex: 1}} onPress={() => update('CREATE_WORKOUT')} title="Save"/>;
+      remove = <Text key='remove'></Text>;
+    }
+
+    button = (
+      <View key="action" style={{flex: 1, flexDirection: 'column', padding: 2}}>
+        <TouchableOpacity
+          style={[{backgroundColor: '#21897E'}, home.actionButton]}
+          onPress={() => navigation.navigate('AddExercise', {pickerEnabled: true, workout: workout})}>
+          <View style={{flex: 1, justifyContent: 'center'}}>
+            <Text style={home.actionButtonText}>Add</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+    );
+
+    return ([add, remove, button]);
+  }
+
   return (
-    <View style={{padding: 20, flex: 1}}>
+    <View style={{padding: 10, flex: 1}}>
       <View style={{flex: 2}}>
         <Text style={styles.bold}>Workout Name</Text>
         <TextInput
@@ -32,7 +77,7 @@ export default function Workout({workout = {id: '', name: '', description: '', e
           onChangeText={(text) => setName(text)}
           value={name}
         />
-        <Text style={styles.bold}>Workout Description</Text>
+        <Text style={[styles.bold, {paddingTop: 10}]}>Workout Description</Text>
         <TextInput
           style={[styles.editText, styles.smallTextInputFont]}
           multiline
@@ -45,17 +90,7 @@ export default function Workout({workout = {id: '', name: '', description: '', e
         <WorkoutExerciseListProvider workout={workout} navigation={navigation}/>
       </View>
       <View style={{marginTop: 20, flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
-        {workout.id !== ''
-          ? <Button style={{flex: 1}} onPress={() => update('UPDATE_WORKOUT')} title="Go"/>
-          : <Button style={{flex: 1}} onPress={() => update('CREATE_WORKOUT')} title="Save"/>
-        }
-        {workout.id !== ''
-          ? <Button style={{flex: 1}} onPress={() => update('DELETE_WORKOUT')} title="Delete"/>
-          : <Text></Text>
-        }
-        <Button style={{flex: 1, alignSelf: "flex-end"}} onPress={() => {
-          navigation.navigate('AddExercise', {pickerEnabled: true, workout: workout});
-        }} title="Add Exercise"/>
+        <ActionButtons/>
       </View>
     </View>
   );
