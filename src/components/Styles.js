@@ -45,8 +45,8 @@ export const home = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     backgroundColor: '#ffffff',
-    marginTop: 6,
-    marginBottom: 6,
+    marginTop: 4,
+    marginBottom: 4,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,

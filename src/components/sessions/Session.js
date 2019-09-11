@@ -113,7 +113,6 @@ export default function Session({session, navigation, finishSession}) {
   function finishWorkout() {
     session.duration = seconds + sessionDuration;
     finishSession(session);
-    console.log('finishing session');
     navigation.navigate('SessionsList');
   }
 

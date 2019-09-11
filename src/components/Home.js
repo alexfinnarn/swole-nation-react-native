@@ -7,7 +7,7 @@ export default function Home({navigation, workouts, handle, thing}) {
   const [nextWorkoutId, setNextWorkoutId] = useState(workouts[0].id);
 
   return (
-    <View style={[styles.container, {flex: 1, flexDirection: 'column', justifyContent: 'space-evenly'}]}>
+    <View style={[styles.container, {flex: 1, flexDirection: 'column', justifyContent: 'space-around'}]}>
       <View style={home.sectionContainer}>
         <View style={home.sectionLeft}>
           <Text style={home.sectionHeaderText}>Sessions</Text>
@@ -17,7 +17,7 @@ export default function Home({navigation, workouts, handle, thing}) {
             style={[{backgroundColor: '#21897E'}, home.actionButton]}
             onPress={() => navigation.navigate('WorkoutsList')}>
             <View style={{flex: 1, justifyContent: 'center'}}>
-              <Text style={home.actionButtonText}>Edit</Text>
+              <Text style={home.actionButtonText}>List</Text>
             </View>
           </TouchableOpacity>
         </View>
@@ -28,7 +28,7 @@ export default function Home({navigation, workouts, handle, thing}) {
           <View style={{flex: 2}}>
             <Picker
               selectedValue={nextWorkoutId}
-              style={{height: 70, width: 140}}
+              style={{height: 70, width: 160}}
               onValueChange={(value) => setNextWorkoutId(value)}>
               {workouts.map((workout) => <Picker.Item key={workout.id} label={workout.name} value={workout.id}/>)}
             </Picker>
