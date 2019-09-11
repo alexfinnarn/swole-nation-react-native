@@ -37,4 +37,42 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     margin: 2
   },
+
+});
+
+export const home = StyleSheet.create({
+  sectionContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: '#ffffff',
+    marginTop: 6,
+    marginBottom: 6,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5
+  },
+  sectionHeaderText: {
+    flex: 1,
+    fontSize: 18,
+    // padding: 10
+  },
+  actionButton: {
+    alignSelf: 'stretch',
+    flex: 1,
+  },
+  actionButtonText: {
+    alignSelf: 'center',
+    color: '#ffffff',
+    fontSize: 20
+  },
+  sectionLeft: {
+    flex: 4,
+    padding: 10,
+    flexDirection: 'column'
+  }
 });
