@@ -8,7 +8,7 @@ export default function Home({navigation, workouts, handle, thing}) {
   const [nextWorkoutId, setNextWorkoutId] = useState(workouts[0].id);
 
   return (
-    <View style={[styles.container, {flex: 1, flexDirection: 'column', justifyContent: 'space-around'}]}>
+    <View style={[styles.container]}>
       <View style={home.sectionContainer}>
         <View style={home.sectionLeft}>
           <Text style={home.sectionHeaderText}>Sessions</Text>
@@ -42,7 +42,7 @@ export default function Home({navigation, workouts, handle, thing}) {
         <View style={home.sectionLeft}>
           <Text style={home.sectionHeaderText}>Exercises</Text>
         </View>
-        <ActionButton text="Edit" action={() => navigation.navigate('WorkoutsList')}/>
+        <ActionButton text="Edit" action={() => navigation.navigate('ExercisesList')}/>
       </View>
     </View>
   );
