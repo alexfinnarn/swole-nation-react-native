@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Text, View, Button} from "react-native";
+import {Text, View, Button, Image} from "react-native";
 import BackgroundTimer from 'react-native-background-timer';
 import * as Speech from 'expo-speech';
 import {styles} from "../Styles";
@@ -140,13 +140,13 @@ export default function Session({session, navigation, finishSession}) {
   return (
     <View style={[styles.container, {flex: 1, flexDirection: 'column', justifyContent: 'space-between'}]}>
       <View style={{flex: 5, padding: 10, flexDirection: 'row'}}>
-        <View style={{flex: 3}}>
-          <Text>Foo</Text>
+        <View style={{flex: 3, justifyContent: 'center', alignItems: 'center'}}>
+          <Image resizeMode="contain" style={{flex: 1}} source={session.exercises[exercise].image}/>
         </View>
         <View style={{flex: 1, flexDirection: 'column'}}>
           <View style={{flex: 1, backgroundColor: '#69D1C5'}}>
             <Text style={{flex: 1, color: '#ffffff', alignSelf: 'center'}}>
-              {session.exercises[exercise - 1] ? session.exercises[exercise - 1].name : 'None'}
+              {session.exercises[exercise - 1] ? session.exercises[exercise - 1].name : ''}
             </Text>
           </View>
           <View style={{flex: 2, backgroundColor: '#3BA99C'}}>
@@ -154,7 +154,7 @@ export default function Session({session, navigation, finishSession}) {
           </View>
           <View style={{flex: 1, backgroundColor: '#21897E'}}>
             <Text style={{flex: 1, color: '#ffffff', alignSelf: 'center' }}>
-              {session.exercises[exercise + 1] ? session.exercises[exercise + 1].name : 'None'}
+              {session.exercises[exercise + 1] ? session.exercises[exercise + 1].name : ''}
             </Text>
           </View>
         </View>

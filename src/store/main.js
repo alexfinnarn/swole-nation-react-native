@@ -73,26 +73,58 @@ const initialState = {
         {
           id: shortId.generate(),
           new: false,
-          name: 'Squats Warmup',
+          name: 'Squats',
+          image: require('../../assets/squats.gif'),
           instructions: 'Do with a barbell',
           sets: [
-            {key: shortId.generate(), reps: 5, weight: 45.0},
-            {key: shortId.generate(), reps: 5, weight: 45.0},
+            {key: shortId.generate(), reps: 5, weight: 250.0},
+            {key: shortId.generate(), reps: 5, weight: 260.0},
           ]
         },
         {
           id: shortId.generate(),
           new: false,
-          name: 'Squats',
+          name: 'Bench Press',
+          image: require('../../assets/bench-press.gif'),
           instructions: 'Do with a barbell',
           sets: [
-            {key: shortId.generate(), reps: 5, weight: 200.0},
-            {key: shortId.generate(), reps: 5, weight: 200.0},
-            {key: shortId.generate(), reps: 5, weight: 200.0},
-            {key: shortId.generate(), reps: 5, weight: 200.0},
-            {key: shortId.generate(), reps: 5, weight: 200.0},
+            {key: shortId.generate(), reps: 5, weight: 160.0},
+            {key: shortId.generate(), reps: 5, weight: 165.0},
           ]
-        }
+        },
+        {
+          id: shortId.generate(),
+          new: false,
+          name: 'Shoulder Press',
+          image: require('../../assets/shoulder-press.gif'),
+          instructions: 'Do with a barbell',
+          sets: [
+            {key: shortId.generate(), reps: 5, weight: 115.0},
+            {key: shortId.generate(), reps: 5, weight: 115.0},
+          ]
+        },
+        {
+          id: shortId.generate(),
+          new: false,
+          name: 'Barbell Row',
+          image: require('../../assets/barbell-row.gif'),
+          instructions: 'Do with a barbell',
+          sets: [
+            {key: shortId.generate(), reps: 5, weight: 95.0},
+            {key: shortId.generate(), reps: 5, weight: 95.0},
+          ]
+        },
+        {
+          id: shortId.generate(),
+          new: false,
+          name: 'Deadlifts',
+          image: require('../../assets/deadlift.gif'),
+          instructions: 'Do with a barbell',
+          sets: [
+            {key: shortId.generate(), reps: 5, weight: 240.0},
+            {key: shortId.generate(), reps: 5, weight: 240.0},
+          ]
+        },
       ]
     },
   ],
