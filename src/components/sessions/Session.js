@@ -4,6 +4,7 @@ import BackgroundTimer from 'react-native-background-timer';
 import * as Speech from 'expo-speech';
 import {styles} from "../Styles";
 import Table from "../utility/Table";
+import ActionButton from "../utility/ActionButton";
 
 export default function Session({session, navigation, finishSession}) {
 
@@ -117,64 +118,71 @@ export default function Session({session, navigation, finishSession}) {
     navigation.navigate('SessionsList');
   }
 
+  function ActionButtons() {
+    let last, current, next = '';
+    if (!session.exercises[exercise - 1] && set === 0) {
+      last = <ActionButton key="previous" disabled={true} text="Previous" action={() => {}}/>;
+    } else {
+      last = <ActionButton key="previous" text="Previous" action={() => handleSets(false)}/>;
+    }
+
+    if (onLastExercise()) {
+      current = <ActionButton styles={{paddingLeft: 5, paddingRight: 5}} key="current" text="Finish" action={() => finishWorkout()}/>;
+      next = <ActionButton key="next" disabled={true} text="Skip" action={() => {}}/>;
+    } else {
+      current = <ActionButton styles={{paddingLeft: 5, paddingRight: 5}} key="current" text="Complete" action={() => handleSets(true, true)}/>;
+      next = <ActionButton key="next" text="Skip" action={() => handleSets(true)}/>;
+    }
+
+    return ([last, current, next]);
+  }
+
   return (
     <View style={[styles.container, {flex: 1, flexDirection: 'column', justifyContent: 'space-between'}]}>
-      <View style={{flex: 2, padding: 10, flexDirection: 'row'}}>
-        <View style={{flex: 1, flexDirection: 'column', backgroundColor: '#21897E'}}>
-          <Text style={{flex: 1, color: '#ffffff', alignSelf: 'center' }}>Previous</Text>
-          <Text style={{flex: 3}}>{session.exercises[exercise - 1] ? session.exercises[exercise - 1].name : 'None'}</Text>
+      <View style={{flex: 5, padding: 10, flexDirection: 'row'}}>
+        <View style={{flex: 3}}>
+          <Text>Foo</Text>
         </View>
-        <View style={{flex: 2, flexDirection: 'column', backgroundColor: '#3BA99C'}}>
-          <Text style={{flex: 1, color: '#ffffff', alignSelf: 'center'}}>Current</Text>
-          <Text style={{flex: 3}}>{session.exercises[exercise].name}</Text>
-        </View>
-        <View style={{flex: 1, flexDirection: 'column', backgroundColor: '#69D1C5'}}>
-          <Text style={{flex: 1, color: '#ffffff', alignSelf: 'center'}}>Next</Text>
-          <Text style={{flex: 3}}>{session.exercises[exercise + 1] ? session.exercises[exercise + 1].name : 'None'}</Text>
+        <View style={{flex: 1, flexDirection: 'column'}}>
+          <View style={{flex: 1, backgroundColor: '#69D1C5'}}>
+            <Text style={{flex: 1, color: '#ffffff', alignSelf: 'center'}}>
+              {session.exercises[exercise - 1] ? session.exercises[exercise - 1].name : 'None'}
+            </Text>
+          </View>
+          <View style={{flex: 2, backgroundColor: '#3BA99C'}}>
+            <Text style={{flex: 1, color: '#ffffff', alignSelf: 'center'}}>{session.exercises[exercise].name}</Text>
+          </View>
+          <View style={{flex: 1, backgroundColor: '#21897E'}}>
+            <Text style={{flex: 1, color: '#ffffff', alignSelf: 'center' }}>
+              {session.exercises[exercise + 1] ? session.exercises[exercise + 1].name : 'None'}
+            </Text>
+          </View>
         </View>
       </View>
-      <View style={{flex: 2, padding: 10, flexDirection: 'column', justifyContent: 'space-between'}}>
+      <View style={{flex: 1, padding: 5, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end'}}>
+        <ActionButtons />
+      </View>
+      <View style={{flex: 4, padding: 10, flexDirection: 'column', justifyContent: 'space-around'}}>
         <Table
+          columnFlex={[1,1,1,1]}
           headers={['Completed', 'Sets', 'Reps', 'Weight']}
           rowData={[
-            session.exercises[exercise].sets[set].completed.toString(),
+            // session.exercises[exercise].sets[set].completed.toString(),
+            'foo',
             `${set + 1}/${session.exercises[exercise].sets.length}`,
             session.exercises[exercise].sets[set].reps,
             `${session.exercises[exercise].sets[set].weight} lbs`
           ]}
         />
         <Table
-          headers={['Set Time', 'Weight Plates', 'Session Time']}
+          columnFlex={[1,3,1]}
+          headers={['Set', 'Plates', 'Session']}
           rowData={[seconds, weightPlateString, seconds + sessionDuration]}
         />
-        <View style={{flex: 2, padding: 10, flexDirection: 'row', justifyContent: 'space-around', alignItems: 'flex-end'}}>
-          {!session.exercises[exercise - 1] && set === 0
-            ? <Text>Disabled</Text>
-            : <Button onPress={() => {
-              handleSets(false);
-            }} title="Previous"/>
-          }
-          {onLastExercise()
-            ? (<Button onPress={() => {
-              finishWorkout();
-            }} title="Finish Workout"/>)
-            : (<Button onPress={() => {
-              handleSets(true, true);
-            }} title="Complete Set"/>)
-          }
-          {onLastExercise()
-            ? <Text>Disabled</Text>
-            : <Button onPress={() => {
-              handleSets(true);
-            }} title="Skip"/>
-          }
-        </View>
       </View>
       <View style={{flex: 1, padding: 10, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center'}}>
-        <Text>Session details</Text>
-        <Button onPress={() => {
-          toggle();
-        }} title="Pause Session"/>
+        <ActionButton styles={{paddingRight: 5}} text="Quit" action={() => {}}/>
+        <ActionButton text="Pause" action={() => toggle()}/>
       </View>
     </View>
   );
