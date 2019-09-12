@@ -27,7 +27,8 @@ export default function Workout({workout = {id: '', name: '', description: '', e
     let add, remove = '';
     if (workout.id !== '') {
       add = <ActionButton styles={{ paddingRight: 5 }} key="add" text="Go" action={() => update('UPDATE_WORKOUT')}/>;
-      remove = <ActionButton styles={{ paddingRight: 5 }} key="remove" text="Delete" action={() => update('DELETE_WORKOUT')}/>;
+      remove = <ActionButton styles={{ paddingRight: 5 }} key="remove" disabled={true}
+                             text="Delete" action={() => update('DELETE_WORKOUT')}/>;
     } else {
       add = <ActionButton key="add" text="Save" action={() => update('CREATE_WORKOUT')}/>;
       remove = <Text key="remove"></Text>;
