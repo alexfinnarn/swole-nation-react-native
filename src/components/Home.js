@@ -5,7 +5,7 @@ import SessionTeaserProvider from "./sessions/SessionTeaserProvider";
 import ActionButton from "./utility/ActionButton";
 
 export default function Home({navigation, workouts, handle, thing}) {
-  const [nextWorkoutId, setNextWorkoutId] = useState(workouts[0].id);
+  const [nextWorkoutId, setNextWorkoutId] = useState(0);
 
   return (
     <View style={[styles.container]}>
@@ -23,13 +23,13 @@ export default function Home({navigation, workouts, handle, thing}) {
               selectedValue={nextWorkoutId}
               style={{height: 70, width: 160}}
               onValueChange={(value) => setNextWorkoutId(value)}>
-              {workouts.map((workout) => <Picker.Item key={workout.id} label={workout.name} value={workout.id}/>)}
+              {workouts.map((workout, index) => <Picker.Item key={workout.id} label={workout.name} value={index}/>)}
             </Picker>
           </View>
         </View>
         <ActionButton text="Go" action={() => {
           handle.nextWorkoutInteraction(nextWorkoutId);
-          navigation.navigate('Workout');
+          navigation.navigate('Workout', { action: 'go' });
         }}/>
       </View>
       <View style={home.sectionContainer}>

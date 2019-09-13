@@ -140,7 +140,7 @@ const initialState = {
 };
 
 function mainStore(state = initialState, action) {
-  let newWorkouts = [];
+  let newWorkouts = state.workouts;
   let exercise = {};
   let index = 0;
   let newExercises = state.exercises;
@@ -149,13 +149,11 @@ function mainStore(state = initialState, action) {
   switch (action.type) {
 
     case WorkoutActions.CREATE_WORKOUT:
-      let newWorkout = action.workout;
-      newWorkout.id = shortId.generate();
-      newWorkout.exercises = state.tempExerciseList;
-      return Object.assign({}, state, {workouts: [...state.workouts, newWorkout]});
+      let workout = {id: shortId.generate(), name: '', description: '', exercises: []};
+      newWorkouts.push(workout);
+      return Object.assign({}, state, {workouts: newWorkouts, activeWorkoutIndex: newWorkouts.length - 1});
 
     case WorkoutActions.UPDATE_WORKOUT:
-      newWorkouts = state.workouts;
       newWorkouts[state.activeWorkoutIndex] = action.workout;
       return Object.assign({}, state, {workouts: newWorkouts, theThing: shortId.generate()});
 
@@ -164,19 +162,13 @@ function mainStore(state = initialState, action) {
       return Object.assign({}, state, {workouts: newWorkouts});
 
     case WorkoutActions.SET_ACTIVE_WORKOUT:
-      let workoutIndex = 0;
-      state.workouts.forEach((workout, index) => {
-        if (workout.id === action.id) {
-          workoutIndex = index;
-        }
-      });
-      return Object.assign({}, state, {activeWorkoutIndex: workoutIndex});
+      return Object.assign({}, state, {activeWorkoutIndex: action.index});
 
     case WorkoutActions.ADD_EXERCISE:
       newWorkouts = state.workouts;
       newWorkouts[state.activeWorkoutIndex].exercises.push(action.exercise.name);
-      newExercises[state.activeExerciseIndex] = action.exercise;
-      return Object.assign({}, state, {workouts: newWorkouts, exercises: newExercises, theThing: shortId.generate()});
+      // newExercises[state.activeExerciseIndex] = action.exercise;
+      return Object.assign({}, state, {workouts: newWorkouts, theThing: shortId.generate()});
 
     case WorkoutActions.CREATE_EXERCISE:
       exercise = {id: shortId.generate(), new: true, name: '', instructions: '', sets: []};

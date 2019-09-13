@@ -15,7 +15,7 @@ export default function Workout({workout = {id: '', name: '', description: '', e
     newWorkout.description = description;
     handle.update(newWorkout, action);
 
-    if (action !== 'CREATE_WORKOUT') {
+    if (action === 'CREATE_SESSION') {
       handle.createSession();
       navigation.navigate('Session');
     } else {
@@ -24,20 +24,17 @@ export default function Workout({workout = {id: '', name: '', description: '', e
   }
 
   function ActionButtons(workout) {
-    let add, remove = '';
-    if (workout.id !== '') {
-      add = <ActionButton styles={{ paddingRight: 5 }} key="add" text="Go" action={() => update('UPDATE_WORKOUT')}/>;
-      remove = <ActionButton styles={{ paddingRight: 5 }} key="remove" disabled={true}
-                             text="Delete" action={() => update('DELETE_WORKOUT')}/>;
+    let add = '';
+    if (navigation.getParam('action', '') === 'go') {
+      add = <ActionButton styles={{ marginRight: 5 }} key="add" text="Go" action={() => update('CREATE_SESSION')}/>;
     } else {
-      add = <ActionButton key="add" text="Save" action={() => update('CREATE_WORKOUT')}/>;
-      remove = <Text key="remove"></Text>;
+      add = <ActionButton styles={{ marginRight: 5 }} key="add" text="Save" action={() => update('UPDATE_WORKOUT')}/>;
     }
 
-    const button = <ActionButton key="button" text="Add" action={() =>
+    const button = <ActionButton key="button" text="Add Exercise" action={() =>
       navigation.navigate('AddExercise', {pickerEnabled: true, workout: workout})}/>;
 
-    return ([add, remove, button]);
+    return ([add, button]);
   }
 
   return (

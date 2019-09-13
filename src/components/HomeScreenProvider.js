@@ -12,7 +12,7 @@ const mapDispatchToProps = dispatch => {
   return {
     handle: {
       nextWorkoutInteraction: (workoutId) => {
-        dispatch({id: workoutId, type: 'SET_ACTIVE_WORKOUT'});
+        dispatch({index: workoutId, type: 'SET_ACTIVE_WORKOUT'});
       }
     },
   }
