@@ -10,11 +10,6 @@ export default function ExercisesList({ exercises, navigation, handle, thing }) 
     return exercise;
   });
 
-  function addExercise() {
-    handle.createExercise();
-    navigation.navigate('AddExercise');
-  }
-
   function ExercisesListItem({exercise}) {
     return (
       <View style={home.sectionContainer}>
@@ -39,7 +34,10 @@ export default function ExercisesList({ exercises, navigation, handle, thing }) 
           renderItem={(item) => <ExercisesListItem exercise={item}/>}
         />
       </View>
-      <ActionButton text="Add Exercise" action={() => addExercise()} />
+      <ActionButton text="Add Exercise" action={() => {
+        handle.createExercise();
+        navigation.navigate('AddExercise');
+      }} />
     </View>
   )
 }
