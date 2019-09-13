@@ -25,6 +25,7 @@ const initialState = {
       new: false,
       name: 'Squats Warmup',
       instructions: 'Do with a barbell',
+      image: require('../../assets/squats.gif'),
       sets: [
         {key: shortId.generate(), reps: 5, weight: 45.0},
         {key: shortId.generate(), reps: 5, weight: 45.0},
@@ -35,6 +36,7 @@ const initialState = {
       new: false,
       name: 'Squats',
       instructions: 'Do with a barbell',
+      image: require('../../assets/squats.gif'),
       sets: [
         {key: shortId.generate(), reps: 5, weight: 200.0},
         {key: shortId.generate(), reps: 5, weight: 200.0},
@@ -48,6 +50,7 @@ const initialState = {
       new: false,
       name: 'Bench Press Warmup',
       instructions: 'Do with a barbell',
+      image: require('../../assets/bench-press.gif'),
       sets: [
         {key: shortId.generate(), reps: 5, weight: 110.0},
         {key: shortId.generate(), reps: 5, weight: 135.0},
@@ -58,6 +61,7 @@ const initialState = {
       new: false,
       name: 'Bench Press',
       instructions: 'Do with a barbell',
+      image: require('../../assets/bench-press.gif'),
       sets: [
         {key: shortId.generate(), reps: 5, weight: 160.0},
         {key: shortId.generate(), reps: 5, weight: 160.0},

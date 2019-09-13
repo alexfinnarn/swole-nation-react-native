@@ -121,20 +121,33 @@ export default function Session({session, navigation, finishSession}) {
   function ActionButtons() {
     let last, current, next = '';
     if (!session.exercises[exercise - 1] && set === 0) {
-      last = <ActionButton key="previous" disabled={true} text="Previous" action={() => {}}/>;
+      last = <ActionButton key="previous" disabled={true} text="Previous" action={() => {
+      }}/>;
     } else {
       last = <ActionButton key="previous" text="Previous" action={() => handleSets(false)}/>;
     }
 
     if (onLastExercise()) {
       current = <ActionButton styles={{paddingLeft: 5, paddingRight: 5}} key="current" text="Finish" action={() => finishWorkout()}/>;
-      next = <ActionButton key="next" disabled={true} text="Skip" action={() => {}}/>;
+      next = <ActionButton key="next" disabled={true} text="Skip" action={() => {
+      }}/>;
     } else {
       current = <ActionButton styles={{paddingLeft: 5, paddingRight: 5}} key="current" text="Complete" action={() => handleSets(true, true)}/>;
       next = <ActionButton key="next" text="Skip" action={() => handleSets(true)}/>;
     }
 
     return ([last, current, next]);
+  }
+
+  function StyleTile({color, bgColor, text, flex}) {
+    console.log(color);
+    return (
+      <View style={{flex: flex, backgroundColor: bgColor}}>
+        <Text style={{flex: 1, color: color, alignSelf: 'center'}}>
+          {text}
+        </Text>
+      </View>
+    );
   }
 
   return (
@@ -144,27 +157,20 @@ export default function Session({session, navigation, finishSession}) {
           <Image resizeMode="contain" style={{flex: 1}} source={session.exercises[exercise].image}/>
         </View>
         <View style={{flex: 1, flexDirection: 'column'}}>
-          <View style={{flex: 1, backgroundColor: '#69D1C5'}}>
-            <Text style={{flex: 1, color: '#ffffff', alignSelf: 'center'}}>
-              {session.exercises[exercise - 1] ? session.exercises[exercise - 1].name : ''}
-            </Text>
-          </View>
-          <View style={{flex: 2, backgroundColor: '#3BA99C'}}>
-            <Text style={{flex: 1, color: '#ffffff', alignSelf: 'center'}}>{session.exercises[exercise].name}</Text>
-          </View>
-          <View style={{flex: 1, backgroundColor: '#21897E'}}>
-            <Text style={{flex: 1, color: '#ffffff', alignSelf: 'center' }}>
-              {session.exercises[exercise + 1] ? session.exercises[exercise + 1].name : ''}
-            </Text>
-          </View>
+          <StyleTile color={'#ffffff'} bgColor={'#69D1C5'} flex={1}
+                     text={session.exercises[exercise - 1] ? session.exercises[exercise - 1].name : ''}/>
+          <StyleTile color={'#ffffff'} bgColor={'#3BA99C'} flex={2}
+                     text={session.exercises[exercise].name}/>
+          <StyleTile color={'#ffffff'} bgColor={'#21897E'} flex={1}
+                     text={session.exercises[exercise + 1] ? session.exercises[exercise + 1].name : ''}/>
         </View>
       </View>
       <View style={{flex: 1, padding: 5, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end'}}>
-        <ActionButtons />
+        <ActionButtons/>
       </View>
       <View style={{flex: 4, padding: 10, flexDirection: 'column', justifyContent: 'space-around'}}>
         <Table
-          columnFlex={[1,1,1,1]}
+          columnFlex={[1, 1, 1, 1]}
           headers={['Completed', 'Sets', 'Reps', 'Weight']}
           rowData={[
             // session.exercises[exercise].sets[set].completed.toString(),
@@ -175,13 +181,14 @@ export default function Session({session, navigation, finishSession}) {
           ]}
         />
         <Table
-          columnFlex={[1,3,1]}
+          columnFlex={[1, 3, 1]}
           headers={['Set', 'Plates', 'Session']}
           rowData={[seconds, weightPlateString, seconds + sessionDuration]}
         />
       </View>
       <View style={{flex: 1, padding: 10, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center'}}>
-        <ActionButton styles={{paddingRight: 5}} text="Quit" action={() => {}}/>
+        <ActionButton styles={{paddingRight: 5}} text="Quit" action={() => {
+        }}/>
         <ActionButton text="Pause" action={() => toggle()}/>
       </View>
     </View>
