@@ -121,16 +121,14 @@ export default function Session({session, navigation, finishSession}) {
   function ActionButtons() {
     let last, current, next = '';
     if (!session.exercises[exercise - 1] && set === 0) {
-      last = <ActionButton key="previous" disabled={true} text="Previous" action={() => {
-      }}/>;
+      last = <ActionButton key="previous" disabled={true} text="Previous" action={() => {}}/>;
     } else {
       last = <ActionButton key="previous" text="Previous" action={() => handleSets(false)}/>;
     }
 
     if (onLastExercise()) {
       current = <ActionButton styles={{paddingLeft: 5, paddingRight: 5}} key="current" text="Finish" action={() => finishWorkout()}/>;
-      next = <ActionButton key="next" disabled={true} text="Skip" action={() => {
-      }}/>;
+      next = <ActionButton key="next" disabled={true} text="Skip" action={() => {}}/>;
     } else {
       current = <ActionButton styles={{paddingLeft: 5, paddingRight: 5}} key="current" text="Complete" action={() => handleSets(true, true)}/>;
       next = <ActionButton key="next" text="Skip" action={() => handleSets(true)}/>;
@@ -140,7 +138,6 @@ export default function Session({session, navigation, finishSession}) {
   }
 
   function StyleTile({color, bgColor, text, flex}) {
-    console.log(color);
     return (
       <View style={{flex: flex, backgroundColor: bgColor}}>
         <Text style={{flex: 1, color: color, alignSelf: 'center'}}>
@@ -187,8 +184,7 @@ export default function Session({session, navigation, finishSession}) {
         />
       </View>
       <View style={{flex: 1, padding: 10, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center'}}>
-        <ActionButton styles={{paddingRight: 5}} text="Quit" action={() => {
-        }}/>
+        <ActionButton styles={{paddingRight: 5}} text="Quit" action={() => {}}/>
         <ActionButton text="Pause" action={() => toggle()}/>
       </View>
     </View>
