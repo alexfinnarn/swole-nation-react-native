@@ -137,6 +137,16 @@ export default function Session({session, navigation, finishSession}) {
     return ([last, current, next]);
   }
 
+  function StyleTile({color, bgColor, text, flex}) {
+    return (
+      <View style={{flex: flex, backgroundColor: bgColor}}>
+        <Text style={{flex: 1, color: color, alignSelf: 'center'}}>
+          {text}
+        </Text>
+      </View>
+    );
+  }
+
   return (
     <View style={[styles.container, {flex: 1, flexDirection: 'column', justifyContent: 'space-between'}]}>
       <View style={{flex: 5, padding: 10, flexDirection: 'row'}}>
@@ -144,27 +154,20 @@ export default function Session({session, navigation, finishSession}) {
           <Image resizeMode="contain" style={{flex: 1}} source={session.exercises[exercise].image}/>
         </View>
         <View style={{flex: 1, flexDirection: 'column'}}>
-          <View style={{flex: 1, backgroundColor: '#69D1C5'}}>
-            <Text style={{flex: 1, color: '#ffffff', alignSelf: 'center'}}>
-              {session.exercises[exercise - 1] ? session.exercises[exercise - 1].name : ''}
-            </Text>
-          </View>
-          <View style={{flex: 2, backgroundColor: '#3BA99C'}}>
-            <Text style={{flex: 1, color: '#ffffff', alignSelf: 'center'}}>{session.exercises[exercise].name}</Text>
-          </View>
-          <View style={{flex: 1, backgroundColor: '#21897E'}}>
-            <Text style={{flex: 1, color: '#ffffff', alignSelf: 'center' }}>
-              {session.exercises[exercise + 1] ? session.exercises[exercise + 1].name : ''}
-            </Text>
-          </View>
+          <StyleTile color={'#ffffff'} bgColor={'#69D1C5'} flex={1}
+                     text={session.exercises[exercise - 1] ? session.exercises[exercise - 1].name : ''}/>
+          <StyleTile color={'#ffffff'} bgColor={'#3BA99C'} flex={2}
+                     text={session.exercises[exercise].name}/>
+          <StyleTile color={'#ffffff'} bgColor={'#21897E'} flex={1}
+                     text={session.exercises[exercise + 1] ? session.exercises[exercise + 1].name : ''}/>
         </View>
       </View>
       <View style={{flex: 1, padding: 5, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end'}}>
-        <ActionButtons />
+        <ActionButtons/>
       </View>
       <View style={{flex: 4, padding: 10, flexDirection: 'column', justifyContent: 'space-around'}}>
         <Table
-          columnFlex={[1,1,1,1]}
+          columnFlex={[1, 1, 1, 1]}
           headers={['Completed', 'Sets', 'Reps', 'Weight']}
           rowData={[
             // session.exercises[exercise].sets[set].completed.toString(),
@@ -175,7 +178,7 @@ export default function Session({session, navigation, finishSession}) {
           ]}
         />
         <Table
-          columnFlex={[1,3,1]}
+          columnFlex={[1, 3, 1]}
           headers={['Set', 'Plates', 'Session']}
           rowData={[seconds, weightPlateString, seconds + sessionDuration]}
         />
