@@ -29,7 +29,7 @@ export default function AddExercise({exercises, thing, handleUpdate, addExercise
           : <TextInput
             style={[styles.editText, styles.smallTextInputFont, {flex: 4}]}
             placeholder="Enter Exercise"
-            onChangeText={(text) => setName(text)}
+            onChangeText={text => setName(text)}
             value={name}
           />
         }
@@ -48,6 +48,9 @@ export default function AddExercise({exercises, thing, handleUpdate, addExercise
         <AddExerciseSet updater={handleUpdate} exercise={exercise} toAdd={true}/>
       </View>
       <ActionButton text="Save" action={() => {
+        if (!exerciseSelected) {
+          exercise.name = name;
+        }
         addExercise(exercise);
         navigation.goBack();
       }}/>
