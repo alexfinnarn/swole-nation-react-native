@@ -4,17 +4,17 @@ import shortId from 'shortid';
 import {home} from '../Styles';
 import ActionButton from "../utility/ActionButton";
 
-export default function AddExerciseSet({item = {key: "0", reps: 0, weight: 100}, exercise, toAdd, updater}) {
+export default function AddExerciseSet({item = {key: "0", reps: 0, weight: 100}, toAdd, updater}) {
   const [reps, setReps] = useState(item.reps.toString());
   const [weight, setWeight] = useState(item.weight.toString());
 
   function updatePicker(value, type) {
     if (type === 'reps') {
       setReps(value);
-      updater({reps: value, weight: weight, key: item.key}, exercise, shortId.generate(), 'UPDATE_SET');
+      updater({reps: value, weight: weight, key: item.key}, 'UPDATE_SET');
     } else {
       setWeight(value);
-      updater({reps: reps, weight: value, key: item.key}, exercise, shortId.generate(), 'UPDATE_SET');
+      updater({reps: reps, weight: value, key: item.key}, 'UPDATE_SET');
     }
   }
 
@@ -41,9 +41,9 @@ export default function AddExerciseSet({item = {key: "0", reps: 0, weight: 100},
       <View style={{flex: 1}}>
         {toAdd
           ? <ActionButton text="+" action={() =>
-            updater({reps: reps, weight: weight}, exercise, shortId.generate(), 'ADD_SET')}/>
+            updater({reps: reps, weight: weight}, 'ADD_SET')}/>
           : <ActionButton text="X" action={() =>
-            updater({key: item.key, reps: reps, weight: weight}, exercise, shortId.generate(), 'REMOVE_SET')}/>
+            updater({key: item.key, reps: reps, weight: weight}, 'REMOVE_SET')}/>
         }
       </View>
     </View>

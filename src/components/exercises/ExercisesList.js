@@ -3,12 +3,17 @@ import {FlatList, Text, View} from "react-native";
 import {home, styles} from '../Styles';
 import ActionButton from "../utility/ActionButton";
 
-export default function WorkoutsList({ exercises, navigation }) {
+export default function ExercisesList({ exercises, navigation, handle, thing }) {
   // Add key that is needed for rendering the <FlatList /> component.
   exercises = exercises.map((exercise) => {
     exercise.key = exercise.id.toString();
     return exercise;
   });
+
+  function addExercise() {
+    handle.createExercise();
+    navigation.navigate('AddExercise');
+  }
 
   function ExercisesListItem({exercise}) {
     return (
@@ -17,7 +22,10 @@ export default function WorkoutsList({ exercises, navigation }) {
           <Text style={home.sectionHeaderText}>{exercise.item.name}</Text>
           <Text style={{flex: 4, marginTop: 15}}>Other content</Text>
         </View>
-        <ActionButton text="Edit" action={() => navigation.navigate('AddExercise', {exerciseId: exercise.item.id})}/>
+        <ActionButton text="Edit" action={() => {
+          handle.setActiveExerciseIndex(exercise.index);
+          navigation.navigate('AddExercise', {exerciseId: exercise.item.id})
+        }}/>
       </View>
     );
   }
@@ -26,11 +34,12 @@ export default function WorkoutsList({ exercises, navigation }) {
     <View style={styles.container}>
       <View style={{flex:9}}>
         <FlatList
+          extraData={thing}
           data={exercises}
           renderItem={(item) => <ExercisesListItem exercise={item}/>}
         />
       </View>
-      <ActionButton text="Add Exercise" action={() => navigation.navigate('AddExercise')} />
+      <ActionButton text="Add Exercise" action={() => addExercise()} />
     </View>
   )
 }

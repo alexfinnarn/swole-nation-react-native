@@ -132,6 +132,7 @@ const initialState = {
   theThing: '',
   activeWorkoutIndex: 0,
   activeSessionIndex: 0,
+  activeExerciseIndex: 0,
 };
 
 function mainStore(state = initialState, action) {
@@ -170,53 +171,31 @@ function mainStore(state = initialState, action) {
     case WorkoutActions.ADD_EXERCISE:
       newWorkouts = state.workouts;
       newWorkouts[state.activeWorkoutIndex].exercises.push(action.exercise.name);
-      return Object.assign({}, state, {workouts: newWorkouts, theThing: shortId.generate()});
+      newExercises[state.activeExerciseIndex] = action.exercise;
+      return Object.assign({}, state, {workouts: newWorkouts, exercises: newExercises, theThing: shortId.generate()});
+
+    case WorkoutActions.CREATE_EXERCISE:
+      exercise = {id: shortId.generate(), new: true, name: '', instructions: '', sets: []};
+      newExercises.push(exercise);
+      return Object.assign({}, state, {exercises: newExercises, activeExerciseIndex: newExercises.length - 1});
+
+    case WorkoutActions.SET_ACTIVE_EXERCISE:
+      return Object.assign({}, state, {activeExerciseIndex: action.index});
 
     case WorkoutActions.ADD_SET:
-      let newSet = action.set;
-      let newExercise = action.exercise;
-      newExercises = state.exercises;
-
-      if (action.exercise.new) {
-        action.exercise.new = false;
-        newExercises.push(action.exercise);
-      }
-
-      newExercises.forEach((ex, ind) => {
-        if (ex.name === action.exercise.name) {
-          index = ind;
-          exercise = ex;
-        }
-      });
-
-      newSet.key = shortId.generate();
-      newExercise.sets.push(newSet);
-      newExercises[index] = newExercise;
-
-      return Object.assign({}, state, {exercises: newExercises, theThing: action.thing});
+      action.set.key = shortId.generate();
+      newExercises[state.activeExerciseIndex].sets.push(action.set);
+      return Object.assign({}, state, {exercises: newExercises, theThing: shortId.generate()});
 
     case WorkoutActions.REMOVE_SET:
-      newExercises = state.exercises;
-      state.exercises.forEach((ex, ind) => {
-        if (ex.name === action.exercise.name) {
-          index = ind;
-          exercise = ex;
-        }
-      });
-      let newSets = state.exercises[index].sets.filter(set => set.key !== action.set.key);
-
-      newExercises[index].sets = newSets;
-      return Object.assign({}, state, {exercises: newExercises, theThing: action.thing});
+      newExercises[state.activeExerciseIndex].sets = newExercises[state.activeExerciseIndex].sets.filter(set =>
+        set.key !== action.set.key);
+      return Object.assign({}, state, {exercises: newExercises, theThing: shortId.generate()});
 
     case WorkoutActions.UPDATE_SET:
-      newExercises = state.exercises.map((exercise) => {
-        if (exercise.id === action.exercise.id) {
-          exercise.sets = exercise.sets.map(set => set.key === action.set.key ? action.set : set);
-          return exercise;
-        }
-        return exercise;
-      });
-      return Object.assign({}, state, {exercises: newExercises, theThing: action.thing});
+      newExercises[state.activeExerciseIndex].sets = newExercises[state.activeExerciseIndex].sets.map(set =>
+        set.key === action.set.key ? action.set : set);
+      return Object.assign({}, state, {exercises: newExercises, theThing: shortId.generate()});
 
     case WorkoutActions.CREATE_SESSION:
       const session = {
