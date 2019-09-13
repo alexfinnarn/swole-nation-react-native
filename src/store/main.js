@@ -188,7 +188,6 @@ function mainStore(state = initialState, action) {
       return Object.assign({}, state, {exercises: newExercises, theThing: shortId.generate()});
 
     case WorkoutActions.REMOVE_SET:
-      console.log(action);
       newExercises[state.activeExerciseIndex].sets = newExercises[state.activeExerciseIndex].sets.filter(set =>
         set.key !== action.set.key);
       return Object.assign({}, state, {exercises: newExercises, theThing: shortId.generate()});
