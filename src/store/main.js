@@ -197,7 +197,7 @@ function mainStore(state = initialState, action) {
         key: shortId.generate(),
         duration: 0,
         name: new Date(Date.now()).toLocaleString('en-US'),
-        workoutIds: [state.workouts[state.activeWorkoutIndex].key],
+        workoutKeys: [state.workouts[state.activeWorkoutIndex].key],
         exercises: state.workouts[state.activeWorkoutIndex].exercises.map(name =>
           state.exercises.find(exercise => exercise.name === name))
       };

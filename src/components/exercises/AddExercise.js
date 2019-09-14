@@ -5,8 +5,6 @@ import AddExerciseSet from "./AddExerciseSet";
 import ActionButton from "../utility/ActionButton";
 
 export default function AddExercise({exercises, thing, handleUpdate, addExercise, navigation, theExercise, pickerEnabled}) {
-  console.log(theExercise);
-
   const exerciseSelected = theExercise.name !== '';
   const [choice, setChoice] = useState(theExercise.key);
   const [name, setName] = useState(theExercise.name);
