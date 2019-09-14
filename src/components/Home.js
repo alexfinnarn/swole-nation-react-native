@@ -13,7 +13,7 @@ export default function Home({navigation, workouts, handle, thing}) {
         <View style={home.sectionLeft}>
           <Text style={home.sectionHeaderText}>Sessions</Text>
         </View>
-        <ActionButton text="List" action={() => navigation.navigate('WorkoutsList')}/>
+        <ActionButton text="List" action={() => navigation.navigate('SessionsList')}/>
       </View>
       <View style={home.sectionContainer}>
         <View style={home.sectionLeft}>
@@ -23,7 +23,7 @@ export default function Home({navigation, workouts, handle, thing}) {
               selectedValue={nextWorkoutId}
               style={{height: 70, width: 160}}
               onValueChange={(value) => setNextWorkoutId(value)}>
-              {workouts.map((workout, index) => <Picker.Item key={workout.id} label={workout.name} value={index}/>)}
+              {workouts.map((workout, index) => <Picker.Item key={workout.key} label={workout.name} value={index}/>)}
             </Picker>
           </View>
         </View>

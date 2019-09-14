@@ -4,13 +4,13 @@ import shortId from 'shortid';
 const initialState = {
   workouts: [
     {
-      id: shortId.generate(),
+      key: shortId.generate(),
       name: 'Stronglifts A',
       description: 'Squats, Overhead Press, Deadlifts',
       exercises: ['Bench Press Warmup', 'Bench Press']
     },
     {
-      id: shortId.generate(),
+      key: shortId.generate(),
       name: 'Stronglifts B',
       description: 'Squats, Bench Press, Barbell Row',
       exercises: [
@@ -21,7 +21,7 @@ const initialState = {
   ],
   exercises: [
     {
-      id: shortId.generate(),
+      key: shortId.generate(),
       new: false,
       name: 'Squats Warmup',
       instructions: 'Do with a barbell',
@@ -32,7 +32,7 @@ const initialState = {
       ]
     },
     {
-      id: shortId.generate(),
+      key: shortId.generate(),
       new: false,
       name: 'Squats',
       instructions: 'Do with a barbell',
@@ -46,7 +46,7 @@ const initialState = {
       ]
     },
     {
-      id: shortId.generate(),
+      key: shortId.generate(),
       new: false,
       name: 'Bench Press Warmup',
       instructions: 'Do with a barbell',
@@ -57,7 +57,7 @@ const initialState = {
       ]
     },
     {
-      id: shortId.generate(),
+      key: shortId.generate(),
       new: false,
       name: 'Bench Press',
       instructions: 'Do with a barbell',
@@ -70,12 +70,12 @@ const initialState = {
   ],
   sessions: [
     {
-      id: shortId.generate(),
+      key: shortId.generate(),
       name: new Date(Date.now()).toLocaleString('en-US'),
-      workoutIds: [],
+      workoutKeys: [],
       exercises: [
         {
-          id: shortId.generate(),
+          key: shortId.generate(),
           new: false,
           name: 'Squats',
           image: require('../../assets/squats.gif'),
@@ -86,7 +86,7 @@ const initialState = {
           ]
         },
         {
-          id: shortId.generate(),
+          key: shortId.generate(),
           new: false,
           name: 'Bench Press',
           image: require('../../assets/bench-press.gif'),
@@ -97,7 +97,7 @@ const initialState = {
           ]
         },
         {
-          id: shortId.generate(),
+          key: shortId.generate(),
           new: false,
           name: 'Shoulder Press',
           image: require('../../assets/shoulder-press.gif'),
@@ -108,7 +108,7 @@ const initialState = {
           ]
         },
         {
-          id: shortId.generate(),
+          key: shortId.generate(),
           new: false,
           name: 'Barbell Row',
           image: require('../../assets/barbell-row.gif'),
@@ -119,7 +119,7 @@ const initialState = {
           ]
         },
         {
-          id: shortId.generate(),
+          key: shortId.generate(),
           new: false,
           name: 'Deadlifts',
           image: require('../../assets/deadlift.gif'),
@@ -142,14 +142,13 @@ const initialState = {
 function mainStore(state = initialState, action) {
   let newWorkouts = state.workouts;
   let exercise = {};
-  let index = 0;
   let newExercises = state.exercises;
   let newSessions = state.sessions;
 
   switch (action.type) {
 
     case WorkoutActions.CREATE_WORKOUT:
-      let workout = {id: shortId.generate(), name: '', description: '', exercises: []};
+      let workout = {key: shortId.generate(), name: '', description: '', exercises: []};
       newWorkouts.push(workout);
       return Object.assign({}, state, {workouts: newWorkouts, activeWorkoutIndex: newWorkouts.length - 1});
 
@@ -158,7 +157,7 @@ function mainStore(state = initialState, action) {
       return Object.assign({}, state, {workouts: newWorkouts, theThing: shortId.generate()});
 
     case WorkoutActions.DELETE_WORKOUT:
-      newWorkouts = state.workouts.filter(workout => workout.id !== action.workout.id);
+      newWorkouts = state.workouts.filter(workout => workout.key !== action.workout.key);
       return Object.assign({}, state, {workouts: newWorkouts});
 
     case WorkoutActions.SET_ACTIVE_WORKOUT:
@@ -171,7 +170,7 @@ function mainStore(state = initialState, action) {
       return Object.assign({}, state, {workouts: newWorkouts, theThing: shortId.generate()});
 
     case WorkoutActions.CREATE_EXERCISE:
-      exercise = {id: shortId.generate(), new: true, name: '', instructions: '', sets: []};
+      exercise = {key: shortId.generate(), new: true, name: '', instructions: '', sets: []};
       newExercises.push(exercise);
       return Object.assign({}, state, {exercises: newExercises, activeExerciseIndex: newExercises.length - 1});
 
@@ -195,10 +194,10 @@ function mainStore(state = initialState, action) {
 
     case WorkoutActions.CREATE_SESSION:
       const session = {
-        id: shortId.generate(),
+        key: shortId.generate(),
         duration: 0,
         name: new Date(Date.now()).toLocaleString('en-US'),
-        workoutIds: [state.workouts[state.activeWorkoutIndex].id],
+        workoutKeys: [state.workouts[state.activeWorkoutIndex].key],
         exercises: state.workouts[state.activeWorkoutIndex].exercises.map(name =>
           state.exercises.find(exercise => exercise.name === name))
       };
