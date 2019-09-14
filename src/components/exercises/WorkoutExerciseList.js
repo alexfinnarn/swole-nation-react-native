@@ -4,11 +4,15 @@ import {home, styles} from "../Styles";
 import ActionButton from "../utility/ActionButton";
 
 export default function WorkoutExerciseList({ exercises, navigation, thing }) {
-  // Add key that is needed for rendering the <FlatList /> component.
-  exercises = exercises.map((exercise) => {
-    exercise.key = exercise.id.toString();
-    return exercise;
-  });
+  return (
+    <View>
+      <FlatList
+        extraData={thing}
+        data={exercises}
+        renderItem={(item) => <WorkoutExerciseListItem exercise={item} />}
+      />
+    </View>
+  );
 
   function WorkoutExerciseListItem({exercise}) {
     return (
@@ -25,18 +29,8 @@ export default function WorkoutExerciseList({ exercises, navigation, thing }) {
           })}
         </View>
         <ActionButton text="Edit" action={() =>
-          navigation.navigate('AddExercise', {exerciseId: exercise.item.id, pickerEnabled: false})}/>
+          navigation.navigate('AddExercise', {exerciseId: exercise.item.key, pickerEnabled: false})}/>
       </View>
     );
   }
-
-  return (
-    <View>
-      <FlatList
-        extraData={thing}
-        data={exercises}
-        renderItem={(item) => <WorkoutExerciseListItem exercise={item} />}
-      />
-    </View>
-  )
 }

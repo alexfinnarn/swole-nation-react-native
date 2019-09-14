@@ -4,8 +4,9 @@ import WorkoutExerciseListProvider from "../exercises/WorkoutExerciseListProvide
 import {home, styles} from '../Styles';
 import AddExercise from "../exercises/AddExercise";
 import ActionButton from "../utility/ActionButton";
+import shortId from "shortid";
 
-export default function Workout({workout = {id: '', name: '', description: '', exercises: []}, handle, navigation}) {
+export default function Workout({workout = {key: shortId.generate(), name: '', description: '', exercises: []}, handle, navigation}) {
   const [name, setName] = useState(workout.name);
   const [description, setDescription] = useState(workout.description);
 

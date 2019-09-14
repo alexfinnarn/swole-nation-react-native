@@ -3,7 +3,7 @@ import SessionTeaser from './SessionTeaser';
 
 function getSession(sessions, otherProps) {
   if (otherProps.type === 'next') {
-    return sessions.find((session) => session.id === 2);
+    return sessions[0];
   }
 
   if (otherProps.type === 'last') {
