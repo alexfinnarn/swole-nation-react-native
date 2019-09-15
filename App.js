@@ -11,19 +11,27 @@ import AddExerciseProvider from "./src/components/exercises/AddExerciseProvider"
 import HomeScreenProvider from "./src/components/HomeScreenProvider";
 import SessionsListProvider from "./src/components/sessions/SessionsListProvider";
 import ExercisesListProvider from "./src/components/exercises/ExercisesListProvider";
+import NavigationService from './NavigationService';
+import SettingsProvider from "./src/components/SettingsProvider";
 
 export default function App() {
   const store = createStore(mainStore);
 
   const AppNavigator = createStackNavigator(
     {
-      Home: { screen: HomeScreenProvider },
+      Home: {
+        screen: HomeScreenProvider,
+        navigationOptions: {
+          title: 'Home',
+        },
+      },
       Session: { screen: SessionProvider },
       SessionsList: { screen: SessionsListProvider },
       WorkoutsList: { screen: WorkoutsListProvider },
       ExercisesList: { screen: ExercisesListProvider },
       Workout: { screen: WorkoutProvider },
       AddExercise: { screen: AddExerciseProvider },
+      Settings: { screen: SettingsProvider },
     },
     {
       initialRouteName: 'Home'
@@ -34,7 +42,9 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <AppContainer/>
+      <AppContainer ref={navigatorRef => {
+        NavigationService.setTopLevelNavigator(navigatorRef);
+      }}/>
     </Provider>
   );
 }
