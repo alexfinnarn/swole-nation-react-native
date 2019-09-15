@@ -1,9 +1,15 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import React, {useEffect} from 'react';
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware} from 'redux';
+import logger from 'redux-logger';
+import {persistStore, persistReducer} from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react'
+import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
+// import storage from 'redux-persist/lib/storage';
 import mainStore from './src/store/main';
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import AsyncStorage from '@react-native-community/async-storage';
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 import WorkoutsListProvider from "./src/components/workouts/WorkoutsListProvider";
 import WorkoutProvider from "./src/components/workouts/WorkoutProvider";
 import SessionProvider from "./src/components/sessions/SessionProvider";
@@ -13,17 +19,32 @@ import SessionsListProvider from "./src/components/sessions/SessionsListProvider
 import ExercisesListProvider from "./src/components/exercises/ExercisesListProvider";
 
 export default function App() {
-  const store = createStore(mainStore);
+  const persistConfig = {
+    key: 'root',
+    keyPrefix: '',
+    storage: AsyncStorage,
+    // stateReconciler: autoMergeLevel2,
+    manualPersist: true,
+  };
+
+  const persistedReducer = persistReducer(persistConfig, mainStore);
+  const store = createStore(persistedReducer, applyMiddleware(logger));
+  let persistor = persistStore(store);
+
+  useEffect(() => {
+    persistor.persist();
+  }, []);
+  // persistor.purge();
 
   const AppNavigator = createStackNavigator(
     {
-      Home: { screen: HomeScreenProvider },
-      Session: { screen: SessionProvider },
-      SessionsList: { screen: SessionsListProvider },
-      WorkoutsList: { screen: WorkoutsListProvider },
-      ExercisesList: { screen: ExercisesListProvider },
-      Workout: { screen: WorkoutProvider },
-      AddExercise: { screen: AddExerciseProvider },
+      Home: {screen: HomeScreenProvider},
+      Session: {screen: SessionProvider},
+      SessionsList: {screen: SessionsListProvider},
+      WorkoutsList: {screen: WorkoutsListProvider},
+      ExercisesList: {screen: ExercisesListProvider},
+      Workout: {screen: WorkoutProvider},
+      AddExercise: {screen: AddExerciseProvider},
     },
     {
       initialRouteName: 'Home'
@@ -32,9 +53,12 @@ export default function App() {
 
   const AppContainer = createAppContainer(AppNavigator);
 
+
   return (
     <Provider store={store}>
-      <AppContainer/>
+      <PersistGate loading={null} persistor={persistor}>
+        <AppContainer/>
+      </PersistGate>
     </Provider>
   );
 }

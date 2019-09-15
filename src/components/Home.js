@@ -17,7 +17,7 @@ export default function Home({navigation, workouts, handle, thing}) {
       </View>
       <View style={home.sectionContainer}>
         <View style={home.sectionLeft}>
-          <Text style={home.sectionHeaderText}>Next Workout</Text>
+          <Text style={home.sectionHeaderText}>Next Workouts</Text>
           <View style={{flex: 2}}>
             <Picker
               selectedValue={nextWorkoutId}

@@ -1,24 +1,8 @@
 import {WorkoutActions} from "./actions";
 import shortId from 'shortid';
-import {AsyncStorage} from 'react-native';
-import data from './ddata';
+import data from './data';
 
-async function initializeState() {
-  try {
-    const exercises = await AsyncStorage.getItem('EXERCISES');
-    if (exercises !== null) {
-      const workouts = await AsyncStorage.getItem('WORKOUTS');
-      const sessions = await AsyncStorage.getItem('SESSIONS');
-
-    } else {
-      populateDB();
-    }
-  } catch (error) {
-    // Error retrieving data
-  }
-}
-
-function mainStore(state = initializeState(), action) {
+function mainStore(state = data, action) {
   let newWorkouts = state.workouts;
   let exercise = {};
   let newExercises = state.exercises;
@@ -29,14 +13,18 @@ function mainStore(state = initializeState(), action) {
     case WorkoutActions.CREATE_WORKOUT:
       let workout = {key: shortId.generate(), name: '', description: '', exercises: []};
       newWorkouts.push(workout);
-      return Object.assign({}, state, {workouts: newWorkouts, activeWorkoutIndex: newWorkouts.length - 1});
+
+      // return Object.assign({}, state, {workouts: newWorkouts, activeWorkoutIndex: newWorkouts.length - 1});
+      return {...state, workouts: newWorkouts, activeWorkoutIndex: newWorkouts.length - 1};
 
     case WorkoutActions.UPDATE_WORKOUT:
       newWorkouts[state.activeWorkoutIndex] = action.workout;
+
       return Object.assign({}, state, {workouts: newWorkouts, theThing: shortId.generate()});
 
     case WorkoutActions.DELETE_WORKOUT:
       newWorkouts = state.workouts.filter(workout => workout.key !== action.workout.key);
+
       return Object.assign({}, state, {workouts: newWorkouts});
 
     case WorkoutActions.SET_ACTIVE_WORKOUT:
@@ -45,12 +33,13 @@ function mainStore(state = initializeState(), action) {
     case WorkoutActions.ADD_EXERCISE:
       newWorkouts = state.workouts;
       newWorkouts[state.activeWorkoutIndex].exercises.push(action.exercise.name);
-      // newExercises[state.activeExerciseIndex] = action.exercise;
+
       return Object.assign({}, state, {workouts: newWorkouts, theThing: shortId.generate()});
 
     case WorkoutActions.CREATE_EXERCISE:
       exercise = {key: shortId.generate(), new: true, name: '', instructions: '', sets: []};
       newExercises.push(exercise);
+
       return Object.assign({}, state, {exercises: newExercises, activeExerciseIndex: newExercises.length - 1});
 
     case WorkoutActions.SET_ACTIVE_EXERCISE:
@@ -59,16 +48,19 @@ function mainStore(state = initializeState(), action) {
     case WorkoutActions.ADD_SET:
       action.set.key = shortId.generate();
       newExercises[state.activeExerciseIndex].sets.push(action.set);
+
       return Object.assign({}, state, {exercises: newExercises, theThing: shortId.generate()});
 
     case WorkoutActions.REMOVE_SET:
       newExercises[state.activeExerciseIndex].sets = newExercises[state.activeExerciseIndex].sets.filter(set =>
         set.key !== action.set.key);
+
       return Object.assign({}, state, {exercises: newExercises, theThing: shortId.generate()});
 
     case WorkoutActions.UPDATE_SET:
       newExercises[state.activeExerciseIndex].sets = newExercises[state.activeExerciseIndex].sets.map(set =>
         set.key === action.set.key ? action.set : set);
+
       return Object.assign({}, state, {exercises: newExercises, theThing: shortId.generate()});
 
     case WorkoutActions.CREATE_SESSION:
@@ -90,8 +82,7 @@ function mainStore(state = initializeState(), action) {
         return exercise;
       });
 
-
-      newSessions.push(session);
+      newSessions.push(session)
       return Object.assign({}, state, {sessions: newSessions, activeSessionIndex: newSessions.length - 1});
 
     case WorkoutActions.FINISH_SESSION:
