@@ -137,6 +137,7 @@ const initialState = {
   activeWorkoutIndex: 0,
   activeSessionIndex: 0,
   activeExerciseIndex: 0,
+  theSetting: 'Foo'
 };
 
 function mainStore(state = initialState, action) {
@@ -218,6 +219,9 @@ function mainStore(state = initialState, action) {
     case WorkoutActions.FINISH_SESSION:
       newSessions[state.activeSessionIndex] = action.session;
       return Object.assign({}, state, {sessions: newSessions});
+
+    case WorkoutActions.SAVE_SETTINGS:
+      return Object.assign({}, state, {theSetting: action.setting});
 
     default:
       return state;

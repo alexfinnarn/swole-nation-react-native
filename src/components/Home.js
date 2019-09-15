@@ -3,8 +3,9 @@ import {Picker, Text, View} from "react-native";
 import {styles, home} from './Styles';
 import SessionTeaserProvider from "./sessions/SessionTeaserProvider";
 import ActionButton from "./utility/ActionButton";
+import NavigationService from "../../NavigationService";
 
-export default function Home({navigation, workouts, handle, thing}) {
+function Home({navigation, workouts, handle, thing}) {
   const [nextWorkoutId, setNextWorkoutId] = useState(0);
 
   return (
@@ -48,4 +49,10 @@ export default function Home({navigation, workouts, handle, thing}) {
   );
 }
 
+Home.navigationOptions = {
+  headerRight: <ActionButton action={() => NavigationService.navigate('Settings')}
+                             text="Settings" />
+};
 
+
+export default Home;
