@@ -1,145 +1,24 @@
 import {WorkoutActions} from "./actions";
 import shortId from 'shortid';
+import {AsyncStorage} from 'react-native';
+import data from './ddata';
 
-const initialState = {
-  workouts: [
-    {
-      key: shortId.generate(),
-      name: 'Stronglifts A',
-      description: 'Squats, Overhead Press, Deadlifts',
-      exercises: ['Bench Press Warmup', 'Bench Press']
-    },
-    {
-      key: shortId.generate(),
-      name: 'Stronglifts B',
-      description: 'Squats, Bench Press, Barbell Row',
-      exercises: [
-        'Squats Warmup',
-        'Squats'
-      ]
+async function initializeState() {
+  try {
+    const exercises = await AsyncStorage.getItem('EXERCISES');
+    if (exercises !== null) {
+      const workouts = await AsyncStorage.getItem('WORKOUTS');
+      const sessions = await AsyncStorage.getItem('SESSIONS');
+
+    } else {
+      populateDB();
     }
-  ],
-  exercises: [
-    {
-      key: shortId.generate(),
-      new: false,
-      name: 'Squats Warmup',
-      instructions: 'Do with a barbell',
-      image: require('../../assets/squats.gif'),
-      sets: [
-        {key: shortId.generate(), reps: 5, weight: 45.0},
-        {key: shortId.generate(), reps: 5, weight: 45.0},
-      ]
-    },
-    {
-      key: shortId.generate(),
-      new: false,
-      name: 'Squats',
-      instructions: 'Do with a barbell',
-      image: require('../../assets/squats.gif'),
-      sets: [
-        {key: shortId.generate(), reps: 5, weight: 200.0},
-        {key: shortId.generate(), reps: 5, weight: 200.0},
-        {key: shortId.generate(), reps: 5, weight: 200.0},
-        {key: shortId.generate(), reps: 5, weight: 200.0},
-        {key: shortId.generate(), reps: 5, weight: 200.0},
-      ]
-    },
-    {
-      key: shortId.generate(),
-      new: false,
-      name: 'Bench Press Warmup',
-      instructions: 'Do with a barbell',
-      image: require('../../assets/bench-press.gif'),
-      sets: [
-        {key: shortId.generate(), reps: 5, weight: 110.0},
-        {key: shortId.generate(), reps: 5, weight: 135.0},
-      ]
-    },
-    {
-      key: shortId.generate(),
-      new: false,
-      name: 'Bench Press',
-      instructions: 'Do with a barbell',
-      image: require('../../assets/bench-press.gif'),
-      sets: [
-        {key: shortId.generate(), reps: 5, weight: 160.0},
-        {key: shortId.generate(), reps: 5, weight: 160.0},
-      ]
-    },
-  ],
-  sessions: [
-    {
-      key: shortId.generate(),
-      name: new Date(Date.now()).toLocaleString('en-US'),
-      workoutKeys: [],
-      exercises: [
-        {
-          key: shortId.generate(),
-          new: false,
-          name: 'Squats',
-          image: require('../../assets/squats.gif'),
-          instructions: 'Do with a barbell',
-          sets: [
-            {key: shortId.generate(), reps: 5, weight: 250.0},
-            {key: shortId.generate(), reps: 5, weight: 260.0},
-          ]
-        },
-        {
-          key: shortId.generate(),
-          new: false,
-          name: 'Bench Press',
-          image: require('../../assets/bench-press.gif'),
-          instructions: 'Do with a barbell',
-          sets: [
-            {key: shortId.generate(), reps: 5, weight: 160.0},
-            {key: shortId.generate(), reps: 5, weight: 165.0},
-          ]
-        },
-        {
-          key: shortId.generate(),
-          new: false,
-          name: 'Shoulder Press',
-          image: require('../../assets/shoulder-press.gif'),
-          instructions: 'Do with a barbell',
-          sets: [
-            {key: shortId.generate(), reps: 5, weight: 115.0},
-            {key: shortId.generate(), reps: 5, weight: 115.0},
-          ]
-        },
-        {
-          key: shortId.generate(),
-          new: false,
-          name: 'Barbell Row',
-          image: require('../../assets/barbell-row.gif'),
-          instructions: 'Do with a barbell',
-          sets: [
-            {key: shortId.generate(), reps: 5, weight: 95.0},
-            {key: shortId.generate(), reps: 5, weight: 95.0},
-          ]
-        },
-        {
-          key: shortId.generate(),
-          new: false,
-          name: 'Deadlifts',
-          image: require('../../assets/deadlift.gif'),
-          instructions: 'Do with a barbell',
-          sets: [
-            {key: shortId.generate(), reps: 5, weight: 240.0},
-            {key: shortId.generate(), reps: 5, weight: 240.0},
-          ]
-        },
-      ]
-    },
-  ],
-  tempExerciseList: [],
-  theThing: '',
-  activeWorkoutIndex: 0,
-  activeSessionIndex: 0,
-  activeExerciseIndex: 0,
-};
+  } catch (error) {
+    // Error retrieving data
+  }
+}
 
-function mainStore(state = initialState, action) {
+function mainStore(state = initializeState(), action) {
   let newWorkouts = state.workouts;
   let exercise = {};
   let newExercises = state.exercises;
