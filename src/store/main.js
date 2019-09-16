@@ -89,6 +89,9 @@ function mainStore(state = data, action) {
       newSessions[state.activeSessionIndex] = action.session;
       return Object.assign({}, state, {sessions: newSessions});
 
+    case WorkoutActions.SAVE_SETTINGS:
+      return Object.assign({}, state, {theSetting: action.setting});
+
     default:
       return state;
   }
