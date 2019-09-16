@@ -1,20 +1,19 @@
 import React, {useState} from 'react';
 import {Text, View, Picker} from "react-native";
-import shortId from 'shortid';
 import {home} from '../Styles';
 import ActionButton from "../utility/ActionButton";
 
-export default function AddExerciseSet({item = {key: "0", reps: 0, weight: 100}, toAdd, updater}) {
-  const [reps, setReps] = useState(item.reps.toString());
-  const [weight, setWeight] = useState(item.weight.toString());
+export default function AddExerciseSet({item = {item: {reps: 0, weight: 100}}, toAdd, updater}) {
+  const [reps, setReps] = useState(item.item.reps.toString());
+  const [weight, setWeight] = useState(item.item.weight.toString());
 
   function updatePicker(value, type) {
     if (type === 'reps') {
       setReps(value);
-      updater({reps: value, weight: weight, key: item.key}, 'UPDATE_SET');
+      updater({reps: value, weight: weight}, item.index, 'UPDATE_SET');
     } else {
       setWeight(value);
-      updater({reps: reps, weight: value, key: item.key}, 'UPDATE_SET');
+      updater({reps: reps, weight: value}, item.index, 'UPDATE_SET');
     }
   }
 
@@ -41,13 +40,12 @@ export default function AddExerciseSet({item = {key: "0", reps: 0, weight: 100},
       <View style={{flex: 1}}>
         {toAdd
           ? <ActionButton text="+" action={() =>
-            updater({reps: reps, weight: weight}, 'ADD_SET')}/>
+            updater({reps: reps, weight: weight}, item.index, 'ADD_SET')}/>
           : <ActionButton text="X" action={() =>
-            updater({key: item.key, reps: reps, weight: weight}, 'REMOVE_SET')}/>
+            updater({reps: reps, weight: weight}, item.index, 'REMOVE_SET')}/>
         }
       </View>
     </View>
-
   );
 }
 

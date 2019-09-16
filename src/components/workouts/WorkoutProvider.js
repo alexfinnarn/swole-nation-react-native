@@ -1,13 +1,14 @@
 import { connect } from 'react-redux'
 import Workout from './Workout';
 
-function getWorkout(workouts, activeWorkoutIndex) {
-  return workouts[activeWorkoutIndex];
+function getWorkout(workouts, activeWorkoutKey, navigation) {
+  const passedKey = navigation.getParam('workoutKey');
+  return workouts[activeWorkoutKey];
 }
 
 const mapStateToProps = (state, otherProps) => {
   return {
-    workout: getWorkout(state.workouts, state.activeWorkoutIndex),
+    workout: getWorkout(state.workouts, state.activeWorkoutKey, otherProps.navigation),
   };
 };
 

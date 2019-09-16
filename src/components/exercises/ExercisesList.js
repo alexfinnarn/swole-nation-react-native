@@ -4,6 +4,7 @@ import {home, styles} from '../Styles';
 import ActionButton from "../utility/ActionButton";
 
 export default function ExercisesList({ exercises, navigation, handle, thing }) {
+
   return (
     <View style={styles.container}>
       <View style={{flex:9}}>
@@ -28,8 +29,8 @@ export default function ExercisesList({ exercises, navigation, handle, thing }) 
           <Text style={{flex: 4, marginTop: 15}}>Other content</Text>
         </View>
         <ActionButton text="Edit" action={() => {
-          handle.setActiveExerciseIndex(exercise.index);
-          navigation.navigate('AddExercise', {exerciseId: exercise.item.key})
+          handle.setActiveExerciseKey(exercise.item.key);
+          navigation.navigate('AddExercise', {exerciseKey: exercise.item.key})
         }}/>
       </View>
     );

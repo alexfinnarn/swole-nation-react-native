@@ -1,10 +1,17 @@
 import { connect } from 'react-redux'
 import Home from './Home';
 
+function getWorkouts(workouts) {
+  const theWorkouts = Object.keys(workouts).map((val) => {
+    return workouts[val];
+  });
+
+  return theWorkouts;
+}
+
 const mapStateToProps = (state, otherProps) => {
-  // console.log(state);
   return {
-    workouts: state.workouts,
+    workouts: getWorkouts(state.workouts),
     thing: state.theThing
   }
 };
@@ -12,8 +19,8 @@ const mapStateToProps = (state, otherProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     handle: {
-      nextWorkoutInteraction: (workoutId) => {
-        dispatch({index: workoutId, type: 'SET_ACTIVE_WORKOUT'});
+      nextWorkoutInteraction: (workoutKey) => {
+        dispatch({key: workoutKey, type: 'SET_ACTIVE_WORKOUT'});
       }
     },
   }

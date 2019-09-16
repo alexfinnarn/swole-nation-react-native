@@ -3,7 +3,7 @@ import WorkoutsList from './WorkoutsList';
 
 const mapStateToProps = state => {
   return {
-    workouts: state.workouts,
+    workouts: Object.keys(state.workouts).map(key => state.workouts[key]),
     thing: state.theThing
   }
 };
@@ -14,8 +14,11 @@ const mapDispatchToProps = dispatch => {
       createWorkout: () => {
         dispatch({type: 'CREATE_WORKOUT' });
       },
-      setActiveWorkoutIndex: (index) => {
-        dispatch({index, type: 'SET_ACTIVE_WORKOUT'});
+      setActiveWorkoutKey: (key) => {
+        dispatch({key, type: 'SET_ACTIVE_WORKOUT'});
+      },
+      deleteWorkout: (key) => {
+        dispatch({key, type: 'DELETE_WORKOUT'});
       }
     }
   };

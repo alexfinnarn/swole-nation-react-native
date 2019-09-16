@@ -6,7 +6,7 @@ import ActionButton from "./utility/ActionButton";
 import NavigationService from "../../NavigationService";
 
 function Home({navigation, workouts, handle, thing}) {
-  const [nextWorkoutId, setNextWorkoutId] = useState(0);
+  const [nextWorkoutKey, setNextWorkoutKey] = useState(workouts[0].key);
 
   return (
     <View style={[styles.container]}>
@@ -21,15 +21,15 @@ function Home({navigation, workouts, handle, thing}) {
           <Text style={home.sectionHeaderText}>Next Workouts</Text>
           <View style={{flex: 2}}>
             <Picker
-              selectedValue={nextWorkoutId}
+              selectedValue={nextWorkoutKey}
               style={{height: 70, width: 160}}
-              onValueChange={(value) => setNextWorkoutId(value)}>
-              {workouts.map((workout, index) => <Picker.Item key={workout.key} label={workout.name} value={index}/>)}
+              onValueChange={(value) => setNextWorkoutKey(value)}>
+              {workouts.map((workout) => <Picker.Item key={workout.key} label={workout.name} value={workout.key}/>)}
             </Picker>
           </View>
         </View>
         <ActionButton text="Go" action={() => {
-          handle.nextWorkoutInteraction(nextWorkoutId);
+          handle.nextWorkoutInteraction(nextWorkoutKey);
           navigation.navigate('Workout', { action: 'go' });
         }}/>
       </View>

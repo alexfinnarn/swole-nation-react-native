@@ -3,74 +3,84 @@ import shortId from 'shortid';
 import data from './data';
 
 function mainStore(state = data, action) {
-  let newWorkouts = state.workouts;
+  let newWorkouts = Object.assign({}, state.workouts);
   let exercise = {};
-  let newExercises = state.exercises;
-  let newSessions = state.sessions;
+  let sets = [];
 
   switch (action.type) {
 
     case WorkoutActions.CREATE_WORKOUT:
       let workout = {key: shortId.generate(), name: '', description: '', exercises: []};
-      newWorkouts.push(workout);
-
-      // return Object.assign({}, state, {workouts: newWorkouts, activeWorkoutIndex: newWorkouts.length - 1});
-      return {...state, workouts: newWorkouts, activeWorkoutIndex: newWorkouts.length - 1};
+      return {...state, workouts: {...state.workouts, [workout.key]: workout}, activeWorkoutKey: workout.key};
 
     case WorkoutActions.UPDATE_WORKOUT:
-      newWorkouts[state.activeWorkoutIndex] = action.workout;
-
-      return Object.assign({}, state, {workouts: newWorkouts, theThing: shortId.generate()});
+      return Object.assign({}, state, {
+        workouts: {...state.workouts, [action.workout.key]: action.workout},
+        theThing: shortId.generate()
+      });
 
     case WorkoutActions.DELETE_WORKOUT:
-      newWorkouts = state.workouts.filter(workout => workout.key !== action.workout.key);
-
-      return Object.assign({}, state, {workouts: newWorkouts});
+      delete newWorkouts[action.key];
+      return Object.assign({}, state, {workouts: {...newWorkouts}});
 
     case WorkoutActions.SET_ACTIVE_WORKOUT:
-      return Object.assign({}, state, {activeWorkoutIndex: action.index});
-
-    case WorkoutActions.ADD_EXERCISE:
-      newWorkouts = state.workouts;
-      newWorkouts[state.activeWorkoutIndex].exercises.push(action.exercise.name);
-
-      return Object.assign({}, state, {workouts: newWorkouts, theThing: shortId.generate()});
+      return Object.assign({}, state, {activeWorkoutKey: action.key});
 
     case WorkoutActions.CREATE_EXERCISE:
       exercise = {key: shortId.generate(), new: true, name: '', instructions: '', sets: []};
-      newExercises.push(exercise);
+      return Object.assign({}, state, {exercises: {...state.exercises, exercise}, activeExerciseKey: exercise.key});
 
-      return Object.assign({}, state, {exercises: newExercises, activeExerciseIndex: newExercises.length - 1});
+    case WorkoutActions.UPDATE_EXERCISE:
+      return Object.assign({}, state, {
+        exercises: {...state.exercises, [action.exercise.key]: action.exercise},
+        activeExerciseKey: action.exercise.key
+      });
+
+    case WorkoutActions.ADD_EXERCISE:
+      newWorkouts[state.activeWorkoutKey].exercises.push(action.exercise.name);
+      return Object.assign({}, state, {workouts: {...newWorkouts}, theThing: shortId.generate()});
+
 
     case WorkoutActions.SET_ACTIVE_EXERCISE:
-      return Object.assign({}, state, {activeExerciseIndex: action.index});
+      return Object.assign({}, state, {activeExerciseKey: action.key});
 
     case WorkoutActions.ADD_SET:
-      action.set.key = shortId.generate();
-      newExercises[state.activeExerciseIndex].sets.push(action.set);
+      exercise = state.exercises[state.activeExerciseKey];
+      exercise.sets.push(action.set);
 
-      return Object.assign({}, state, {exercises: newExercises, theThing: shortId.generate()});
+      return Object.assign({}, state, {
+        exercises: {...state.exercises, [state.activeExerciseKey]: exercise},
+        theThing: shortId.generate()
+      });
 
     case WorkoutActions.REMOVE_SET:
-      newExercises[state.activeExerciseIndex].sets = newExercises[state.activeExerciseIndex].sets.filter(set =>
-        set.key !== action.set.key);
+      exercise = state.exercises[state.activeExerciseKey];
+      exercise.sets.splice(action.index, 1);
 
-      return Object.assign({}, state, {exercises: newExercises, theThing: shortId.generate()});
+      return Object.assign({}, state, {
+        exercises: {...state.exercises, [state.activeExerciseKey]: exercise},
+        theThing: shortId.generate()
+      });
 
     case WorkoutActions.UPDATE_SET:
-      newExercises[state.activeExerciseIndex].sets = newExercises[state.activeExerciseIndex].sets.map(set =>
-        set.key === action.set.key ? action.set : set);
+      exercise = state.exercises[state.activeExerciseKey];
+      exercise.sets[action.index] = action.set;
 
-      return Object.assign({}, state, {exercises: newExercises, theThing: shortId.generate()});
+      return Object.assign({}, state, {
+        exercises: {...state.exercises, [state.activeExerciseKey]: exercise},
+        theThing: shortId.generate()
+      });
 
     case WorkoutActions.CREATE_SESSION:
       const session = {
         key: shortId.generate(),
         duration: 0,
         name: new Date(Date.now()).toLocaleString('en-US'),
-        workoutKeys: [state.workouts[state.activeWorkoutIndex].key],
-        exercises: state.workouts[state.activeWorkoutIndex].exercises.map(name =>
-          state.exercises.find(exercise => exercise.name === name))
+        workoutKeys: [state.workouts[state.activeWorkoutKey].key],
+        exercises: state.workouts[state.activeWorkoutKey].exercises.map((name) => {
+          const foundKey = Object.keys(state.exercises).find(key => state.exercises[key].name === name);
+          return state.exercises[foundKey];
+        })
       };
 
       // Add completed property. Not added to workout because it only makes sense to record in a session.
@@ -82,12 +92,13 @@ function mainStore(state = data, action) {
         return exercise;
       });
 
-      newSessions.push(session)
-      return Object.assign({}, state, {sessions: newSessions, activeSessionIndex: newSessions.length - 1});
+      return Object.assign({}, state, {
+        sessions: {...state.sessions, [session.key]: session},
+        activeSessionKey: session.key
+      });
 
     case WorkoutActions.FINISH_SESSION:
-      newSessions[state.activeSessionIndex] = action.session;
-      return Object.assign({}, state, {sessions: newSessions});
+      return Object.assign({}, state, {sessions: {...state.sessions, [action.session.key]: action.session}});
 
     case WorkoutActions.SAVE_SETTINGS:
       return Object.assign({}, state, {theSetting: action.setting});

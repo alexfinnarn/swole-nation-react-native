@@ -2,10 +2,9 @@ import React, {useEffect} from 'react';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import logger from 'redux-logger';
+import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import {persistStore, persistReducer} from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react'
-import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
-// import storage from 'redux-persist/lib/storage';
 import mainStore from './src/store/main';
 import AsyncStorage from '@react-native-community/async-storage';
 import {createAppContainer} from 'react-navigation';
@@ -26,16 +25,13 @@ export default function App() {
     keyPrefix: '',
     storage: AsyncStorage,
     // stateReconciler: autoMergeLevel2,
-    manualPersist: true,
+    // manualPersist: true,
   };
 
   const persistedReducer = persistReducer(persistConfig, mainStore);
-  const store = createStore(persistedReducer, applyMiddleware(logger));
+  // const store = createStore(persistedReducer, applyMiddleware(logger));
+  const store = createStore(persistedReducer);
   let persistor = persistStore(store);
-
-  useEffect(() => {
-    persistor.persist();
-  }, []);
   // persistor.purge();
 
   const AppNavigator = createStackNavigator(
@@ -60,7 +56,6 @@ export default function App() {
   );
 
   const AppContainer = createAppContainer(AppNavigator);
-
 
   return (
     <Provider store={store}>

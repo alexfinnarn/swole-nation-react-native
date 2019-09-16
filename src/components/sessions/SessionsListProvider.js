@@ -3,7 +3,7 @@ import SessionsList from './SessionsList';
 
 const mapStateToProps = state => {
   return {
-    sessions: state.sessions
+    sessions: Object.keys(state.sessions).map(key => state.sessions[key])
   }
 };
 

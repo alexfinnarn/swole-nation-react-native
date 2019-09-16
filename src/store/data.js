@@ -1,10 +1,10 @@
-{
-  "workouts": [
-    {
-      "name": "Stronglifts A",
-      "key": "DQkECwYLCQQ",
-      "description": "Squats, Bench Press, Barbell Row",
-      "exercises": [
+const data = {
+  workouts: {
+    DQkECwYLCQQ: {
+      name: "Stronglifts A",
+      key: "DQkECwYLCQQ",
+      description: "Squats, Bench Press, Barbell Row",
+      exercises: [
         "Squats Warmup",
         "Squats",
         "Bench Press Warmup",
@@ -13,11 +13,11 @@
         "Barbell Row"
       ]
     },
-    {
-      "name": "Stronglifts B",
-      "key": "DAwJBQEMAA0",
-      "description": "Squats, Overhead Press, Deadlifts",
-      "exercises": [
+    DAwJBQEMAA0: {
+      name: "Stronglifts B",
+      key: "DAwJBQEMAA0",
+      description: "Squats, Overhead Press, Deadlifts",
+      exercises: [
         "Squats Warmup",
         "Squats",
         "Overhead Press Warmup",
@@ -26,14 +26,14 @@
         "Deadlifts"
       ]
     }
-  ],
-  "exercises": [
-    {
-      "name": "Squats Warmup",
-      "key": "BwEBDwoFBgQ",
-      "image": "../../assets/squats.gif",
-      "instructions": "Do with a barbell",
-      "sets": [
+  },
+  exercises: {
+    BwEBDwoFBgQ: {
+      name: "Squats Warmup",
+      key: "BwEBDwoFBgQ",
+      image: require("../../assets/squats.gif"),
+      instructions: "Do with a barbell",
+      sets: [
         {
           "reps": 5,
           "weight": 45.0
@@ -60,12 +60,12 @@
         }
       ]
     },
-    {
-      "name": "Squats",
-      "key": "Bw0ECwAKBws",
-      "image": "../../assets/squats.gif",
-      "instructions": "Do with a barbell",
-      "sets": [
+    Bw0ECwAKBws: {
+      name: "Squats",
+      key: "Bw0ECwAKBws",
+      image: require("../../assets/squats.gif"),
+      instructions: "Do with a barbell",
+      sets: [
         {
           "reps": 5,
           "weight": 230.0
@@ -88,12 +88,12 @@
         }
       ]
     },
-    {
-      "name": "Bench Press Warmup",
-      "key": "BwwBDAIJDgw",
-      "image": "../../assets/bench-press.gif",
-      "instructions": "Do with a barbell",
-      "sets": [
+    BwwBDAIJDgw: {
+      name: "Bench Press Warmup",
+      key: "BwwBDAIJDgw",
+      image: require("../../assets/bench-press.gif"),
+      instructions: "Do with a barbell",
+      sets: [
         {
           "reps": 5,
           "weight": 45.0
@@ -112,12 +112,12 @@
         }
       ]
     },
-    {
-      "name": "Bench Press",
-      "key": "DgcBCA8BCQo",
-      "image": "../../assets/bench-press.gif",
-      "instructions": "Do with a barbell",
-      "sets": [
+    DgcBCA8BCQo: {
+      name: "Bench Press",
+      key: "DgcBCA8BCQo",
+      image: require("../../assets/bench-press.gif"),
+      instructions: "Do with a barbell",
+      sets: [
         {
           "reps": 5,
           "weight": 165.0
@@ -140,12 +140,12 @@
         }
       ]
     },
-    {
-      "name": "Shoulder Press Warmup",
-      "key": "DwcACw4PCgI",
-      "image": "../../assets/shoulder-press.gif",
-      "instructions": "Do with a barbell",
-      "sets": [
+    DwcACw4PCgI: {
+      name: "Shoulder Press Warmup",
+      key: "DwcACw4PCgI",
+      image: require("../../assets/shoulder-press.gif"),
+      instructions: "Do with a barbell",
+      sets: [
         {
           "reps": 5,
           "weight": 45.0
@@ -160,12 +160,12 @@
         }
       ]
     },
-    {
-      "name": "Shoulder Press",
-      "key": "CAMBAwsFBwQ",
-      "image": "../../assets/shoulder-press.gif",
-      "instructions": "Do with a barbell",
-      "sets": [
+    CAMBAwsFBwQ: {
+      name: "Shoulder Press",
+      key: "CAMBAwsFBwQ",
+      image: require("../../assets/shoulder-press.gif"),
+      instructions: "Do with a barbell",
+      sets: [
         {
           "reps": 5,
           "weight": 110.0
@@ -188,24 +188,24 @@
         }
       ]
     },
-    {
-      "name": "Barbell Row Warmup",
-      "key": "BwYGAw0NDwo",
-      "image": "../../assets/barbell-row.gif",
-      "instructions": "Do with a barbell",
-      "sets": [
+    BwYGAw0NDwo: {
+      name: "Barbell Row Warmup",
+      key: "BwYGAw0NDwo",
+      image: require("../../assets/barbell-row.gif"),
+      instructions: "Do with a barbell",
+      sets: [
         {
           "reps": 5,
           "weight": 95.0
         }
       ]
     },
-    {
-      "name": "Barbell Row",
-      "key": "BwQKAwYKAgA",
-      "image": "../../assets/barbell-row.gif",
-      "instructions": "Do with a barbell",
-      "sets": [
+    BwQKAwYKAgA: {
+      name: "Barbell Row",
+      key: "BwQKAwYKAgA",
+      image: require("../../assets/barbell-row.gif"),
+      instructions: "Do with a barbell",
+      sets: [
         {
           "reps": 5,
           "weight": 115.0
@@ -216,12 +216,12 @@
         }
       ]
     },
-    {
-      "name": "Deadlifts Warmup",
-      "key": "AQcNAQkBCwo",
-      "image": "../../assets/deadlift.gif",
-      "instructions": "Do with a barbell",
-      "sets": [
+    AQcNAQkBCwo: {
+      name: "Deadlifts Warmup",
+      key: "AQcNAQkBCwo",
+      image: require("../../assets/deadlift.gif"),
+      instructions: "Do with a barbell",
+      sets: [
         {
           "reps": 5,
           "weight": 135.0
@@ -236,30 +236,29 @@
         }
       ]
     },
-    {
-      "name": "Deadlifts",
-      "key": "DAYCDAQKAw4",
-      "image": "../../assets/deadlift.gif",
-      "instructions": "Do with a barbell",
-      "sets": [
+    DAYCDAQKAw4: {
+      name: "Deadlifts",
+      key: "DAYCDAQKAw4",
+      image: require("../../assets/deadlift.gif"),
+      instructions: "Do with a barbell",
+      sets: [
         {
           "reps": 5,
           "weight": 225.0
         }
       ]
     }
-  ],
-  "sessions": [
-    {
-      "name": "new ...date",
-      "key": "BwgFDQ8CCg8",
-      "workoutKeys": [],
-      "exercises": []
+  },
+  sessions: {
+    BwgFDQ8CCg8: {
+      name: "new ...date",
+      key: "BwgFDQ8CCg8",
+      workoutKeys: [],
+      exercises: []
     }
-  ],
-  "tempExerciseList": [],
-  "theThing": "",
-  "activeWorkoutIndex": 0,
-  "activeSessionIndex": 0,
-  "activeExerciseIndex": 0
-}
+  },
+  activeWorkoutKey: "",
+  activeExerciseKey: ""
+};
+
+export default data;

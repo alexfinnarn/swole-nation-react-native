@@ -2,7 +2,13 @@ import { connect } from 'react-redux'
 import WorkoutExerciseList from './WorkoutExerciseList';
 
 function getExercises(exercises, workout) {
-  return exercises.filter(exercise => workout.exercises.includes(exercise.name));
+  let exers = Object.keys(exercises).map((exerciseKey) => {
+    if (workout.exercises.includes(exercises[exerciseKey].name)) {
+      return exercises[exerciseKey];
+    }
+  });
+
+  return exers.filter(ex => typeof ex !== 'undefined');
 }
 
 const mapStateToProps = (state, otherProps) => {
