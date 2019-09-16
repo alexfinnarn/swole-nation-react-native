@@ -4,6 +4,8 @@ import {home, styles} from "../Styles";
 import ActionButton from "../utility/ActionButton";
 
 export default function WorkoutExerciseList({ exercises, navigation, thing }) {
+
+
   return (
     <View>
       <FlatList

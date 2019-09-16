@@ -4,7 +4,7 @@ import {styles} from "../Styles";
 import AddExerciseSet from "./AddExerciseSet";
 import ActionButton from "../utility/ActionButton";
 
-export default function AddExercise({exercises, thing, handleUpdate, addExercise, navigation, theExercise, pickerEnabled}) {
+export default function AddExercise({exercises, thing, handleUpdate, saveExercise, navigation, theExercise, pickerEnabled}) {
   const exerciseSelected = theExercise.name !== '';
   const [choice, setChoice] = useState(theExercise.key);
   const [name, setName] = useState(theExercise.name);
@@ -24,7 +24,7 @@ export default function AddExercise({exercises, thing, handleUpdate, addExercise
             selectedValue={choice}
             style={{height: 70, width: 300}}
             onValueChange={(itemValue) => updateExercisePicker(itemValue)}>
-            {exercises.map((exercise) => <Picker.Item key={exercise.key} label={exercise.name} value={exercise.key}/>)}
+            {Object.keys(exercises).map((key) => <Picker.Item key={key} label={exercises[key].name} value={key}/>)}
           </Picker>
           : <TextInput
             style={[styles.editText, styles.smallTextInputFont, {flex: 4}]}
@@ -39,21 +39,22 @@ export default function AddExercise({exercises, thing, handleUpdate, addExercise
         <FlatList
           data={exercise.sets}
           extraData={thing}
-          keyExtractor={(item) => item.key}
-          renderItem={({item}) => <AddExerciseSet updater={handleUpdate} exercise={exercise} item={item}/>}
+          keyExtractor={(item, index) => index.toString()}
+          renderItem={(item) => <AddExerciseSet updater={handleUpdate} exercise={exercise} item={item}/>}
         />
       </View>
       <View style={{flex: 2, marginTop: 5}}>
         <Text style={{fontSize: 16}}>Add Exercise:</Text>
         <AddExerciseSet updater={handleUpdate} exercise={exercise} toAdd={true}/>
       </View>
-      <ActionButton text="Save" action={() => {
-        if (!exerciseSelected) {
-          exercise.name = name;
-        }
-        addExercise(exercise);
-        navigation.goBack();
-      }}/>
+      <ActionButton text={exercise.connectedWorkout ? 'Add' : 'Save'}
+                    action={() => {
+                      if (!exerciseSelected) {
+                        exercise.name = name;
+                      }
+                      saveExercise(exercise);
+                      navigation.goBack();
+                    }}/>
     </View>
   );
 }

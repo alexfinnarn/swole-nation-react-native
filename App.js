@@ -1,9 +1,14 @@
 import React from 'react';
-import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import {Provider} from 'react-redux';
+import {createStore, applyMiddleware} from 'redux';
+import logger from 'redux-logger';
+import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
+import {persistStore, persistReducer} from 'redux-persist';
+import { PersistGate } from 'redux-persist/integration/react'
 import mainStore from './src/store/main';
-import { createAppContainer } from 'react-navigation';
-import { createStackNavigator } from 'react-navigation-stack';
+import AsyncStorage from '@react-native-community/async-storage';
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
 import WorkoutsListProvider from "./src/components/workouts/WorkoutsListProvider";
 import WorkoutProvider from "./src/components/workouts/WorkoutProvider";
 import SessionProvider from "./src/components/sessions/SessionProvider";
@@ -15,7 +20,19 @@ import NavigationService from './NavigationService';
 import SettingsProvider from "./src/components/SettingsProvider";
 
 export default function App() {
-  const store = createStore(mainStore);
+  const persistConfig = {
+    key: 'root',
+    keyPrefix: '',
+    storage: AsyncStorage,
+    // stateReconciler: autoMergeLevel2,
+    // manualPersist: true,
+  };
+
+  const persistedReducer = persistReducer(persistConfig, mainStore);
+  // const store = createStore(persistedReducer, applyMiddleware(logger));
+  const store = createStore(persistedReducer);
+  let persistor = persistStore(store);
+  // persistor.purge();
 
   const AppNavigator = createStackNavigator(
     {
@@ -42,9 +59,11 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      <AppContainer ref={navigatorRef => {
-        NavigationService.setTopLevelNavigator(navigatorRef);
-      }}/>
+      <PersistGate loading={null} persistor={persistor}>
+        <AppContainer ref={navigatorRef => {
+          NavigationService.setTopLevelNavigator(navigatorRef);
+        }}/>
+      </PersistGate>
     </Provider>
   );
 }

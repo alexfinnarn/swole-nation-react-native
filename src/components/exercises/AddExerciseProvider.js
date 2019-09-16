@@ -1,22 +1,31 @@
 import {connect} from 'react-redux';
 import AddExercise from './AddExercise';
 
-function getExercise(exercises, activeExerciseIndex) {
-  return exercises[activeExerciseIndex];
+function getExercise(exercises, activeExerciseKey) {
+  const index = activeExerciseKey ?? Object.keys(exercises)[0];
+  return exercises[index];
 }
 
-function getExercises(exercises, navigation) {
+function getExercises(exercises, workouts, key, navigation) {
   const workout = navigation.getParam('workout', null);
+
   if (workout) {
-    return exercises.filter(exercise => workout.workout.exercises.includes(exercise.name) === false);
+    const exers = Object.keys(exercises).map((exerciseKey) => {
+      if (workouts[key].exercises.includes(exercises[exerciseKey].name) === false) {
+        return exercises[exerciseKey];
+      }
+    });
+
+    return exers;
+  } else {
+    return exercises;
   }
-  return exercises;
 }
 
 const mapStateToProps = (state, otherProps) => {
   return {
-    theExercise: getExercise(getExercises(state.exercises, otherProps.navigation), state.activeExerciseIndex),
-    exercises: getExercises(state.exercises, otherProps.navigation),
+    theExercise: getExercise(getExercises(state.exercises, state.workouts, state.activeWorkoutKey, otherProps.navigation), state.activeExerciseKey),
+    exercises: getExercises(state.exercises, state.workouts, state.activeWorkoutKey, otherProps.navigation),
     thing: state.theThing,
     pickerEnabled: otherProps.navigation.getParam('pickerEnabled', true)
   };
@@ -24,11 +33,16 @@ const mapStateToProps = (state, otherProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleUpdate: (updatedSet, action) => {
-      dispatch({set: updatedSet, type: action});
+    handleUpdate: (updatedSet, index, action) => {
+      dispatch({set: updatedSet, index, type: action});
     },
-    addExercise: (exercise) => {
-      dispatch({exercise, type: 'ADD_EXERCISE'});
+    saveExercise: (exercise, exerciseIsNew) => {
+      if (exercise.connectedWorkout) {
+        dispatch({exercise, type: 'ADD_EXERCISE'});
+      } else {
+        dispatch({exercise, type: 'UPDATE_EXERCISE'});
+      }
+
     }
   };
 };

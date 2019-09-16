@@ -3,7 +3,7 @@ import Home from './Home';
 
 const mapStateToProps = (state, otherProps) => {
   return {
-    workouts: state.workouts,
+    workouts: Object.keys(state.workouts).map((key) => state.workouts[key]),
     thing: state.theThing
   }
 };
@@ -11,8 +11,8 @@ const mapStateToProps = (state, otherProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     handle: {
-      nextWorkoutInteraction: (workoutId) => {
-        dispatch({index: workoutId, type: 'SET_ACTIVE_WORKOUT'});
+      nextWorkoutInteraction: (workoutKey) => {
+        dispatch({key: workoutKey, type: 'SET_ACTIVE_WORKOUT'});
       }
     },
   }

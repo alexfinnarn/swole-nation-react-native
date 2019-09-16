@@ -28,12 +28,12 @@ export default function WorkoutsList({ workouts, navigation, handle, thing }) {
           <Text style={{flex: 4, marginTop: 15}}>Other content</Text>
         </View>
         <ActionButton text="Edit" styles={{marginRight: 2}} action={() => {
-          handle.setActiveWorkoutIndex(workout.index);
-          navigation.navigate('Workout', {workoutId: workout.item.key, action: 'save'})
+          handle.setActiveWorkoutKey(workout.item.key);
+          navigation.navigate('Workout', {workoutKey: workout.item.key, action: 'edit'})
         }}/>
         <ActionButton text="X" action={() => {
-          handle.setActiveWorkoutIndex(workout.index);
-          navigation.navigate('Workout', {workoutId: workout.item.key, action: 'save'})
+          handle.deleteWorkout(workout.item.key);
+          navigation.goBack();
         }}/>
       </View>
     );
