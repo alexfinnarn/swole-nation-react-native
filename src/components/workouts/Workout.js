@@ -16,7 +16,6 @@ function Workout({workout, handle, navigation}) {
     handle.update(newWorkout, action);
 
     if (action === 'CREATE_SESSION') {
-      handle.createSession();
       navigation.navigate('Session');
     } else {
       navigation.goBack();
