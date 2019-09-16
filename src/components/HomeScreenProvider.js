@@ -1,17 +1,9 @@
 import { connect } from 'react-redux'
 import Home from './Home';
 
-function getWorkouts(workouts) {
-  const theWorkouts = Object.keys(workouts).map((val) => {
-    return workouts[val];
-  });
-
-  return theWorkouts;
-}
-
 const mapStateToProps = (state, otherProps) => {
   return {
-    workouts: getWorkouts(state.workouts),
+    workouts: Object.keys(state.workouts).map((key) => state.workouts[key]),
     thing: state.theThing
   }
 };

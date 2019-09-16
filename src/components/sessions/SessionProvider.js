@@ -2,8 +2,6 @@ import {connect} from 'react-redux';
 import Session from './Session';
 
 function getSession(sessions, key) {
-  // console.log(sessions);
-  // console.log(key);
   return sessions[key];
 }
 
