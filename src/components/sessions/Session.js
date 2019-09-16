@@ -184,7 +184,7 @@ export default function Session({session, navigation, finishSession}) {
         />
       </View>
       <View style={{flex: 1, padding: 10, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center'}}>
-        <ActionButton styles={{paddingRight: 5}} text="Quit" action={() => {}}/>
+        <ActionButton styles={{paddingRight: 5}} text="Quit" action={() => {navigation.navigate('Home');}}/>
         <ActionButton text="Pause" action={() => toggle()}/>
       </View>
     </View>
