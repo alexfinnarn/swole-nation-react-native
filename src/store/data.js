@@ -1,3 +1,5 @@
+import addFive from '../transformers/addFive'
+
 const data = {
   workouts: {
     DQkECwYLCQQ: {
@@ -257,8 +259,21 @@ const data = {
       exercises: []
     }
   },
+  transformers: {
+    none: {
+      key: 'none',
+      label: "N/A",
+      callback: null
+    },
+    addFive: {
+      key: 'addFive',
+      label: "Exercises (+5 lbs)",
+      callback: addFive
+    }
+  },
   activeWorkoutKey: "",
-  activeExerciseKey: ""
+  activeExerciseKey: "",
+  activeTransformerKey: "none",
 };
 
 export default data;
