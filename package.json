@@ -5,7 +5,20 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "test": "jest --verbose",
+    "test:update": "jest --verbose --coverage --updateSnapshot",
+    "test:watch": "jest --verbose --watch",
+    "coverage": "jest --verbose --coverage && open ./coverage/lcov-report/index.html"
+  },
+  "jest": {
+    "preset": "jest-expo",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|sentry-expo|native-base)"
+    ],
+    "setupFiles": [
+      "./src/tests/jestSetupFile.js"
+    ]
   },
   "dependencies": {
     "@react-native-community/async-storage": "^1.6.1",
@@ -25,13 +38,16 @@
     "react-navigation-stack": "^1.5.1",
     "react-redux": "^7.1.1",
     "redux": "^4.0.4",
-    "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
     "shortid": "^2.2.15"
   },
   "devDependencies": {
     "babel-preset-expo": "^6.0.0",
-    "expo-cli": "^3.0.9"
+    "expo-cli": "^3.0.9",
+    "jest-expo": "^34.0.1",
+    "react-native-testing-library": "^1.11.1",
+    "react-test-renderer": "16.8.3",
+    "redux-logger": "^3.0.6"
   },
   "private": true
 }

@@ -5,7 +5,7 @@ import SessionTeaserProvider from "./sessions/SessionTeaserProvider";
 import ActionButton from "./utility/ActionButton";
 import NavigationService from "../../NavigationService";
 
-function Home({navigation, workouts, handle, thing}) {
+function Home({navigation, workouts, handle}) {
   const [nextWorkoutKey, setNextWorkoutKey] = useState(workouts[0].key);
 
   return (
@@ -21,6 +21,7 @@ function Home({navigation, workouts, handle, thing}) {
           <Text style={home.sectionHeaderText}>Next Workouts</Text>
           <View style={{flex: 2}}>
             <Picker
+              testID="workout-picker"
               selectedValue={nextWorkoutKey}
               style={{height: 70, width: 160}}
               onValueChange={(value) => setNextWorkoutKey(value)}>
@@ -50,8 +51,7 @@ function Home({navigation, workouts, handle, thing}) {
 }
 
 Home.navigationOptions = {
-  headerRight: <ActionButton action={() => NavigationService.navigate('Settings')}
-                             text="Settings" />
+  headerRight: <ActionButton action={() => NavigationService.navigate('Settings')} text="Settings" />
 };
 
 
