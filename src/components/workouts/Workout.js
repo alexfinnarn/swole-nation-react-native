@@ -1,19 +1,20 @@
 import React, {useState} from 'react';
-import {Text, View, TextInput} from "react-native";
+import {Text, View, TextInput, Picker} from "react-native";
 import WorkoutExerciseListProvider from "../exercises/WorkoutExerciseListProvider";
 import {home, styles} from '../Styles';
 import AddExercise from "../exercises/AddExercise";
 import ActionButton from "../utility/ActionButton";
 
-function Workout({workout, handle, navigation}) {
+function Workout({workout, handle, navigation, transformers}) {
   const [name, setName] = useState(workout.name);
   const [description, setDescription] = useState(workout.description);
+  const [transformerKey, setTransformerKey] = useState(transformers[0].key);
 
   function update(action) {
     let newWorkout = workout;
     newWorkout.name = name;
     newWorkout.description = description;
-    handle.update(newWorkout, action);
+    handle.update(newWorkout, action, transformerKey);
 
     if (action === 'CREATE_SESSION') {
       navigation.navigate('Session');
@@ -38,7 +39,7 @@ function Workout({workout, handle, navigation}) {
 
   return (
     <View style={{padding: 10, flex: 1}}>
-      <View style={{flex: 2}}>
+      <View style={{flex: 3}}>
         <Text style={styles.bold}>Workout Name</Text>
         <TextInput
           style={[styles.editText, styles.mediumTextInputFont]}
@@ -54,6 +55,12 @@ function Workout({workout, handle, navigation}) {
           onChangeText={(text) => setDescription(text)}
           value={description}
         />
+        <Picker
+          selectedValue={transformerKey}
+          style={{height: 70, width: 160, flex:1}}
+          onValueChange={(value) => setTransformerKey(value)}>
+          {transformers.map((tr) => <Picker.Item key={tr.key} label={tr.label} value={tr.key}/>)}
+        </Picker>
       </View>
       <View style={{flex: 6}}>
         <WorkoutExerciseListProvider workout={workout} navigation={navigation}/>

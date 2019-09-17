@@ -32,7 +32,7 @@ export default function App() {
   // const store = createStore(persistedReducer, applyMiddleware(logger));
   const store = createStore(persistedReducer);
   let persistor = persistStore(store);
-  // persistor.purge();
+  persistor.purge();
 
   const AppNavigator = createStackNavigator(
     {

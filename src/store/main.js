@@ -24,7 +24,9 @@ function mainStore(state = data, action) {
       return Object.assign({}, state, {workouts: {...newWorkouts}});
 
     case WorkoutActions.SET_ACTIVE_WORKOUT:
-      return Object.assign({}, state, {activeWorkoutKey: action.key});
+      return Object.assign({}, state, {
+        activeWorkoutKey: action.key,
+        activeTransformerKey: action.transformerKey ?? 'none'});
 
     case WorkoutActions.CREATE_EXERCISE:
       exercise = {key: shortId.generate(), new: true, name: '', instructions: '', sets: []};
@@ -72,7 +74,7 @@ function mainStore(state = data, action) {
       });
 
     case WorkoutActions.CREATE_SESSION:
-      const session = {
+      let session = {
         key: shortId.generate(),
         duration: 0,
         name: new Date(Date.now()).toLocaleString('en-US'),
@@ -91,6 +93,11 @@ function mainStore(state = data, action) {
         });
         return exercise;
       });
+
+      // Apply session transformer if there is one.
+      if (action.transformerKey !== 'none') {
+        session = state.transformers[action.transformerKey].callback(session);
+      }
 
       return Object.assign({}, state, {
         sessions: {...state.sessions, [session.key]: session},
