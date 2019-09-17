@@ -1,10 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {Text, View, Button, Image} from "react-native";
-import BackgroundTimer from 'react-native-background-timer';
-import * as Speech from 'expo-speech';
 import {styles} from "../Styles";
 import Table from "../utility/Table";
 import ActionButton from "../utility/ActionButton";
+import backgroundTimer from '../../services/backgroundTimer';
 
 export default function Session({session, navigation, finishSession}) {
 
@@ -15,7 +14,6 @@ export default function Session({session, navigation, finishSession}) {
   const [sessionDuration, setSessionDuration] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [weightPlateString, setWeightPlateString] = useState('Each Side: ');
-  const weightPlates = [45, 25, 10, 5, 2.5];
 
   // Create timer used for workout.
   useEffect(() => {
@@ -39,6 +37,7 @@ export default function Session({session, navigation, finishSession}) {
   }, []);
 
   function toggle() {
+    backgroundTimer.stop();
     setIsActive(!isActive);
   }
 
@@ -47,6 +46,8 @@ export default function Session({session, navigation, finishSession}) {
     setSeconds(0);
   }
 
+  // @todo Move to a separate file.
+  const weightPlates = [45, 25, 10, 5, 2.5];
   function calculateWeightPlates(weight, platesString = '', counter = 0) {
     if (weight <= 0 && counter >= weightPlates.length) {
       // Chop off first three characters hyphen for display.
@@ -75,6 +76,7 @@ export default function Session({session, navigation, finishSession}) {
     if (completed) {
       session.exercises[exercise].sets[set].completed = true;
     }
+    backgroundTimer.stop();
 
     // If forwards and at the end of the sets, move to the next exercise.
     if (forward && set === session.exercises[exercise].sets.length - 1) {
@@ -82,6 +84,7 @@ export default function Session({session, navigation, finishSession}) {
       updateSet(0);
       calculateWeightPlates((session.exercises[exercise + 1].sets[0].weight - 45.0) / 2);
       resetTimer();
+      backgroundTimer.start();
       return;
     }
 
@@ -93,18 +96,14 @@ export default function Session({session, navigation, finishSession}) {
       return;
     }
 
-    // BackgroundTimer.stopBackgroundTimer();
-    // BackgroundTimer.runBackgroundTimer(() => {
-    //   Speech.speak('do the thing, mayne. Fool!');
-    // }, (1000 * 10));
-
     if (forward) {
       resetTimer();
       updateSet(set + 1);
-      calculateWeightPlates((session.exercises[exercise].sets[set].weight - 45.0) / 2);
+      calculateWeightPlates((session.exercises[exercise].sets[set + 1].weight - 45.0) / 2);
+      backgroundTimer.start();
     } else {
       updateSet(set - 1);
-      calculateWeightPlates((session.exercises[exercise].sets[set].weight - 45.0) / 2);
+      calculateWeightPlates((session.exercises[exercise].sets[set - 1].weight - 45.0) / 2);
     }
   }
 
@@ -184,7 +183,10 @@ export default function Session({session, navigation, finishSession}) {
         />
       </View>
       <View style={{flex: 1, padding: 10, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center'}}>
-        <ActionButton styles={{paddingRight: 5}} text="Quit" action={() => {navigation.navigate('Home');}}/>
+        <ActionButton styles={{paddingRight: 5}} text="Quit" action={() => {
+          BackgroundTimer.stopBackgroundTimer();
+          navigation.navigate('Home');
+        }}/>
         <ActionButton text="Pause" action={() => toggle()}/>
       </View>
     </View>
