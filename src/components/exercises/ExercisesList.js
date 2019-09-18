@@ -2,6 +2,7 @@ import React from 'react';
 import {FlatList, Text, View} from "react-native";
 import {home, styles} from '../Styles';
 import ActionButton from "../utility/ActionButton";
+import ActionCard from "../utility/ActionCard";
 
 export default function ExercisesList({ exercises, navigation, handle, thing }) {
 
@@ -23,16 +24,15 @@ export default function ExercisesList({ exercises, navigation, handle, thing }) 
 
   function ExercisesListItem({exercise}) {
     return (
-      <View style={home.sectionContainer}>
-        <View style={home.sectionLeft}>
-          <Text style={home.sectionHeaderText}>{exercise.item.name}</Text>
-          <Text style={{flex: 4, marginTop: 15}}>Other content</Text>
-        </View>
+      <ActionCard actionComponent={
         <ActionButton text="Edit" action={() => {
           handle.setActiveExerciseKey(exercise.item.key);
           navigation.navigate('AddExercise', {exerciseKey: exercise.item.key})
         }}/>
-      </View>
+      }>
+        <Text style={home.sectionHeaderText}>{exercise.item.name}</Text>
+        <Text style={{flex: 4, marginTop: 15}}>Other content</Text>
+      </ActionCard>
     );
   }
 }
