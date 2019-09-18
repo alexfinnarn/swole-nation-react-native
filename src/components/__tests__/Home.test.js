@@ -8,9 +8,19 @@ const navigation = jest.fn();
 const handle = jest.fn();
 
 describe('<Home />', () => {
-  it('First workout key selected in Picker', () => {
+  // it('Loads and displays the session teaser', () => {
+  //
+  // });
+
+  it('Renders Picker and updates when user makes selection', () => {
     const {getByTestId} = render(<Home workouts={workouts} navigation={navigation} handle={handle}/>);
     const element = getByTestId('workout-picker');
     expect(element.props.selectedValue).toBe('DQkECwYLCQQ');
+
+    // @todo add selection for other workout.
   });
+
+  // it('Navigates correctly to all four navigation routes', () => {
+  //
+  // });
 });

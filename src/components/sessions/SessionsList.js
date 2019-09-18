@@ -2,6 +2,7 @@ import React from 'react';
 import {FlatList, Text, View} from "react-native";
 import {home, styles} from '../Styles';
 import ActionButton from "../utility/ActionButton";
+import ActionCard from "../utility/ActionCard";
 
 export default function WorkoutsList({ sessions, navigation }) {
   return (
@@ -18,13 +19,12 @@ export default function WorkoutsList({ sessions, navigation }) {
 
   function SessionsListItem({session}) {
     return (
-      <View style={home.sectionContainer}>
-        <View style={home.sectionLeft}>
-          <Text style={home.sectionHeaderText}>{session.item.name}</Text>
-          <Text style={{flex: 4, marginTop: 15}}>Other content</Text>
-        </View>
+      <ActionCard actionComponent={
         <ActionButton text="Edit" action={() => navigation.navigate('Session', {sessionId: session.item.key})}/>
-      </View>
+      }>
+        <Text style={home.sectionHeaderText}>{session.item.name}</Text>
+        <Text style={{flex: 4, marginTop: 15}}>Other content</Text>
+      </ActionCard>
     );
   }
 
