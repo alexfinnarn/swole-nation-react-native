@@ -3,7 +3,7 @@ import {Text, View, Button, Image} from "react-native";
 import {styles} from "../Styles";
 import Table from "../utility/Table";
 import ActionButton from "../utility/ActionButton";
-import backgroundTimer from '../../services/backgroundTimer';
+import backgroundTimer from '../../services/BackgroundTimer';
 
 export default function Session({session, navigation, finishSession}) {
 
