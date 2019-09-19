@@ -4,21 +4,15 @@ import data from '../../store/data'
 import Home from '../Home';
 import ActionCard from "../utility/ActionCard";
 import {TouchableOpacity} from "react-native";
-// import * as navigation from '../../../NavigationService';
-// jest.mock('../../../NavigationService');
 
-
+let renderer, instance ={};
 const workouts = Object.keys(data.workouts).map((key) => data.workouts[key]);
-
 const handle = {
   nextWorkoutInteraction: jest.fn()
 };
-
 const navigation = {
   navigate: jest.fn()
 };
-
-let renderer, instance ={};
 
 beforeEach(() => {
   // renderer = TestRenderer.create(<Home workouts={workouts} navigation={navigation} handle={handle}/>);
