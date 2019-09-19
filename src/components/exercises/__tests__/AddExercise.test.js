@@ -2,8 +2,6 @@ import React from 'react';
 import AddExercise from '../AddExercise';
 import {render, fireEvent} from 'react-native-testing-library';
 import data from '../../../store/data';
-import ActionCard from "../../utility/ActionCard";
-import ActionButton from "../../utility/ActionButton";
 import {Picker} from "react-native";
 
 let renderer, instance = {};
@@ -20,17 +18,10 @@ const navigation = {
   goBack: jest.fn()
 };
 
-// beforeEach(() => {
-//
-// }, 0);
-
 describe('<AddExercise />', () => {
   it('Edits name and saves exercise correctly', () => {
-    renderer = render(<AddExercise exercises={exercises}
-                                   handle={handle}
-                                   navigation={navigation}
-                                   theExercise={theExercise}
-                                   pickerEnabled={false}/>);
+    renderer = render(<AddExercise exercises={exercises} handle={handle} navigation={navigation}
+                                   theExercise={theExercise} pickerEnabled={false}/>);
     instance = renderer.getByTestId('add-exercise-root');
 
     // Two pickers confirms that one ExerciseSet component is loaded by the name picker is not.
@@ -49,11 +40,8 @@ describe('<AddExercise />', () => {
   });
 
   it('Handles changes to exercise picker', () => {
-    renderer = render(<AddExercise exercises={exercises}
-                                   handle={handle}
-                                   navigation={navigation}
-                                   theExercise={exercises[0]}
-                                   pickerEnabled={true}/>);
+    renderer = render(<AddExercise exercises={exercises} handle={handle} navigation={navigation}
+                                   theExercise={exercises[0]} pickerEnabled={true}/>);
     instance = renderer.getByTestId('add-exercise-root');
 
     // Squats Warmup is selected by default.
@@ -75,11 +63,8 @@ describe('<AddExercise />', () => {
     // Make workout connected for change in save button.
     exercises[0].connectedWorkout = true;
 
-    renderer = render(<AddExercise exercises={exercises}
-                                   handle={handle}
-                                   navigation={navigation}
-                                   theExercise={exercises[0]}
-                                   pickerEnabled={false}/>);
+    renderer = render(<AddExercise exercises={exercises} handle={handle} navigation={navigation}
+                                   theExercise={exercises[0]} pickerEnabled={false}/>);
     instance = renderer.getByTestId('add-exercise-root');
 
     const picker = renderer.getByTestId('exercise-picker');
