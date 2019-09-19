@@ -10,7 +10,7 @@ function Home({navigation, workouts, handle}) {
   const [nextWorkoutKey, setNextWorkoutKey] = useState(workouts[0].key);
 
   return (
-    <View style={[styles.container]}>
+    <View style={[styles.container]} testID="home-root">
       <ActionCard
         actionComponent={<ActionButton text="List" action={() => navigation.navigate('SessionsList')}/>}>
         <Text style={home.sectionHeaderText}>Sessions</Text>
