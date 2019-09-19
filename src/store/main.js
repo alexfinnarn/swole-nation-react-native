@@ -30,7 +30,9 @@ function mainStore(state = data, action) {
 
     case WorkoutActions.CREATE_EXERCISE:
       exercise = {key: shortId.generate(), new: true, name: '', instructions: '', sets: []};
-      return Object.assign({}, state, {exercises: {...state.exercises, exercise}, activeExerciseKey: exercise.key});
+      return Object.assign({}, state, {
+        exercises: {...state.exercises, [exercise.key]: exercise},
+        activeExerciseKey: exercise.key});
 
     case WorkoutActions.UPDATE_EXERCISE:
       return Object.assign({}, state, {

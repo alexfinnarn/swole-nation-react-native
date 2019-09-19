@@ -21,8 +21,10 @@ const mapStateToProps = (state, otherProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleSelection: (selection, weight, workout, exercise) => {
-      dispatch({selection, weight, workout, exercise, type: 'TOGGLE_EXERCISE' });
+    handle: {
+      setActiveExerciseKey: (key) => {
+        dispatch({key, type: 'SET_ACTIVE_EXERCISE'});
+      }
     }
   }
 };
