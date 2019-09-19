@@ -4,13 +4,12 @@ import {home, styles} from '../Styles';
 import ActionButton from "../utility/ActionButton";
 import ActionCard from "../utility/ActionCard";
 
-export default function ExercisesList({ exercises, navigation, handle, thing }) {
+export default function ExercisesList({ exercises, navigation, handle }) {
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="exercises-list-root">
       <View style={{flex:9}}>
         <FlatList
-          extraData={thing}
           data={exercises}
           renderItem={(item) => <ExercisesListItem exercise={item}/>}
         />

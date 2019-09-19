@@ -16,7 +16,7 @@ import AddExerciseProvider from "./src/components/exercises/AddExerciseProvider"
 import HomeScreenProvider from "./src/components/HomeScreenProvider";
 import SessionsListProvider from "./src/components/sessions/SessionsListProvider";
 import ExercisesListProvider from "./src/components/exercises/ExercisesListProvider";
-import NavigationService from './NavigationService';
+import NavigationService from './src/services/NavigationService';
 import SettingsProvider from "./src/components/SettingsProvider";
 
 export default function App() {

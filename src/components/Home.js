@@ -3,7 +3,7 @@ import {Picker, Text, View} from "react-native";
 import {styles, home} from './Styles';
 import SessionTeaserProvider from "./sessions/SessionTeaserProvider";
 import ActionButton from "./utility/ActionButton";
-import NavigationService from "../../NavigationService";
+import NavigationService from "../services/NavigationService";
 import ActionCard from "./utility/ActionCard";
 
 function Home({navigation, workouts, handle}) {
