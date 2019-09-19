@@ -33,16 +33,17 @@ const mapStateToProps = (state, otherProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    handleUpdate: (updatedSet, index, action) => {
-      dispatch({set: updatedSet, index, type: action});
-    },
-    saveExercise: (exercise, exerciseIsNew) => {
-      if (exercise.connectedWorkout) {
-        dispatch({exercise, type: 'ADD_EXERCISE'});
-      } else {
-        dispatch({exercise, type: 'UPDATE_EXERCISE'});
+    handle: {
+      update: (updatedSet, index, action) => {
+        dispatch({set: updatedSet, index, type: action});
+      },
+      save: (exercise, exerciseIsNew) => {
+        if (exercise.connectedWorkout) {
+          dispatch({exercise, type: 'ADD_EXERCISE'});
+        } else {
+          dispatch({exercise, type: 'UPDATE_EXERCISE'});
+        }
       }
-
     }
   };
 };

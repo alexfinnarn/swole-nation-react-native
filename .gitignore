@@ -72,3 +72,6 @@ buck-out/
 
 # Test coverage.
 coverage/
+
+# Random file that has different IPs based on where I load the emulator.
+android/app/src/main/java/host/exp/exponent/generated/DetachBuildConstants.java
