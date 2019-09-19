@@ -3,6 +3,7 @@ import AddExercise from '../AddExercise';
 import {render, fireEvent} from 'react-native-testing-library';
 import data from '../../../store/data';
 import {Picker} from "react-native";
+import AddExerciseSet from "../AddExerciseSet";
 
 let renderer, instance = {};
 let exercises = Object.keys(data.exercises).map(key => data.exercises[key]);
@@ -48,15 +49,15 @@ describe('<AddExercise />', () => {
     const picker = renderer.getByTestId('exercise-picker');
     expect(picker.props.selectedValue).toBe('BwEBDwoFBgQ');
 
-    // Six warmup sets x 2 pickers + add exercise pickers and select exercise picker = 15 pickers.
-    expect(instance.findAllByType(Picker).length).toBe(15);
+    // Six warmup sets + the add exercise option.
+    expect(instance.findAllByType(AddExerciseSet).length).toBe(7);
 
     // Change it to Squats.
     fireEvent(picker, 'valueChange', 'Bw0ECwAKBws');
     expect(picker.props.selectedValue).toBe('Bw0ECwAKBws');
 
-    // Five sets x 2 pickers + add exercise pickers and select exercise picker = 15 pickers.
-    expect(instance.findAllByType(Picker).length).toBe(13);
+    // Five sets + the add exercise option.
+    expect(instance.findAllByType(AddExerciseSet).length).toBe(6);
   });
 
   it('Renders disabled picker and Add instead of Save', () => {
