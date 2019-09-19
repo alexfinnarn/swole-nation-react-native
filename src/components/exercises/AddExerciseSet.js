@@ -3,7 +3,7 @@ import {Text, View, Picker} from "react-native";
 import {home} from '../Styles';
 import ActionButton from "../utility/ActionButton";
 
-export default function AddExerciseSet({item = {item: {reps: 0, weight: 100}}, toAdd, updater}) {
+export default function AddExerciseSet({item = {item: {reps: 0, weight: 100}, index: 0}, toAdd, updater}) {
   const [reps, setReps] = useState(item.item.reps.toString());
   const [weight, setWeight] = useState(item.item.weight.toString());
 
@@ -18,11 +18,12 @@ export default function AddExerciseSet({item = {item: {reps: 0, weight: 100}}, t
   }
 
   return (
-    <View style={[home.sectionContainer, {alignItems: 'center', justifyContent: 'space-between'}]}>
+    <View style={[home.sectionContainer, {alignItems: 'center', justifyContent: 'space-between'}]} testID="add-exercise-set-root">
       <View style={{flex: 4, flexDirection: 'row', alignItems: 'center'}}>
         <Text style={{flex: 1}}>Reps</Text>
         <Picker
           selectedValue={reps}
+          testID="reps-picker"
           style={{height: 60, width: 120, flex: 2}}
           onValueChange={(itemValue) => updatePicker(itemValue, 'reps')}>
           {[...Array(12)].map((e, index) =>
@@ -31,6 +32,7 @@ export default function AddExerciseSet({item = {item: {reps: 0, weight: 100}}, t
         <Text style={{flex: 1}}>Weight</Text>
         <Picker
           selectedValue={weight}
+          testID="weight-picker"
           style={{height: 60, width: 120, flex: 2}}
           onValueChange={(itemValue) => updatePicker(itemValue, 'weight')}>
           {[...Array(75)].map((e, index) =>
