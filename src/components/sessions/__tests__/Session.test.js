@@ -4,10 +4,10 @@ import {render, fireEvent, act} from 'react-native-testing-library';
 import {Image} from 'react-native';
 import data from '../../../store/data';
 import ActionButton from "../../utility/ActionButton";
-import backgrountTimer from '../../../services/BackgroundTimer';
+import backgroundTimer from '../../../services/BackgroundTimer';
 
-const timerStop = jest.spyOn(backgrountTimer, 'stop');
-const timerStart = jest.spyOn(backgrountTimer, 'start');
+const timerStop = jest.spyOn(backgroundTimer, 'stop');
+const timerStart = jest.spyOn(backgroundTimer, 'start');
 
 let renderer, instance = {};
 const strongliftsA = 'DQkECwYLCQQ';
