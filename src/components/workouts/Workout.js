@@ -33,12 +33,11 @@ function Workout({workout, handle, navigation, transformers}) {
 
     const button = <ActionButton key="button" text="Add Exercise" action={() =>
       navigation.navigate('AddExercise', {pickerEnabled: true, workout: workout})}/>;
-
     return ([add, button]);
   }
 
   return (
-    <View style={{padding: 10, flex: 1}}>
+    <View style={{padding: 10, flex: 1}} testID="workout-root">
       <View style={{flex: 3}}>
         <Text style={styles.bold}>Workout Name</Text>
         <TextInput
