@@ -6,7 +6,7 @@ import ActionCard from "../utility/ActionCard";
 
 export default function WorkoutsList({workouts, navigation, handle, thing}) {
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID="workouts-list-root">
       <View style={{flex: 9}}>
         <FlatList
           extraData={thing}
@@ -31,7 +31,6 @@ export default function WorkoutsList({workouts, navigation, handle, thing}) {
           }}/>
           <ActionButton text="X" action={() => {
             handle.deleteWorkout(workout.item.key);
-            navigation.goBack();
           }}/>
         </>
       }>
