@@ -3,8 +3,6 @@ import WorkoutsList from '../WorkoutsList';
 import { render, fireEvent } from 'react-native-testing-library';
 import data from '../../../store/data';
 import ActionCard from "../../utility/ActionCard";
-import ActionButton from "../../utility/ActionButton";
-import {TouchableOpacity} from "react-native";
 import shortId from "shortid";
 
 let renderer, instance ={};
