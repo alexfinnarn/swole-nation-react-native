@@ -5,7 +5,7 @@ branches:
     - ejected
 node_js:
   - node
-  - lts/*
+#  - lts/*
 cache:
   directories:
     - ~/.npm
