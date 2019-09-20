@@ -5,15 +5,14 @@ import Table from "../utility/Table";
 import ActionButton from "../utility/ActionButton";
 import backgroundTimer from '../../services/BackgroundTimer';
 
-export default function Session({session, navigation, finishSession}) {
-
+export default function Session({session, navigation, handle}) {
   const [set, updateSet] = useState(0);
   const [exercise, updateExercise] = useState(0);
 
   const [seconds, setSeconds] = useState(0);
   const [sessionDuration, setSessionDuration] = useState(0);
   const [isActive, setIsActive] = useState(false);
-  const [weightPlateString, setWeightPlateString] = useState('Each Side: ');
+  const [weightPlateString, setWeightPlateString] = useState(' None');
 
   // Create timer used for workout.
   useEffect(() => {
@@ -113,7 +112,7 @@ export default function Session({session, navigation, finishSession}) {
 
   function finishWorkout() {
     session.duration = seconds + sessionDuration;
-    finishSession(session);
+    handle.finishSession(session);
     navigation.navigate('SessionsList');
   }
 
@@ -147,15 +146,17 @@ export default function Session({session, navigation, finishSession}) {
   }
 
   return (
-    <View style={[styles.container, {flex: 1, flexDirection: 'column', justifyContent: 'space-between'}]}>
+    <View style={[styles.container, {flex: 1, flexDirection: 'column', justifyContent: 'space-between'}]} testID="session-root">
       <View style={{flex: 5, padding: 10, flexDirection: 'row'}}>
         <View style={{flex: 3, justifyContent: 'center', alignItems: 'center'}}>
-          <Image resizeMode="contain" style={{flex: 1}} source={session.exercises[exercise].image}/>
+          <Image testID={`${session.exercises[exercise].name.replace(/\s+/g, '-').toLowerCase()}-image`}
+                 resizeMode="contain" style={{flex: 1}}
+                 source={session.exercises[exercise].image}/>
         </View>
         <View style={{flex: 1, flexDirection: 'column'}}>
           <StyleTile color={'#ffffff'} bgColor={'#69D1C5'} flex={1}
                      text={session.exercises[exercise - 1] ? session.exercises[exercise - 1].name : ''}/>
-          <StyleTile color={'#ffffff'} bgColor={'#3BA99C'} flex={2}
+          <StyleTile color={'#ffffff'} bgColor={'#3BA99C'} flex={2} testID='current-exercise'
                      text={session.exercises[exercise].name}/>
           <StyleTile color={'#ffffff'} bgColor={'#21897E'} flex={1}
                      text={session.exercises[exercise + 1] ? session.exercises[exercise + 1].name : ''}/>
@@ -167,24 +168,25 @@ export default function Session({session, navigation, finishSession}) {
       <View style={{flex: 4, padding: 10, flexDirection: 'column', justifyContent: 'space-around'}}>
         <Table
           columnFlex={[1, 1, 1, 1]}
+          label="sets-reps-table"
           headers={['Completed', 'Sets', 'Reps', 'Weight']}
           rowData={[
-            // session.exercises[exercise].sets[set].completed.toString(),
-            'foo',
+            session.exercises[exercise].sets[set].completed.toString(),
             `${set + 1}/${session.exercises[exercise].sets.length}`,
-            session.exercises[exercise].sets[set].reps,
+            session.exercises[exercise].sets[set].reps.toString(),
             `${session.exercises[exercise].sets[set].weight} lbs`
           ]}
         />
         <Table
           columnFlex={[1, 3, 1]}
+          label="time-plates-table"
           headers={['Set', 'Plates', 'Session']}
-          rowData={[seconds, weightPlateString, seconds + sessionDuration]}
+          rowData={[seconds, weightPlateString !== '' ? weightPlateString : ' None', seconds + sessionDuration]}
         />
       </View>
       <View style={{flex: 1, padding: 10, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center'}}>
         <ActionButton styles={{paddingRight: 5}} text="Quit" action={() => {
-          BackgroundTimer.stopBackgroundTimer();
+          backgroundTimer.stop();
           navigation.navigate('Home');
         }}/>
         <ActionButton text="Pause" action={() => toggle()}/>

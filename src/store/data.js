@@ -267,7 +267,7 @@ const data = {
     },
     addFive: {
       key: 'addFive',
-      label: "Exercises (+5 lbs)",
+      label: "Main Exercises (+5 lbs)",
       callback: addFive
     }
   },

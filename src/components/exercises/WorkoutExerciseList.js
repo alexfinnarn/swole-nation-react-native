@@ -22,15 +22,12 @@ export default function WorkoutExerciseList({exercises, navigation, handle}) {
           navigation.navigate('AddExercise');
         }}/>
       }>
-        <Text style={[styles.mediumTextInputFont, {flex: 4, paddingBottom: 10}]}>{exercise.item.name}</Text>
+        <Text style={[styles.mediumTextInputFont, styles.bold, {flex: 4, paddingBottom: 10}]}>{exercise.item.name}</Text>
+        <Text>
         {exercise.item.sets.map(({reps, weight}, index) => {
-          return (
-            <View key={index} style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
-              <Text style={styles.bold}>{reps} reps</Text>
-              <Text>{weight} lbs</Text>
-            </View>
-          );
+          return index !== exercise.item.sets.length - 1 ? `${reps}x${weight} lbs, ` : `${reps}x${weight} lbs`;
         })}
+        </Text>
       </ActionCard>
     );
   }
