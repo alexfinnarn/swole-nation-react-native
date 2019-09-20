@@ -143,7 +143,7 @@ const data = {
       ]
     },
     DwcACw4PCgI: {
-      name: "Shoulder Press Warmup",
+      name: "Overhead Press Warmup",
       key: "DwcACw4PCgI",
       image: require("../../assets/shoulder-press.gif"),
       instructions: "Do with a barbell",
@@ -163,7 +163,7 @@ const data = {
       ]
     },
     CAMBAwsFBwQ: {
-      name: "Shoulder Press",
+      name: "Overhead Press",
       key: "CAMBAwsFBwQ",
       image: require("../../assets/shoulder-press.gif"),
       instructions: "Do with a barbell",

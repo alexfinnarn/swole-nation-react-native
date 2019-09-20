@@ -6,7 +6,7 @@ import ActionCard from "../utility/ActionCard";
 
 export default function WorkoutExerciseList({exercises, navigation, handle}) {
   return (
-    <View>
+    <View testID="workout-exercise-list-root">
       <FlatList
         data={exercises}
         renderItem={(item) => <WorkoutExerciseListItem exercise={item}/>}
@@ -26,8 +26,8 @@ export default function WorkoutExerciseList({exercises, navigation, handle}) {
         {exercise.item.sets.map(({reps, weight}, index) => {
           return (
             <View key={index} style={{flex: 1, flexDirection: 'row', justifyContent: 'space-between'}}>
-              <Text style={styles.bold}>Reps: {reps}</Text>
-              <Text>Weight: {weight}</Text>
+              <Text style={styles.bold}>{reps} reps</Text>
+              <Text>{weight} lbs</Text>
             </View>
           );
         })}
