@@ -273,6 +273,7 @@ const data = {
   },
   activeWorkoutKey: "",
   activeExerciseKey: "",
+  activeSessionKey: "",
   activeTransformerKey: "none",
 };
 
