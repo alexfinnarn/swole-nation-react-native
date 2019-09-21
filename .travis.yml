@@ -11,8 +11,8 @@ cache:
     - ~/.npm
     - .jest
 before_script:
-  - ls -al src/services
-  - sddsewwr
+#  - ls -al src/services
+#  - sddsewwr
   - npm install -g npm@latest
 script:
   - npm ci
