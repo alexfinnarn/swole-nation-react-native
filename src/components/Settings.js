@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import {Text, TextInput, View} from "react-native";
 import {styles} from "./Styles";
 import ActionButton from "./utility/ActionButton";
+import NavigationBar from "./utility/NavgiationBar";
+import Home from "./Home";
 
-export default function Settings({ theSetting, handle }) {
+const Settings = ({ theSetting, handle }) => {
   const [name, setName] = useState(theSetting);
 
   return (
@@ -22,3 +24,10 @@ export default function Settings({ theSetting, handle }) {
     </View>
   );
 }
+
+Settings.navigationOptions = {
+  header: <NavigationBar/>,
+};
+
+
+export default Settings;

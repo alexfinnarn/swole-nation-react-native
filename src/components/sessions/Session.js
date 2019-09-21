@@ -4,8 +4,10 @@ import {styles} from "../Styles";
 import Table from "../utility/Table";
 import ActionButton from "../utility/ActionButton";
 import backgroundTimer from '../../services/backgroundTimer.js';
+import NavigationBar from "../utility/NavgiationBar";
+import Home from "../Home";
 
-export default function Session({session, navigation, handle}) {
+const Session = ({session, navigation, handle}) => {
   const [set, updateSet] = useState(0);
   const [exercise, updateExercise] = useState(0);
 
@@ -137,8 +139,8 @@ export default function Session({session, navigation, handle}) {
 
   function StyleTile({color, bgColor, text, flex}) {
     return (
-      <View style={{flex: flex, backgroundColor: bgColor}}>
-        <Text style={{flex: 1, color: color, alignSelf: 'center'}}>
+      <View style={{flex: flex, backgroundColor: bgColor, alignSelf: 'stretch', alignItems: 'center'}}>
+        <Text style={{flex: 1, color: color, alignSelf: 'center', paddingTop: 10, fontSize: 16}}>
           {text}
         </Text>
       </View>
@@ -193,4 +195,10 @@ export default function Session({session, navigation, handle}) {
       </View>
     </View>
   );
-}
+};
+
+Session.navigationOptions = {
+  header: <NavigationBar/>,
+};
+
+export default Session;

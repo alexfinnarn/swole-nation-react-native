@@ -3,10 +3,10 @@ import {Picker, Text, View} from "react-native";
 import {styles, home} from './Styles';
 import SessionTeaserProvider from "./sessions/SessionTeaserProvider";
 import ActionButton from "./utility/ActionButton";
-import NavigationService from "../services/NavigationService";
 import ActionCard from "./utility/ActionCard";
+import NavigationBar from "./utility/NavgiationBar";
 
-function Home({navigation, workouts, handle}) {
+const Home = ({navigation, workouts, handle}) => {
   const [nextWorkoutKey, setNextWorkoutKey] = useState(workouts[0].key);
 
   return (
@@ -38,10 +38,10 @@ function Home({navigation, workouts, handle}) {
       </ActionCard>
     </View>
   );
-}
+};
 
 Home.navigationOptions = {
-  headerRight: <ActionButton action={() => NavigationService.navigate('Settings')} text="Settings"/>
+  header: <NavigationBar/>,
 };
 
 

@@ -48,6 +48,8 @@ beforeEach(() => {
   instance = renderer.getByTestId('session-root');
 }, 0);
 
+jest.useFakeTimers();
+
 describe('<Session />', () => {
   it('Renders image and exercise list in the action display area and changes them when sets progress forward', () => {
     let image = instance.findAllByType(Image);
@@ -140,7 +142,7 @@ describe('<Session />', () => {
 
   it('Timer progresses and set timer resets when new set and exercise proceed', () => {
 
-    jest.useFakeTimers();
+
     expect(renderer.queryByTestId('time-plates-table-set').props.children).toBe(0);
     expect(renderer.queryByTestId('time-plates-table-session').props.children).toBe(0);
 

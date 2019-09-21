@@ -38,9 +38,6 @@ export default function App() {
     {
       Home: {
         screen: HomeScreenProvider,
-        navigationOptions: {
-          title: 'Home',
-        },
       },
       Session: { screen: SessionProvider },
       SessionsList: { screen: SessionsListProvider },

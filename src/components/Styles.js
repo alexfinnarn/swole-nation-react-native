@@ -4,7 +4,7 @@ export const styles = StyleSheet.create({
   container: {
     backgroundColor: '#F5FCFF',
     flex: 1,
-    paddingTop: 5,
+    // paddingTop: 5,
     flexDirection: 'column'
   },
   editText: {
@@ -38,7 +38,16 @@ export const styles = StyleSheet.create({
     fontSize: 18,
     margin: 2
   },
-
+  shadowThing: {
+    shadowColor: "#ccc",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5
+  }
 });
 
 export const home = StyleSheet.create({
@@ -46,8 +55,8 @@ export const home = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     backgroundColor: '#ffffff',
-    marginTop: 4,
-    marginBottom: 4,
+    marginTop: 2,
+    marginBottom: 2,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
