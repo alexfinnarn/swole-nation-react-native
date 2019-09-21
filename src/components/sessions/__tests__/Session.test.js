@@ -7,7 +7,7 @@ import ActionButton from "../../utility/ActionButton";
 import backgroundTimer from '../../../services/BackgroundTimer';
 
 const timerStop = jest.spyOn(backgroundTimer, 'stop');
-const timerStart = jest.spyOn(backgroundTimer, 'start');
+// const timerStart = jest.spyOn(backgroundTimer, 'start');
 
 let renderer, instance = {};
 const strongliftsA = 'DQkECwYLCQQ';
