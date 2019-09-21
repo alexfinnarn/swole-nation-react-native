@@ -4,7 +4,7 @@ import {render, fireEvent, act} from 'react-native-testing-library';
 import {Image} from 'react-native';
 import data from '../../../store/data';
 import ActionButton from "../../utility/ActionButton";
-import backgroundTimer from '../../../services/BackgroundTimer';
+import backgroundTimer from '../../../services/backgroundTimer';
 
 const timerStop = jest.spyOn(backgroundTimer, 'stop');
 const timerStart = jest.spyOn(backgroundTimer, 'start');
