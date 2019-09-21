@@ -11,6 +11,8 @@ cache:
 #    - ~/.npm
 #    - .jest
 before_script:
+  - ls -al
+  - dsds
   - npm install -g npm@latest
 script:
   - npm ci
