@@ -13,8 +13,10 @@ const mapStateToProps = (state, otherProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    finishSession: (updatedSession) => {
-      dispatch({session: updatedSession, type: 'FINISH_SESSION'});
+    handle: {
+      finishSession: (updatedSession) => {
+        dispatch({session: updatedSession, type: 'FINISH_SESSION'});
+      }
     }
   };
 };

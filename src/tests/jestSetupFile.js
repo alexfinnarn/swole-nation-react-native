@@ -2,5 +2,10 @@ import mockAsyncStorage from '@react-native-community/async-storage/jest/async-s
 
 jest.mock('@react-native-community/async-storage', () => mockAsyncStorage);
 jest.useFakeTimers();
-jest.mock("react-native-background-timer", () => {});
+jest.mock("react-native-background-timer", () => {
+  return {
+    runBackgroundTimer: jest.fn(),
+    stopBackgroundTimer: jest.fn(),
+  }
+});
 // jest.mock("react-navigation", () => {});
