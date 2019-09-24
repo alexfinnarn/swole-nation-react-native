@@ -90,8 +90,6 @@ function mainStore(state = data, action) {
         })
       };
 
-      // console.log(session);
-
       // Add completed property. Not added to workout because it only makes sense to record in a session.
       session.exercises.map((exercise) => {
         exercise.sets = exercise.sets.map((set) => {
