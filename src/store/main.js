@@ -21,6 +21,7 @@ function mainStore(state = data, action) {
 
     case WorkoutActions.DELETE_WORKOUT:
       delete newWorkouts[action.key];
+      // @todo Handle releasing the active workout key.
       return Object.assign({}, state, {workouts: {...newWorkouts}});
 
     case WorkoutActions.SET_ACTIVE_WORKOUT:
