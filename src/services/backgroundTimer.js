@@ -12,11 +12,11 @@ const timer = (function() {
     start: () => {
       BackgroundTimer.runBackgroundTimer(() => {
         if (typeof this.timeDurations[this.counter] !== 'undefined') {
-          // Speech.speak('do the thing, mayne. Fool! ' + seconds + ' have passed', {pitch: 2});
+          Speech.speak(`Time for your next set. ${this.timeDurations[this.counter]} has passed.`);
           console.log(`Time for your next set. ${this.timeDurations[this.counter]} has passed.`);
         }
         this.counter++;
-      }, (5000));
+      }, (1000 * 90));
     },
     stop: () => {
       BackgroundTimer.stopBackgroundTimer();
