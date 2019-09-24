@@ -33,7 +33,7 @@ function Workout({workout, handle, navigation, transformers, actionType}) {
 
     // Take this feature out for now. feature/123.
     // const button = <ActionButton key="button" text="Add Exercise" action={() =>
-    //   navigation.navigate('AddExercise', {pickerEnabled: true, workout: workout})}/>;
+    // navigation.navigate('AddExercise', {pickerEnabled: true, workout: workout})}/>;
     return (add);
   }
 
