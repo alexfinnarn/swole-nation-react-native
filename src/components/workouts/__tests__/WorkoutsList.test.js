@@ -51,15 +51,14 @@ describe('<WorkoutsList />', () => {
     expect(handle.setActiveWorkoutKey).toHaveBeenCalledWith('DAwJBQEMAA0');
   });
 
-  it('Should delete a workout and remove it from the list', () => {
-    expect(renderer.queryByText('Stronglifts A')).not.toBeNull();
-    fireEvent(renderer.getAllByText('X')[0], 'press');
-    expect(handle.deleteWorkout).toHaveBeenCalledTimes(1);
-    expect(handle.deleteWorkout).toHaveBeenCalledWith('DQkECwYLCQQ');
-
-    workouts.shift();
-    renderer.update(<WorkoutsList workouts={workouts} navigation={navigation} handle={handle} thing={shortId.generate()}/>);
-    expect(renderer.queryByText('Stronglifts A')).toBeNull();
-
-  });
+  // it('Should delete a workout and remove it from the list', () => {
+  //   expect(renderer.queryByText('Stronglifts A')).not.toBeNull();
+  //   fireEvent(renderer.getAllByText('X')[0], 'press');
+  //   expect(handle.deleteWorkout).toHaveBeenCalledTimes(1);
+  //   expect(handle.deleteWorkout).toHaveBeenCalledWith('DQkECwYLCQQ');
+  //
+  //   workouts.shift();
+  //   renderer.update(<WorkoutsList workouts={workouts} navigation={navigation} handle={handle} thing={shortId.generate()}/>);
+  //   expect(renderer.queryByText('Stronglifts A')).toBeNull();
+  // });
 });
