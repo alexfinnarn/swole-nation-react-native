@@ -49,6 +49,10 @@ beforeEach(() => {
 }, 0);
 
 describe('<Session />', () => {
+  it('Renders correctly', () => {
+    expect(renderer.toJSON()).toMatchSnapshot();
+  });
+
   it('Renders image and exercise list in the action display area and changes them when sets progress forward', () => {
     let image = instance.findAllByType(Image);
     expect(image.length).toBe(1);
@@ -185,6 +189,6 @@ describe('<Session />', () => {
     fireEvent(renderer.getByText('Pause'), 'press');
     jest.advanceTimersByTime(4000);
     expect(renderer.queryByTestId('time-plates-table-session').props.children).toBe(7);
-    expect(timerStop).toHaveBeenCalledTimes(43);
+    expect(timerStop).toHaveBeenCalledTimes(44);
   });
 });

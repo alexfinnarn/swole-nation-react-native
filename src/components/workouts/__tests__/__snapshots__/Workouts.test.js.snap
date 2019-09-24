@@ -1,0 +1,1096 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Workout /> Renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "padding": 10,
+    }
+  }
+  testID="workout-root"
+>
+  <View
+    style={
+      Object {
+        "flex": 2,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "baseline",
+          "flex": 1,
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontWeight": "bold",
+            },
+            Object {
+              "fontSize": 18,
+            },
+            Object {
+              "flex": 1,
+            },
+          ]
+        }
+      >
+        Name
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        onChangeText={[Function]}
+        placeholder="Workout A"
+        rejectResponderTermination={true}
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "grey",
+              "borderBottomWidth": 2,
+              "color": "black",
+              "marginTop": 5,
+            },
+            Object {
+              "fontSize": 18,
+            },
+            Object {
+              "flex": 3,
+            },
+          ]
+        }
+        underlineColorAndroid="transparent"
+        value="Stronglifts A"
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "baseline",
+          "flex": 1,
+          "flexDirection": "row",
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontWeight": "bold",
+            },
+            Object {
+              "fontSize": 16,
+            },
+            Object {
+              "flex": 1,
+            },
+          ]
+        }
+      >
+        Description
+      </Text>
+      <TextInput
+        allowFontScaling={true}
+        multiline={true}
+        onChangeText={[Function]}
+        placeholder="Workout Description"
+        rejectResponderTermination={true}
+        style={
+          Array [
+            Object {
+              "borderBottomColor": "grey",
+              "borderBottomWidth": 2,
+              "color": "black",
+              "marginTop": 5,
+            },
+            Object {
+              "fontSize": 16,
+            },
+            Object {
+              "flex": 3,
+            },
+          ]
+        }
+        underlineColorAndroid="transparent"
+        value="Squats, Bench Press, Barbell Row"
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "baseline",
+          "flex": 1,
+          "flexDirection": "row",
+          "marginBottom": 15,
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontWeight": "bold",
+            },
+            Object {
+              "fontSize": 16,
+            },
+            Object {
+              "flex": 1,
+              "paddingBottom": 15,
+            },
+          ]
+        }
+      >
+        Transformer
+      </Text>
+      <View
+        style={
+          Object {
+            "flex": 3,
+          }
+        }
+      >
+        <RCTPicker
+          items={
+            Array [
+              Object {
+                "label": "N/A",
+                "textColor": undefined,
+                "value": "none",
+              },
+              Object {
+                "label": "Main Exercises (+5 lbs)",
+                "textColor": undefined,
+                "value": "addFive",
+              },
+            ]
+          }
+          onChange={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          selectedIndex={0}
+          style={
+            Array [
+              Object {
+                "height": 216,
+              },
+              undefined,
+            ]
+          }
+          testID="transformer-picker"
+        />
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 6,
+      }
+    }
+  >
+    <View
+      testID="workout-exercise-list-root"
+    >
+      <RCTScrollView
+        data={
+          Array [
+            Object {
+              "image": 1,
+              "instructions": "Do with a barbell",
+              "key": "BwEBDwoFBgQ",
+              "name": "Squats Warmup",
+              "sets": Array [
+                Object {
+                  "reps": 5,
+                  "weight": 45,
+                },
+                Object {
+                  "reps": 5,
+                  "weight": 45,
+                },
+                Object {
+                  "reps": 5,
+                  "weight": 95,
+                },
+                Object {
+                  "reps": 5,
+                  "weight": 135,
+                },
+                Object {
+                  "reps": 3,
+                  "weight": 185,
+                },
+                Object {
+                  "reps": 2,
+                  "weight": 205,
+                },
+              ],
+            },
+            Object {
+              "image": 1,
+              "instructions": "Do with a barbell",
+              "key": "Bw0ECwAKBws",
+              "name": "Squats",
+              "sets": Array [
+                Object {
+                  "reps": 5,
+                  "weight": 230,
+                },
+                Object {
+                  "reps": 5,
+                  "weight": 230,
+                },
+                Object {
+                  "reps": 5,
+                  "weight": 230,
+                },
+                Object {
+                  "reps": 5,
+                  "weight": 230,
+                },
+                Object {
+                  "reps": 5,
+                  "weight": 230,
+                },
+              ],
+            },
+            Object {
+              "image": 1,
+              "instructions": "Do with a barbell",
+              "key": "BwwBDAIJDgw",
+              "name": "Bench Press Warmup",
+              "sets": Array [
+                Object {
+                  "reps": 5,
+                  "weight": 45,
+                },
+                Object {
+                  "reps": 5,
+                  "weight": 45,
+                },
+                Object {
+                  "reps": 5,
+                  "weight": 95,
+                },
+                Object {
+                  "reps": 3,
+                  "weight": 135,
+                },
+              ],
+            },
+            Object {
+              "image": 1,
+              "instructions": "Do with a barbell",
+              "key": "DgcBCA8BCQo",
+              "name": "Bench Press",
+              "sets": Array [
+                Object {
+                  "reps": 5,
+                  "weight": 165,
+                },
+                Object {
+                  "reps": 5,
+                  "weight": 165,
+                },
+                Object {
+                  "reps": 5,
+                  "weight": 165,
+                },
+                Object {
+                  "reps": 5,
+                  "weight": 165,
+                },
+                Object {
+                  "reps": 5,
+                  "weight": 165,
+                },
+              ],
+            },
+            Object {
+              "image": 1,
+              "instructions": "Do with a barbell",
+              "key": "BwYGAw0NDwo",
+              "name": "Barbell Row Warmup",
+              "sets": Array [
+                Object {
+                  "reps": 5,
+                  "weight": 95,
+                },
+              ],
+            },
+            Object {
+              "image": 1,
+              "instructions": "Do with a barbell",
+              "key": "BwQKAwYKAgA",
+              "name": "Barbell Row",
+              "sets": Array [
+                Object {
+                  "reps": 5,
+                  "weight": 115,
+                },
+                Object {
+                  "reps": 5,
+                  "weight": 115,
+                },
+              ],
+            },
+          ]
+        }
+        disableVirtualization={false}
+        getItem={[Function]}
+        getItemCount={[Function]}
+        horizontal={false}
+        initialNumToRender={10}
+        keyExtractor={[Function]}
+        maxToRenderPerBatch={10}
+        numColumns={1}
+        onContentSizeChange={[Function]}
+        onEndReachedThreshold={2}
+        onLayout={[Function]}
+        onMomentumScrollEnd={[Function]}
+        onScroll={[Function]}
+        onScrollBeginDrag={[Function]}
+        onScrollEndDrag={[Function]}
+        removeClippedSubviews={false}
+        renderItem={[Function]}
+        scrollEventThrottle={50}
+        stickyHeaderIndices={Array []}
+        updateCellsBatchingPeriod={50}
+        viewabilityConfigCallbackPairs={Array []}
+        windowSize={21}
+      >
+        <View>
+          <View
+            onLayout={[Function]}
+            style={null}
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "elevation": 5,
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                  "marginTop": 4,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 2,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.25,
+                  "shadowRadius": 3.84,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "flex": 4,
+                    "flexDirection": "column",
+                    "padding": 10,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "fontSize": 18,
+                      },
+                      Object {
+                        "fontWeight": "bold",
+                      },
+                      Object {
+                        "flex": 4,
+                        "paddingBottom": 10,
+                      },
+                    ]
+                  }
+                >
+                  Squats Warmup
+                </Text>
+                <Text>
+                  5x45 lbs, 
+                  5x45 lbs, 
+                  5x95 lbs, 
+                  5x135 lbs, 
+                  3x185 lbs, 
+                  2x205 lbs
+                </Text>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flex": 1,
+                      "flexDirection": "column",
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                <View
+                  accessible={true}
+                  isTVSelectable={true}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": "stretch",
+                      "backgroundColor": "#21897E",
+                      "flex": 1,
+                      "opacity": 1,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                        "justifyContent": "center",
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "alignSelf": "center",
+                          "color": "#ffffff",
+                          "fontSize": 20,
+                        }
+                      }
+                    >
+                      Edit
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            onLayout={[Function]}
+            style={null}
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "elevation": 5,
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                  "marginTop": 4,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 2,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.25,
+                  "shadowRadius": 3.84,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "flex": 4,
+                    "flexDirection": "column",
+                    "padding": 10,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "fontSize": 18,
+                      },
+                      Object {
+                        "fontWeight": "bold",
+                      },
+                      Object {
+                        "flex": 4,
+                        "paddingBottom": 10,
+                      },
+                    ]
+                  }
+                >
+                  Squats
+                </Text>
+                <Text>
+                  5x230 lbs, 
+                  5x230 lbs, 
+                  5x230 lbs, 
+                  5x230 lbs, 
+                  5x230 lbs
+                </Text>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flex": 1,
+                      "flexDirection": "column",
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                <View
+                  accessible={true}
+                  isTVSelectable={true}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": "stretch",
+                      "backgroundColor": "#21897E",
+                      "flex": 1,
+                      "opacity": 1,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                        "justifyContent": "center",
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "alignSelf": "center",
+                          "color": "#ffffff",
+                          "fontSize": 20,
+                        }
+                      }
+                    >
+                      Edit
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            onLayout={[Function]}
+            style={null}
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "elevation": 5,
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                  "marginTop": 4,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 2,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.25,
+                  "shadowRadius": 3.84,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "flex": 4,
+                    "flexDirection": "column",
+                    "padding": 10,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "fontSize": 18,
+                      },
+                      Object {
+                        "fontWeight": "bold",
+                      },
+                      Object {
+                        "flex": 4,
+                        "paddingBottom": 10,
+                      },
+                    ]
+                  }
+                >
+                  Bench Press Warmup
+                </Text>
+                <Text>
+                  5x45 lbs, 
+                  5x45 lbs, 
+                  5x95 lbs, 
+                  3x135 lbs
+                </Text>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flex": 1,
+                      "flexDirection": "column",
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                <View
+                  accessible={true}
+                  isTVSelectable={true}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": "stretch",
+                      "backgroundColor": "#21897E",
+                      "flex": 1,
+                      "opacity": 1,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                        "justifyContent": "center",
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "alignSelf": "center",
+                          "color": "#ffffff",
+                          "fontSize": 20,
+                        }
+                      }
+                    >
+                      Edit
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            onLayout={[Function]}
+            style={null}
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "elevation": 5,
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                  "marginTop": 4,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 2,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.25,
+                  "shadowRadius": 3.84,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "flex": 4,
+                    "flexDirection": "column",
+                    "padding": 10,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "fontSize": 18,
+                      },
+                      Object {
+                        "fontWeight": "bold",
+                      },
+                      Object {
+                        "flex": 4,
+                        "paddingBottom": 10,
+                      },
+                    ]
+                  }
+                >
+                  Bench Press
+                </Text>
+                <Text>
+                  5x165 lbs, 
+                  5x165 lbs, 
+                  5x165 lbs, 
+                  5x165 lbs, 
+                  5x165 lbs
+                </Text>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flex": 1,
+                      "flexDirection": "column",
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                <View
+                  accessible={true}
+                  isTVSelectable={true}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": "stretch",
+                      "backgroundColor": "#21897E",
+                      "flex": 1,
+                      "opacity": 1,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                        "justifyContent": "center",
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "alignSelf": "center",
+                          "color": "#ffffff",
+                          "fontSize": 20,
+                        }
+                      }
+                    >
+                      Edit
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            onLayout={[Function]}
+            style={null}
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "elevation": 5,
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                  "marginTop": 4,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 2,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.25,
+                  "shadowRadius": 3.84,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "flex": 4,
+                    "flexDirection": "column",
+                    "padding": 10,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "fontSize": 18,
+                      },
+                      Object {
+                        "fontWeight": "bold",
+                      },
+                      Object {
+                        "flex": 4,
+                        "paddingBottom": 10,
+                      },
+                    ]
+                  }
+                >
+                  Barbell Row Warmup
+                </Text>
+                <Text>
+                  5x95 lbs
+                </Text>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flex": 1,
+                      "flexDirection": "column",
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                <View
+                  accessible={true}
+                  isTVSelectable={true}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": "stretch",
+                      "backgroundColor": "#21897E",
+                      "flex": 1,
+                      "opacity": 1,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                        "justifyContent": "center",
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "alignSelf": "center",
+                          "color": "#ffffff",
+                          "fontSize": 20,
+                        }
+                      }
+                    >
+                      Edit
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+          <View
+            onLayout={[Function]}
+            style={null}
+          >
+            <View
+              style={
+                Object {
+                  "backgroundColor": "#ffffff",
+                  "elevation": 5,
+                  "flex": 1,
+                  "flexDirection": "row",
+                  "marginBottom": 4,
+                  "marginTop": 4,
+                  "shadowColor": "#000",
+                  "shadowOffset": Object {
+                    "height": 2,
+                    "width": 0,
+                  },
+                  "shadowOpacity": 0.25,
+                  "shadowRadius": 3.84,
+                }
+              }
+            >
+              <View
+                style={
+                  Object {
+                    "flex": 4,
+                    "flexDirection": "column",
+                    "padding": 10,
+                  }
+                }
+              >
+                <Text
+                  style={
+                    Array [
+                      Object {
+                        "fontSize": 18,
+                      },
+                      Object {
+                        "fontWeight": "bold",
+                      },
+                      Object {
+                        "flex": 4,
+                        "paddingBottom": 10,
+                      },
+                    ]
+                  }
+                >
+                  Barbell Row
+                </Text>
+                <Text>
+                  5x115 lbs, 
+                  5x115 lbs
+                </Text>
+              </View>
+              <View
+                style={
+                  Array [
+                    Object {
+                      "flex": 1,
+                      "flexDirection": "column",
+                    },
+                    undefined,
+                  ]
+                }
+              >
+                <View
+                  accessible={true}
+                  isTVSelectable={true}
+                  onResponderGrant={[Function]}
+                  onResponderMove={[Function]}
+                  onResponderRelease={[Function]}
+                  onResponderTerminate={[Function]}
+                  onResponderTerminationRequest={[Function]}
+                  onStartShouldSetResponder={[Function]}
+                  style={
+                    Object {
+                      "alignSelf": "stretch",
+                      "backgroundColor": "#21897E",
+                      "flex": 1,
+                      "opacity": 1,
+                    }
+                  }
+                >
+                  <View
+                    style={
+                      Object {
+                        "flex": 1,
+                        "justifyContent": "center",
+                      }
+                    }
+                  >
+                    <Text
+                      style={
+                        Object {
+                          "alignSelf": "center",
+                          "color": "#ffffff",
+                          "fontSize": 20,
+                        }
+                      }
+                    >
+                      Edit
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+          </View>
+        </View>
+      </RCTScrollView>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginTop": 20,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignSelf": "stretch",
+            "backgroundColor": "#21897E",
+            "flex": 1,
+            "opacity": 1,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "alignSelf": "center",
+                "color": "#ffffff",
+                "fontSize": 20,
+              }
+            }
+          >
+            Save
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

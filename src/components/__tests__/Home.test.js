@@ -23,6 +23,10 @@ beforeEach(() => {
 }, 0);
 
 describe('<Home />', () => {
+  it('Renders correctly', () => {
+    expect(renderer.toJSON()).toMatchSnapshot();
+  });
+
   it('Renders four actions cards on load', () => {
     expect(instance.findAllByType(ActionCard).length).toBe(4);
   });

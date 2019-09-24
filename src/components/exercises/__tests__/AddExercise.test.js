@@ -20,6 +20,12 @@ const navigation = {
 };
 
 describe('<AddExercise />', () => {
+  it('Renders correctly', () => {
+    renderer = render(<AddExercise exercises={exercises} handle={handle} navigation={navigation}
+                                   theExercise={theExercise} pickerEnabled={false}/>);
+    expect(renderer.toJSON()).toMatchSnapshot();
+  });
+
   it('Edits name and saves exercise correctly', () => {
     renderer = render(<AddExercise exercises={exercises} handle={handle} navigation={navigation}
                                    theExercise={theExercise} pickerEnabled={false}/>);
