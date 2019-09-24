@@ -275,6 +275,8 @@ const data = {
   activeExerciseKey: "",
   activeSessionKey: "",
   activeTransformerKey: "none",
+  theSetting: "",
+  theThing: "",
 };
 
 export default data;
