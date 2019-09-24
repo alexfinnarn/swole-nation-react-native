@@ -21,6 +21,7 @@ function mainStore(state = data, action) {
 
     case WorkoutActions.DELETE_WORKOUT:
       delete newWorkouts[action.key];
+      // @todo Handle releasing the active workout key.
       return Object.assign({}, state, {workouts: {...newWorkouts}});
 
     case WorkoutActions.SET_ACTIVE_WORKOUT:
@@ -88,6 +89,8 @@ function mainStore(state = data, action) {
           return state.exercises[foundKey];
         })
       };
+
+      // console.log(session);
 
       // Add completed property. Not added to workout because it only makes sense to record in a session.
       session.exercises.map((exercise) => {
