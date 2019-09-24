@@ -43,9 +43,9 @@ describe('<ExercisesList />', () => {
     expect(navigation.navigate).toHaveBeenCalledWith("AddExercise", {"exerciseKey": "DAYCDAQKAw4"});
 
     // Navigate to New Exercise.
-    fireEvent(renderer.getByText('Add Exercise'), 'press');
-    expect(navigation.navigate).toHaveBeenCalledWith("AddExercise");
-    expect(handle.createExercise).toHaveBeenCalled();
+    // fireEvent(renderer.getByText('Add Exercise'), 'press');
+    // expect(navigation.navigate).toHaveBeenCalledWith("AddExercise");
+    // expect(handle.createExercise).toHaveBeenCalled();
 
   });
 

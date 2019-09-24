@@ -14,10 +14,10 @@ export default function WorkoutsList({workouts, navigation, handle, thing}) {
           renderItem={(item) => <WorkoutsListItem workout={item}/>}
         />
       </View>
-      <ActionButton text="Add Workout" action={() => {
-        handle.createWorkout();
-        navigation.navigate('Workout', {action: 'save'});
-      }}/>
+      {/*<ActionButton text="Add Workout" action={() => {*/}
+      {/*  handle.createWorkout();*/}
+      {/*  navigation.navigate('Workout', {action: 'save'});*/}
+      {/*}}/>*/}
     </View>
   );
 

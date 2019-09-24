@@ -14,10 +14,10 @@ export default function ExercisesList({ exercises, navigation, handle }) {
           renderItem={(item) => <ExercisesListItem exercise={item}/>}
         />
       </View>
-      <ActionButton text="Add Exercise" action={() => {
-        handle.createExercise();
-        navigation.navigate('AddExercise');
-      }} />
+      {/*<ActionButton text="Add Exercise" action={() => {*/}
+      {/*  handle.createExercise();*/}
+      {/*  navigation.navigate('AddExercise');*/}
+      {/*}} />*/}
     </View>
   );
 
