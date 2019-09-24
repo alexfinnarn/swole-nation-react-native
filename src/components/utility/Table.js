@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import { styles } from '../Styles';
 
-export default function Table({headers, rowData, columnFlex}) {
+export default function Table({headers, rowData, columnFlex, label}) {
   return (
     <>
       <View style={{
@@ -20,7 +20,7 @@ export default function Table({headers, rowData, columnFlex}) {
         flexDirection: 'row',
         marginBottom: 10}}>
         {rowData.map((datum, index) =>
-          <Text key={index} style={{flex: columnFlex[index], borderWidth: 1,
+          <Text key={index} testID={`${label}-${headers[index].toLowerCase()}`} style={{flex: columnFlex[index], borderWidth: 1,
             borderColor: '#d6d7da', paddingLeft: 7, alignSelf: 'stretch'}}>{datum}</Text>)}
       </View>
     </>

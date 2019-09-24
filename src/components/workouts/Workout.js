@@ -26,9 +26,9 @@ function Workout({workout, handle, navigation, transformers}) {
   function ActionButtons(workout) {
     let add = '';
     if (navigation.getParam('action', '') === 'go') {
-      add = <ActionButton styles={{ marginRight: 5 }} key="add" text="Go" action={() => update('CREATE_SESSION')}/>;
+      add = <ActionButton styles={{marginRight: 5}} key="add" text="Go" action={() => update('CREATE_SESSION')}/>;
     } else {
-      add = <ActionButton styles={{ marginRight: 5 }} key="add" text="Save" action={() => update('UPDATE_WORKOUT')}/>;
+      add = <ActionButton styles={{marginRight: 5}} key="add" text="Save" action={() => update('UPDATE_WORKOUT')}/>;
     }
 
     const button = <ActionButton key="button" text="Add Exercise" action={() =>
@@ -37,29 +37,36 @@ function Workout({workout, handle, navigation, transformers}) {
   }
 
   return (
-    <View style={{padding: 10, flex: 1}} testID="workout-root">
-      <View style={{flex: 3}}>
-        <Text style={styles.bold}>Workout Name</Text>
-        <TextInput
-          style={[styles.editText, styles.mediumTextInputFont]}
-          placeholder="Workout A"
-          onChangeText={(text) => setName(text)}
-          value={name}
-        />
-        <Text style={[styles.bold, {paddingTop: 10}]}>Workout Description</Text>
-        <TextInput
-          style={[styles.editText, styles.smallTextInputFont]}
-          multiline
-          placeholder="Workout Description"
-          onChangeText={(text) => setDescription(text)}
-          value={description}
-        />
-        <Picker
-          selectedValue={transformerKey}
-          style={{height: 70, width: 160, flex:1}}
-          onValueChange={(value) => setTransformerKey(value)}>
-          {transformers.map((tr) => <Picker.Item key={tr.key} label={tr.label} value={tr.key}/>)}
-        </Picker>
+    <View style={{padding: 10, flex: 1}}>
+      <View style={{flex: 2}}>
+        <View style={{flex: 1, flexDirection: 'row', alignItems: 'baseline'}}>
+          <Text style={[styles.bold, styles.mediumTextInputFont, {flex: 1}]}>Name</Text>
+          <TextInput
+            style={[styles.editText, styles.mediumTextInputFont, {flex: 3}]}
+            placeholder="Workout A"
+            onChangeText={(text) => setName(text)}
+            value={name}
+          />
+        </View>
+        <View style={{flex: 1, flexDirection: 'row', alignItems: 'baseline'}}>
+          <Text style={[styles.bold, styles.smallTextInputFont, {flex: 1}]}>Description</Text>
+          <TextInput
+            style={[styles.editText, styles.smallTextInputFont, {flex: 3}]}
+            multiline
+            placeholder="Workout Description"
+            onChangeText={(text) => setDescription(text)}
+            value={description}
+          />
+        </View>
+        <View style={{flex: 1, flexDirection: 'row', alignItems: 'baseline', marginBottom: 15}}>
+          <Text style={[styles.bold, styles.smallTextInputFont, {flex: 1, paddingBottom: 15}]}>Transformer</Text>
+          <Picker
+            selectedValue={transformerKey}
+            style={{ flex: 3}}
+            onValueChange={(value) => setTransformerKey(value)}>
+            {transformers.map((tr) => <Picker.Item key={tr.key} label={tr.label} value={tr.key}/>)}
+          </Picker>
+        </View>
       </View>
       <View style={{flex: 6}}>
         <WorkoutExerciseListProvider workout={workout} navigation={navigation}/>

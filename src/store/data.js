@@ -267,13 +267,16 @@ const data = {
     },
     addFive: {
       key: 'addFive',
-      label: "Exercises (+5 lbs)",
+      label: "Main Exercises (+5 lbs)",
       callback: addFive
     }
   },
   activeWorkoutKey: "",
   activeExerciseKey: "",
+  activeSessionKey: "",
   activeTransformerKey: "none",
+  theSetting: "",
+  theThing: "",
 };
 
 export default data;
