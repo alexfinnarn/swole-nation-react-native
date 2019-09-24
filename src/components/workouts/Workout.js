@@ -5,7 +5,7 @@ import {home, styles} from '../Styles';
 import AddExercise from "../exercises/AddExercise";
 import ActionButton from "../utility/ActionButton";
 
-function Workout({workout, handle, navigation, transformers}) {
+function Workout({workout, handle, navigation, transformers, actionType}) {
   const [name, setName] = useState(workout.name);
   const [description, setDescription] = useState(workout.description);
   const [transformerKey, setTransformerKey] = useState(transformers[0].key);
@@ -25,7 +25,7 @@ function Workout({workout, handle, navigation, transformers}) {
 
   function ActionButtons(workout) {
     let add = '';
-    if (navigation.getParam('action', '') === 'go') {
+    if (actionType === 'go') {
       add = <ActionButton styles={{marginRight: 5}} key="add" text="Go" action={() => update('CREATE_SESSION')}/>;
     } else {
       add = <ActionButton styles={{marginRight: 5}} key="add" text="Save" action={() => update('UPDATE_WORKOUT')}/>;
@@ -37,7 +37,7 @@ function Workout({workout, handle, navigation, transformers}) {
   }
 
   return (
-    <View style={{padding: 10, flex: 1}}>
+    <View style={{padding: 10, flex: 1}} testID="workout-root">
       <View style={{flex: 2}}>
         <View style={{flex: 1, flexDirection: 'row', alignItems: 'baseline'}}>
           <Text style={[styles.bold, styles.mediumTextInputFont, {flex: 1}]}>Name</Text>
@@ -62,6 +62,7 @@ function Workout({workout, handle, navigation, transformers}) {
           <Text style={[styles.bold, styles.smallTextInputFont, {flex: 1, paddingBottom: 15}]}>Transformer</Text>
           <Picker
             selectedValue={transformerKey}
+            testID="transformer-picker"
             style={{ flex: 3}}
             onValueChange={(value) => setTransformerKey(value)}>
             {transformers.map((tr) => <Picker.Item key={tr.key} label={tr.label} value={tr.key}/>)}
