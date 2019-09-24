@@ -5,6 +5,7 @@ import data from '../../../store/data';
 import ActionCard from "../../utility/ActionCard";
 import ActionButton from "../../utility/ActionButton";
 import {TouchableOpacity} from "react-native";
+import AddExerciseSet from "../AddExerciseSet";
 
 let renderer, instance ={};
 let exercises = Object.keys(data.exercises).map(key => data.exercises[key]);
@@ -22,6 +23,10 @@ beforeEach(() => {
 }, 0);
 
 describe('<ExercisesList />', () => {
+  it('Renders correctly', () => {
+    expect(renderer.toJSON()).toMatchSnapshot();
+  });
+
   it('Renders all 10 exercise action cards on load', () => {
     const actionCards = instance.findAllByType(ActionCard);
     expect(actionCards.length).toBe(10);

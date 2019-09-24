@@ -10,6 +10,11 @@ const updater = jest.fn();
 
 
 describe('<AddExerciseSet />', () => {
+  it('Renders correctly', () => {
+    renderer = render(<AddExerciseSet updater={updater} toAdd={true}/>);
+    expect(renderer.toJSON()).toMatchSnapshot();
+  });
+
   it('renders default values with toAdd', () => {
     renderer = render(<AddExerciseSet updater={updater} toAdd={true}/>);
     instance = renderer.getByTestId('add-exercise-set-root');

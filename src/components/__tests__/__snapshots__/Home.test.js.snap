@@ -1,0 +1,428 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Home /> Renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#F5FCFF",
+        "flex": 1,
+        "flexDirection": "column",
+        "paddingTop": 5,
+      },
+    ]
+  }
+  testID="home-root"
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#ffffff",
+        "elevation": 5,
+        "flex": 1,
+        "flexDirection": "row",
+        "marginBottom": 4,
+        "marginTop": 4,
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 2,
+          "width": 0,
+        },
+        "shadowOpacity": 0.25,
+        "shadowRadius": 3.84,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 4,
+          "flexDirection": "column",
+          "padding": 10,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "flex": 1,
+            "fontSize": 18,
+          }
+        }
+      >
+        Sessions
+      </Text>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignSelf": "stretch",
+            "backgroundColor": "#21897E",
+            "flex": 1,
+            "opacity": 1,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "alignSelf": "center",
+                "color": "#ffffff",
+                "fontSize": 20,
+              }
+            }
+          >
+            List
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#ffffff",
+        "elevation": 5,
+        "flex": 1,
+        "flexDirection": "row",
+        "marginBottom": 4,
+        "marginTop": 4,
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 2,
+          "width": 0,
+        },
+        "shadowOpacity": 0.25,
+        "shadowRadius": 3.84,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 4,
+          "flexDirection": "column",
+          "padding": 10,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "flex": 1,
+            "fontSize": 18,
+          }
+        }
+      >
+        Next Workout
+      </Text>
+      <View
+        style={
+          Object {
+            "flex": 2,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "height": 70,
+              "width": 160,
+            }
+          }
+        >
+          <RCTPicker
+            items={
+              Array [
+                Object {
+                  "label": "Stronglifts A",
+                  "textColor": undefined,
+                  "value": "DQkECwYLCQQ",
+                },
+                Object {
+                  "label": "Stronglifts B",
+                  "textColor": undefined,
+                  "value": "DAwJBQEMAA0",
+                },
+              ]
+            }
+            onChange={[Function]}
+            onResponderTerminationRequest={[Function]}
+            onStartShouldSetResponder={[Function]}
+            selectedIndex={0}
+            style={
+              Array [
+                Object {
+                  "height": 216,
+                },
+                undefined,
+              ]
+            }
+            testID="workout-picker"
+          />
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignSelf": "stretch",
+            "backgroundColor": "#21897E",
+            "flex": 1,
+            "opacity": 1,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "alignSelf": "center",
+                "color": "#ffffff",
+                "fontSize": 20,
+              }
+            }
+          >
+            Go
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#ffffff",
+        "elevation": 5,
+        "flex": 1,
+        "flexDirection": "row",
+        "marginBottom": 4,
+        "marginTop": 4,
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 2,
+          "width": 0,
+        },
+        "shadowOpacity": 0.25,
+        "shadowRadius": 3.84,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 4,
+          "flexDirection": "column",
+          "padding": 10,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "flex": 1,
+            "fontSize": 18,
+          }
+        }
+      >
+        Workouts
+      </Text>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignSelf": "stretch",
+            "backgroundColor": "#21897E",
+            "flex": 1,
+            "opacity": 1,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "alignSelf": "center",
+                "color": "#ffffff",
+                "fontSize": 20,
+              }
+            }
+          >
+            Edit
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#ffffff",
+        "elevation": 5,
+        "flex": 1,
+        "flexDirection": "row",
+        "marginBottom": 4,
+        "marginTop": 4,
+        "shadowColor": "#000",
+        "shadowOffset": Object {
+          "height": 2,
+          "width": 0,
+        },
+        "shadowOpacity": 0.25,
+        "shadowRadius": 3.84,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "flex": 4,
+          "flexDirection": "column",
+          "padding": 10,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "flex": 1,
+            "fontSize": 18,
+          }
+        }
+      >
+        Exercises
+      </Text>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignSelf": "stretch",
+            "backgroundColor": "#21897E",
+            "flex": 1,
+            "opacity": 1,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "alignSelf": "center",
+                "color": "#ffffff",
+                "fontSize": 20,
+              }
+            }
+          >
+            Edit
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;

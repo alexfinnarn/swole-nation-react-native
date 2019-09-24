@@ -20,6 +20,10 @@ beforeEach(() => {
 }, 0);
 
 describe('<SessionsList />', () => {
+  it('Renders correctly', () => {
+    expect(renderer.toJSON()).toMatchSnapshot();
+  });
+
   it('Should render one session in the list initially and two when session added', () => {
     let actionCards = instance.findAllByType(ActionCard);
     expect(actionCards.length).toBe(1);

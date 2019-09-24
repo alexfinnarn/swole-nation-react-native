@@ -33,6 +33,10 @@ beforeEach(() => {
 }, 0);
 
 describe('<WorkoutExerciseList />', () => {
+  it('Renders correctly', () => {
+    expect(renderer.toJSON()).toMatchSnapshot();
+  });
+
   it('Renders the correct amount of items per workout', () => {
     let actionCards = instance.findAllByType(ActionCard);
     expect(actionCards.length).toBe(6);
