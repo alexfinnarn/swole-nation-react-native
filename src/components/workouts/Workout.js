@@ -26,14 +26,15 @@ function Workout({workout, handle, navigation, transformers, actionType}) {
   function ActionButtons(workout) {
     let add = '';
     if (actionType === 'go') {
-      add = <ActionButton styles={{marginRight: 5}} key="add" text="Go" action={() => update('CREATE_SESSION')}/>;
+      add = <ActionButton key="add" text="Go" action={() => update('CREATE_SESSION')}/>;
     } else {
-      add = <ActionButton styles={{marginRight: 5}} key="add" text="Save" action={() => update('UPDATE_WORKOUT')}/>;
+      add = <ActionButton key="add" text="Save" action={() => update('UPDATE_WORKOUT')}/>;
     }
 
-    const button = <ActionButton key="button" text="Add Exercise" action={() =>
-      navigation.navigate('AddExercise', {pickerEnabled: true, workout: workout})}/>;
-    return ([add, button]);
+    // Take this feature out for now. feature/123.
+    // const button = <ActionButton key="button" text="Add Exercise" action={() =>
+    // navigation.navigate('AddExercise', {pickerEnabled: true, workout: workout})}/>;
+    return (add);
   }
 
   return (

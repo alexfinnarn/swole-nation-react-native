@@ -70,17 +70,20 @@ describe('<Workout />', () => {
   });
 
   it('Add exercise button navigates to AddExercise screen', () => {
-    fireEvent(renderer.getByText('Add Exercise'), 'press');
-    expect(navigation.navigate).toHaveBeenCalledTimes(1);
-    expect(navigation.navigate).toHaveBeenCalledWith("AddExercise", {
-      "pickerEnabled": true,
-      "workout": {
-        "workout": {
-          "description": "Squats, Bench Press, Barbell Row", "exercises": ["Squats Warmup", "Squats", "Bench Press Warmup", "Bench Press", "Barbell Row Warmup", "Barbell Row"],
-          "key": "DQkECwYLCQQ",
-          "name": "Stronglifts A"
-        }
-      }
-    });
+    // For now, just test that the button doesn't show up.
+    expect(renderer.queryByText('Add Exercise')).toBeNull();
+
+    // fireEvent(renderer.getByText('Add Exercise'), 'press');
+    // expect(navigation.navigate).toHaveBeenCalledTimes(1);
+    // expect(navigation.navigate).toHaveBeenCalledWith("AddExercise", {
+    //   "pickerEnabled": true,
+    //   "workout": {
+    //     "workout": {
+    //       "description": "Squats, Bench Press, Barbell Row", "exercises": ["Squats Warmup", "Squats", "Bench Press Warmup", "Bench Press", "Barbell Row Warmup", "Barbell Row"],
+    //       "key": "DQkECwYLCQQ",
+    //       "name": "Stronglifts A"
+    //     }
+    //   }
+    // });
   });
 });
