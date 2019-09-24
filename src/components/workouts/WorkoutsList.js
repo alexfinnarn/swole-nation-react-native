@@ -22,20 +22,20 @@ export default function WorkoutsList({workouts, navigation, handle, thing}) {
   );
 
   function WorkoutsListItem({workout}) {
+    {/*  <ActionButton text="X" action={() => {*/}
+    {/*    handle.deleteWorkout(workout.item.key);*/}
+    {/*  }}/>*/}
+    {/*</>*/}
+
     return (
       <ActionCard actionComponent={
-        <>
-          <ActionButton text="Edit" styles={{marginRight: 2}} action={() => {
-            handle.setActiveWorkoutKey(workout.item.key);
-            navigation.navigate('Workout', {workoutKey: workout.item.key, action: 'edit'});
-          }}/>
-          <ActionButton text="X" action={() => {
-            handle.deleteWorkout(workout.item.key);
-          }}/>
-        </>
+        <ActionButton text="Edit" styles={{marginRight: 2}} action={() => {
+          handle.setActiveWorkoutKey(workout.item.key);
+          navigation.navigate('Workout', {workoutKey: workout.item.key, action: 'edit'});
+        }}/>
       }>
         <Text style={home.sectionHeaderText}>{workout.item.name}</Text>
-        <Text style={{flex: 4, marginTop: 15}}>Other content</Text>
+        <Text style={{flex: 4, marginTop: 15}}>{workout.item.description}</Text>
       </ActionCard>
     );
   }

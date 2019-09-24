@@ -30,7 +30,7 @@ export default function ExercisesList({ exercises, navigation, handle }) {
         }}/>
       }>
         <Text style={home.sectionHeaderText}>{exercise.item.name}</Text>
-        <Text style={{flex: 4, marginTop: 15}}>Other content</Text>
+        <Text style={{flex: 4, marginTop: 15}}>{exercise.item.instructions}</Text>
       </ActionCard>
     );
   }
