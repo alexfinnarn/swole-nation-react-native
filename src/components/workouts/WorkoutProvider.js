@@ -11,6 +11,7 @@ const mapStateToProps = (state, otherProps) => {
   return {
     workout: getWorkout(state.workouts, state.activeWorkoutKey, otherProps.navigation, state.transformers[state.activeTransformerKey]),
     transformers: Object.keys(state.transformers).map((key) => state.transformers[key]),
+    actionType: otherProps.navigation.getParam('action', '') === 'go' ? 'go' : 'save',
   };
 };
 
