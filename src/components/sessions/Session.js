@@ -138,21 +138,6 @@ export default function Session({session, navigation, handle}) {
     return ([last, current, next]);
   }
 
-  function SessionControlButtons() {
-    let start, pause = '';
-
-    // if () {
-    //
-    // }
-    start = <ActionButton styles={{paddingRight: 5}} text="Quit" action={() => {
-      backgroundTimer.stop();
-      navigation.navigate('Home');
-    }}/>;
-    pause = <ActionButton text="Pause" action={() => toggle()}/>;
-
-    return ([start, pause]);
-  }
-
   function StyleTile({color, bgColor, text, flex}) {
     return (
       <View style={{flex: flex, backgroundColor: bgColor}}>
