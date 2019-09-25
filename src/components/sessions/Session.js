@@ -7,15 +7,14 @@ import backgroundTimer from '../../services/backgroundTimer.js';
 
 export default function Session({session, navigation, handle}) {
   if (typeof session === 'undefined') {
-    console.log('No session found to render.');
     return (<Text>No session found to render.</Text>);
   }
 
-  const [set, updateSet] = useState(0);
-  const [exercise, updateExercise] = useState(0);
-
+  const [exercise, updateExercise] = useState(session.progress[0]);
+  const [set, updateSet] = useState(session.progress[1]);
+  const [progress, updateProgress] = useState(session.progress);
   const [seconds, setSeconds] = useState(0);
-  const [sessionDuration, setSessionDuration] = useState(0);
+  const [sessionDuration, setSessionDuration] = useState(session.duration);
   const [isActive, setIsActive] = useState(false);
   const [weightPlateString, setWeightPlateString] = useState(' None');
 
@@ -83,6 +82,7 @@ export default function Session({session, navigation, handle}) {
     if (forward && set === session.exercises[exercise].sets.length - 1) {
       updateExercise(exercise + 1);
       updateSet(0);
+      updateProgress([exercise + 1, 0]);
       calculateWeightPlates((session.exercises[exercise + 1].sets[0].weight - 45.0) / 2);
       resetTimer();
       if (!session.exercises[exercise + 1].name.includes('Warmup')) {
@@ -93,21 +93,25 @@ export default function Session({session, navigation, handle}) {
 
     // If backwards and at the beginning of sets, then move back an exercise.
     if (!forward && set === 0) {
+      let lastSet = session.exercises[exercise - 1].sets.length - 1;
       updateExercise(exercise - 1);
-      updateSet(session.exercises[exercise - 1].sets.length - 1);
-      calculateWeightPlates((session.exercises[exercise - 1].sets[session.exercises[exercise - 1].sets.length - 1].weight - 45.0) / 2);
+      updateSet(lastSet);
+      updateProgress([exercise - 1, lastSet]);
+      calculateWeightPlates((session.exercises[exercise - 1].sets[lastSet].weight - 45.0) / 2);
       return;
     }
 
     if (forward) {
       resetTimer();
       updateSet(set + 1);
+      updateProgress([progress[0], set + 1]);
       calculateWeightPlates((session.exercises[exercise].sets[set + 1].weight - 45.0) / 2);
       if (!session.exercises[exercise].name.includes('Warmup')) {
         backgroundTimer.start(`${session.exercises[exercise].name}, ${set + 1} of ${session.exercises[exercise].sets.length}`);
       }
     } else {
       updateSet(set - 1);
+      updateProgress([progress[0], set - 1]);
       calculateWeightPlates((session.exercises[exercise].sets[set - 1].weight - 45.0) / 2);
     }
   }
@@ -117,7 +121,10 @@ export default function Session({session, navigation, handle}) {
   }
 
   function finishWorkout() {
+    backgroundTimer.stop();
+    setIsActive(false);
     session.duration = seconds + sessionDuration;
+    session.progress = progress;
     handle.finishSession(session);
     navigation.navigate('SessionsList');
   }
@@ -142,10 +149,10 @@ export default function Session({session, navigation, handle}) {
     return ([last, current, next]);
   }
 
-  function StyleTile({color, bgColor, text, flex}) {
+  function StyleTile({color, bgColor, text, flex, textID = ''}) {
     return (
       <View style={{flex: flex, backgroundColor: bgColor}}>
-        <Text style={{flex: 1, color: color, alignSelf: 'center'}}>
+        <Text style={{flex: 1, color: color, alignSelf: 'center'}} testID={textID}>
           {text}
         </Text>
       </View>
@@ -163,7 +170,7 @@ export default function Session({session, navigation, handle}) {
         <View style={{flex: 1, flexDirection: 'column'}}>
           <StyleTile color={'#ffffff'} bgColor={'#69D1C5'} flex={1}
                      text={session.exercises[exercise - 1] ? session.exercises[exercise - 1].name : ''}/>
-          <StyleTile color={'#ffffff'} bgColor={'#3BA99C'} flex={2} testID='current-exercise'
+          <StyleTile color={'#ffffff'} bgColor={'#3BA99C'} flex={2} textID='current-exercise'
                      text={session.exercises[exercise].name}/>
           <StyleTile color={'#ffffff'} bgColor={'#21897E'} flex={1}
                      text={session.exercises[exercise + 1] ? session.exercises[exercise + 1].name : ''}/>
@@ -188,15 +195,12 @@ export default function Session({session, navigation, handle}) {
           columnFlex={[1, 3, 1]}
           label="time-plates-table"
           headers={['Set', 'Plates', 'Session']}
-          rowData={[seconds, weightPlateString !== '' ? weightPlateString : ' None', seconds + sessionDuration]}
+          rowData={[seconds, weightPlateString !== '' ? weightPlateString : ' None', (seconds + sessionDuration)]}
         />
       </View>
       <View style={{flex: 1, padding: 10, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center'}}>
         <ActionButton styles={{paddingRight: 5}} text={isActive ? 'Pause' : 'Start'} action={() => toggle()}/>
-        <ActionButton text="Quit" action={() => {
-          backgroundTimer.stop();
-          navigation.navigate('SessionsList');
-        }}/>
+        <ActionButton text="Quit" action={() => {finishWorkout()}}/>
       </View>
     </View>
   );

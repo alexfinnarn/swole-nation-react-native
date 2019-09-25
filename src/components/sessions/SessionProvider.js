@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => {
     handle: {
       finishSession: (updatedSession) => {
         dispatch({session: updatedSession, type: 'FINISH_SESSION'});
-      }
+      },
     }
   };
 };

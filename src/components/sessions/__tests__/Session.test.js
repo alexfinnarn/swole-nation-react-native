@@ -16,6 +16,7 @@ function getSession() {
   let session = {
     key: 'rQksCwYMCQF',
     duration: 0,
+    progress: [0,0],
     name: new Date(Date.now()).toLocaleString('en-US'),
     workoutKeys: [data.workouts[strongliftsA].key],
     exercises: data.workouts[strongliftsA].exercises.map((name) => {
@@ -38,6 +39,7 @@ function getSession() {
 
 const handle = {
   setActiveSessionKey: jest.fn(),
+  finishSession: jest.fn(),
 };
 const navigation = {
   navigate: jest.fn()
@@ -192,5 +194,17 @@ describe('<Session />', () => {
     jest.advanceTimersByTime(4000);
     expect(renderer.queryByTestId('time-plates-table-session').props.children).toBe(4);
     expect(timerStop).toHaveBeenCalledTimes(39);
+  });
+
+  it('Resumes session at current exercise, set, and duration state as user left', () => {
+    // Up the progress and duration to see it reflected when re-rendered.
+    let session = getSession();
+    session.duration = 50;
+    session.progress = [1, 2];
+    renderer = render(<Session session={session} navigation={navigation} handle={handle}/>);
+
+    expect(renderer.queryByTestId('time-plates-table-session').props.children).toBe(50);
+    expect(renderer.queryByTestId('current-exercise').props.children).toBe('Squats');
+    expect(renderer.queryByTestId('sets-reps-table-sets').props.children).toBe('3/5');
   });
 });
