@@ -11,6 +11,7 @@ export default function SessionsList({ sessions, navigation, handle, thing }) {
         <FlatList
           extraData={thing}
           data={sessions}
+          ListEmptyComponent={(<Text>No sessions to list.</Text>)}
           renderItem={(item) => <SessionsListItem session={item}/>}
         />
       </View>
@@ -21,10 +22,16 @@ export default function SessionsList({ sessions, navigation, handle, thing }) {
   function SessionsListItem({session}) {
     return (
       <ActionCard actionComponent={
-        <ActionButton text="Edit" action={() => {
-          handle.setActiveSessionKey(session.item.key);
-          navigation.navigate('Session', {sessionId: session.item.key})
-        }}/>
+        <>
+          <ActionButton styles={{marginRight: 2}} text="Edit" action={() => {
+            handle.setActiveSessionKey(session.item.key);
+            navigation.navigate('Session', {sessionId: session.item.key})
+          }}/>
+          <ActionButton text="X" action={() => {
+            handle.deleteSession(session.item.key);
+            // navigation.navigate('Home');
+          }}/>
+        </>
       }>
         <Text style={home.sectionHeaderText}>{session.item.name}</Text>
         <Text style={{flex: 4, marginTop: 15}}>Other content</Text>

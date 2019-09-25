@@ -173,7 +173,7 @@ describe('<Session />', () => {
   it('Start/Pause and quit buttons work', () => {
     fireEvent(renderer.getByText('Quit'), 'press');
     expect(navigation.navigate).toHaveBeenCalledTimes(1);
-    expect(navigation.navigate).toHaveBeenCalledWith('Home');
+    expect(navigation.navigate).toHaveBeenCalledWith('SessionsList');
 
     jest.useFakeTimers();
     expect(renderer.queryByTestId('time-plates-table-set').props.children).toBe(0);

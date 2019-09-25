@@ -22,7 +22,7 @@ function mainStore(state = data, action) {
     case WorkoutActions.DELETE_WORKOUT:
       delete newWorkouts[action.key];
       // @todo Handle releasing the active workout key.
-      return Object.assign({}, state, {workouts: {...newWorkouts}});
+      return Object.assign({}, state, {workouts: {...newWorkouts}, activeWorkoutKey: ''});
 
     case WorkoutActions.SET_ACTIVE_WORKOUT:
       return Object.assign({}, state, {
@@ -107,6 +107,15 @@ function mainStore(state = data, action) {
       return Object.assign({}, state, {
         sessions: {...state.sessions, [session.key]: session},
         activeSessionKey: session.key
+      });
+
+    case WorkoutActions.DELETE_SESSION:
+      let sessions = Object.assign({}, state.sessions);
+      delete sessions[action.key];
+      return Object.assign({}, state, {
+        sessions: {...sessions},
+        activeSessionKey: '',
+        theThing: shortId.generate()
       });
 
     case WorkoutActions.SET_ACTIVE_SESSION:
