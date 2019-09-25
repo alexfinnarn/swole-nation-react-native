@@ -148,14 +148,15 @@ describe('<Session />', () => {
     expect(renderer.queryByTestId('time-plates-table-set').props.children).toBe(0);
     expect(renderer.queryByTestId('time-plates-table-session').props.children).toBe(0);
 
+    fireEvent(renderer.getByText('Start'), 'press');
     jest.advanceTimersByTime(4000);
 
-    expect(renderer.queryByTestId('time-plates-table-set').props.children).toBe(3);
-    expect(renderer.queryByTestId('time-plates-table-session').props.children).toBe(3);
+    expect(renderer.queryByTestId('time-plates-table-set').props.children).toBe(4);
+    expect(renderer.queryByTestId('time-plates-table-session').props.children).toBe(4);
 
     fireEvent(renderer.getByText('Complete'), 'press');
     expect(renderer.queryByTestId('time-plates-table-set').props.children).toBe(0);
-    expect(renderer.queryByTestId('time-plates-table-session').props.children).toBe(3);
+    expect(renderer.queryByTestId('time-plates-table-session').props.children).toBe(4);
 
     jest.advanceTimersByTime(2000);
 
@@ -169,9 +170,8 @@ describe('<Session />', () => {
     expect(renderer.queryByTestId('time-plates-table-session').props.children).not.toBe(0);
   });
 
-  it('Pause and quit buttons work', () => {
+  it('Start/Pause and quit buttons work', () => {
     fireEvent(renderer.getByText('Quit'), 'press');
-    // expect(timerStop).toHaveBeenCalledTimes(1);
     expect(navigation.navigate).toHaveBeenCalledTimes(1);
     expect(navigation.navigate).toHaveBeenCalledWith('Home');
 
@@ -180,15 +180,17 @@ describe('<Session />', () => {
     expect(renderer.queryByTestId('time-plates-table-session').props.children).toBe(0);
 
     jest.advanceTimersByTime(4000);
-    expect(renderer.queryByTestId('time-plates-table-session').props.children).toBe(3);
+    expect(renderer.queryByTestId('time-plates-table-session').props.children).toBe(0);
 
+    expect(renderer.queryByText('Pause')).toBeNull();
+    fireEvent(renderer.getByText('Start'), 'press');
+    jest.advanceTimersByTime(4000);
+    expect(renderer.queryByTestId('time-plates-table-session').props.children).toBe(4);
+
+    expect(renderer.queryByText('Start')).toBeNull();
     fireEvent(renderer.getByText('Pause'), 'press');
     jest.advanceTimersByTime(4000);
-    expect(renderer.queryByTestId('time-plates-table-session').props.children).toBe(3);
-
-    fireEvent(renderer.getByText('Pause'), 'press');
-    jest.advanceTimersByTime(4000);
-    expect(renderer.queryByTestId('time-plates-table-session').props.children).toBe(7);
-    expect(timerStop).toHaveBeenCalledTimes(44);
+    expect(renderer.queryByTestId('time-plates-table-session').props.children).toBe(4);
+    expect(timerStop).toHaveBeenCalledTimes(39);
   });
 });
