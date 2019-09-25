@@ -80,7 +80,9 @@ export default function Session({session, navigation, handle}) {
       updateSet(0);
       calculateWeightPlates((session.exercises[exercise + 1].sets[0].weight - 45.0) / 2);
       resetTimer();
-      backgroundTimer.start();
+      if (!session.exercises[exercise + 1].name.includes('Warmup')) {
+        backgroundTimer.start(`${session.exercises[exercise + 1].name}, 0 of ${session.exercises[exercise].sets.length}`);
+      }
       return;
     }
 
@@ -96,7 +98,9 @@ export default function Session({session, navigation, handle}) {
       resetTimer();
       updateSet(set + 1);
       calculateWeightPlates((session.exercises[exercise].sets[set + 1].weight - 45.0) / 2);
-      backgroundTimer.start();
+      if (!session.exercises[exercise].name.includes('Warmup')) {
+        backgroundTimer.start(`${session.exercises[exercise].name}, ${set + 1} of ${session.exercises[exercise].sets.length}`);
+      }
     } else {
       updateSet(set - 1);
       calculateWeightPlates((session.exercises[exercise].sets[set - 1].weight - 45.0) / 2);

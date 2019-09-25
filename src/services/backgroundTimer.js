@@ -9,11 +9,11 @@ const timer = (function() {
   this.counter = 0;
 
   return {
-    start: () => {
+    start: (exerciseString) => {
       BackgroundTimer.runBackgroundTimer(() => {
         if (typeof this.timeDurations[this.counter] !== 'undefined') {
           // Speech.speak(`Time for your next set. ${this.timeDurations[this.counter]} has passed.`);
-          console.log(`Time for your next set. ${this.timeDurations[this.counter]} has passed.`);
+          console.log(`Time for your next set. ${exerciseString}. ${this.timeDurations[this.counter]} has passed.`);
         }
         this.counter++;
       }, (1000 * 90));
