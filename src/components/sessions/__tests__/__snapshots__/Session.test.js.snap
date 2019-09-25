@@ -624,7 +624,7 @@ exports[`<Session /> Renders correctly 1`] = `
               }
             }
           >
-            Quit
+            Start
           </Text>
         </View>
       </View>
@@ -675,7 +675,7 @@ exports[`<Session /> Renders correctly 1`] = `
               }
             }
           >
-            Pause
+            Quit
           </Text>
         </View>
       </View>

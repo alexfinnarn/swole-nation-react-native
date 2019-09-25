@@ -30,7 +30,6 @@ export default function Session({session, navigation, handle}) {
   // Start timer at the beginning of workout and set initial weight plate string.
   useEffect(() => {
     setTimeout(() => {
-      toggle();
       calculateWeightPlates((session.exercises[exercise].sets[set].weight - 45.0) / 2);
     }, 200);
   }, []);
@@ -52,7 +51,6 @@ export default function Session({session, navigation, handle}) {
       // Chop off first three characters hyphen for display.
       setWeightPlateString(platesString.slice(2));
     } else {
-
       // The 45 and 25 pound weight plates can be included multiple times.
       // The 25 only twice, but the 45 can be added many more times.
       // To display them, we add a multiplier to the display to tell the user how many of the plates
@@ -66,7 +64,6 @@ export default function Session({session, navigation, handle}) {
         weight = weight - (weightPlates[counter] * multiplier);
         platesString = `${platesString} - ${multiplier.toString()}x${weightPlates[counter].toString()}`;
       }
-
       calculateWeightPlates(weight, platesString, counter + 1);
     }
   }
@@ -119,7 +116,8 @@ export default function Session({session, navigation, handle}) {
   function ActionButtons() {
     let last, current, next = '';
     if (!session.exercises[exercise - 1] && set === 0) {
-      last = <ActionButton key="previous" disabled={true} text="Previous" action={() => {}}/>;
+      last = <ActionButton key="previous" disabled={true} text="Previous" action={() => {
+      }}/>;
     } else {
       last = <ActionButton key="previous" text="Previous" action={() => handleSets(false)}/>;
     }
@@ -128,10 +126,10 @@ export default function Session({session, navigation, handle}) {
       current = <ActionButton styles={{paddingLeft: 5, paddingRight: 5}} key="current" text="Finish" action={() => finishWorkout()}/>;
       next = <ActionButton key="next" disabled={true} text="Skip" action={() => {}}/>;
     } else {
-      current = <ActionButton styles={{paddingLeft: 5, paddingRight: 5}} key="current" text="Complete" action={() => handleSets(true, true)}/>;
+      current = <ActionButton styles={{paddingLeft: 5, paddingRight: 5}}
+                              key="current" text="Complete" action={() => handleSets(true, true)}/>;
       next = <ActionButton key="next" text="Skip" action={() => handleSets(true)}/>;
     }
-
     return ([last, current, next]);
   }
 
@@ -185,11 +183,11 @@ export default function Session({session, navigation, handle}) {
         />
       </View>
       <View style={{flex: 1, padding: 10, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center'}}>
-        <ActionButton styles={{paddingRight: 5}} text="Quit" action={() => {
+        <ActionButton styles={{paddingRight: 5}} text={isActive ? 'Pause' : 'Start'} action={() => toggle()}/>
+        <ActionButton text="Quit" action={() => {
           backgroundTimer.stop();
           navigation.navigate('Home');
         }}/>
-        <ActionButton text="Pause" action={() => toggle()}/>
       </View>
     </View>
   );
