@@ -9,6 +9,7 @@ let renderer, instance ={};
 let sessions = Object.keys(data.sessions).map(key => data.sessions[key]);
 const handle = {
   setActiveSessionKey: jest.fn(),
+  deleteSession: jest.fn(),
 };
 const navigation = {
   navigate: jest.fn()
@@ -49,5 +50,21 @@ describe('<SessionsList />', () => {
     expect(navigation.navigate).toHaveBeenCalledWith('Session', {sessionId: "BwgFDQ8CCg8"});
     expect(handle.setActiveSessionKey).toHaveBeenCalledTimes(1);
     expect(handle.setActiveSessionKey).toHaveBeenCalledWith('BwgFDQ8CCg8');
+  });
+
+  it('Should delete a session and refresh the flat list', () => {
+    let actionCards = instance.findAllByType(ActionCard);
+    expect(actionCards.length).toBe(2);
+    expect(renderer.queryByText('No sessions to list.')).toBeNull();
+
+    fireEvent(renderer.getAllByText('X')[0], 'press');
+    sessions = [];
+    renderer.update(<SessionsList sessions={sessions} navigation={navigation} handle={handle} thing={shortId.generate()} />);
+
+    actionCards = instance.findAllByType(ActionCard);
+    expect(actionCards.length).toBe(0);
+    expect(renderer.queryByText('No sessions to list.')).not.toBeNull();
+    expect(handle.deleteSession).toHaveBeenCalledTimes(1);
+    expect(handle.deleteSession).toHaveBeenCalledWith('BwgFDQ8CCg8');
   });
 });

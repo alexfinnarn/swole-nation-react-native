@@ -6,6 +6,11 @@ import ActionButton from "../utility/ActionButton";
 import backgroundTimer from '../../services/backgroundTimer.js';
 
 export default function Session({session, navigation, handle}) {
+  if (typeof session === 'undefined') {
+    console.log('No session found to render.');
+    return (<Text>No session found to render.</Text>);
+  }
+
   const [set, updateSet] = useState(0);
   const [exercise, updateExercise] = useState(0);
 
@@ -190,7 +195,7 @@ export default function Session({session, navigation, handle}) {
         <ActionButton styles={{paddingRight: 5}} text={isActive ? 'Pause' : 'Start'} action={() => toggle()}/>
         <ActionButton text="Quit" action={() => {
           backgroundTimer.stop();
-          navigation.navigate('Home');
+          navigation.navigate('SessionsList');
         }}/>
       </View>
     </View>

@@ -13,6 +13,9 @@ const mapDispatchToProps = dispatch => {
       setActiveSessionKey: (key) => {
         dispatch({key, type: 'SET_ACTIVE_SESSION'});
       },
+      deleteSession: (key) => {
+        dispatch({key, type: 'DELETE_SESSION'});
+      }
     }
   };
 };
