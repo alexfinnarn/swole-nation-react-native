@@ -46,7 +46,6 @@ export default function Session({session, navigation, handle}) {
 
   // @todo Move to a separate file.
   const weightPlates = [45, 25, 10, 5, 2.5];
-
   function calculateWeightPlates(weight, platesString = '', counter = 0) {
     if (weight <= 0 && counter >= weightPlates.length) {
       // Chop off first three characters hyphen for display.
@@ -124,15 +123,11 @@ export default function Session({session, navigation, handle}) {
     }
 
     if (onLastExercise()) {
-      current =
-        <ActionButton styles={{paddingLeft: 5, paddingRight: 5}} key="current" text="Finish" action={() => finishWorkout()}/>;
-      next = <ActionButton key="next" disabled={true} text="Skip" action={() => {
-      }}/>;
+      current = <ActionButton styles={{paddingLeft: 5, paddingRight: 5}} key="current" text="Finish" action={() => finishWorkout()}/>;
+      next = <ActionButton key="next" disabled={true} text="Skip" action={() => {}}/>;
     } else {
-      current = <ActionButton styles={{
-        paddingLeft: 5,
-        paddingRight: 5
-      }} key="current" text="Complete" action={() => handleSets(true, true)}/>;
+      current = <ActionButton styles={{paddingLeft: 5, paddingRight: 5}}
+                              key="current" text="Complete" action={() => handleSets(true, true)}/>;
       next = <ActionButton key="next" text="Skip" action={() => handleSets(true)}/>;
     }
     return ([last, current, next]);
@@ -188,9 +183,7 @@ export default function Session({session, navigation, handle}) {
         />
       </View>
       <View style={{flex: 1, padding: 10, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center'}}>
-        <ActionButton styles={{paddingRight: 5}}
-                      text={isActive ? 'Pause' : 'Start'}
-                      action={() => toggle()}/>
+        <ActionButton styles={{paddingRight: 5}} text={isActive ? 'Pause' : 'Start'} action={() => toggle()}/>
         <ActionButton text="Quit" action={() => {
           backgroundTimer.stop();
           navigation.navigate('Home');
