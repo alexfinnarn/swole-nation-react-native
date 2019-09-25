@@ -112,8 +112,6 @@ function mainStore(state = data, action) {
     case WorkoutActions.DELETE_SESSION:
       let sessions = Object.assign({}, state.sessions);
       delete sessions[action.key];
-      // console.log(sessions);
-      // console.log(action.key);
       return Object.assign({}, state, {
         sessions: {...sessions},
         activeSessionKey: '',
