@@ -12,11 +12,11 @@ describe('Main Reducer', () => {
     expect(store(undefined, {})).toEqual(data);
   });
 
-  it('SAVE_SETTINGS', () => {
-    const reducer = store(undefined, {type: WorkoutActions.SAVE_SETTINGS, setting: 'Foo'});
-    expect(reducer.theSetting).toBe('Foo');
-    expect(reducer.theSetting).not.toEqual(data.theSetting);
-  });
+  // it('SAVE_SETTINGS', () => {
+  //   const reducer = store(undefined, {type: WorkoutActions.SAVE_SETTINGS, setting: 'Foo'});
+  //   expect(reducer.theSetting).toBe('Foo');
+  //   expect(reducer.theSetting).not.toEqual(data.theSetting);
+  // });
 });
 
 describe('Workouts Reducer', () => {
