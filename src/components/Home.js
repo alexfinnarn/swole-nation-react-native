@@ -40,9 +40,9 @@ function Home({navigation, workouts, handle}) {
   );
 }
 
-Home.navigationOptions = {
-  headerRight: <ActionButton action={() => NavigationService.navigate('Settings')} text="Settings"/>
-};
+// Home.navigationOptions = {
+//   headerRight: <ActionButton action={() => NavigationService.navigate('Settings')} text="Settings"/>
+// };
 
 
 export default Home;
