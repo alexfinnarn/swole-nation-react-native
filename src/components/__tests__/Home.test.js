@@ -7,6 +7,7 @@ import {TouchableOpacity} from "react-native";
 
 let renderer, instance ={};
 const workouts = Object.keys(data.workouts).map((key) => data.workouts[key]);
+let session = data.sessions[Object.keys(data.sessions)[0]];
 const handle = {
   nextWorkoutInteraction: jest.fn()
 };
@@ -18,7 +19,7 @@ beforeEach(() => {
   // renderer = TestRenderer.create(<Home workouts={workouts} navigation={navigation} handle={handle}/>);
   // instance = renderer.root;
 
-  renderer = render(<Home workouts={workouts} navigation={navigation} handle={handle}/>);
+  renderer = render(<Home workouts={workouts} navigation={navigation} handle={handle} sessionTeaser={session}/>);
   instance = renderer.getByTestId('home-root');
 }, 0);
 
@@ -33,11 +34,11 @@ describe('<Home />', () => {
 
   it('Renders Picker and updates when user makes selection', () => {
     const element = renderer.getByTestId('workout-picker');
-    expect(element.props.selectedValue).toBe('DQkECwYLCQQ');
+    expect(element.props.selectedValue).toBe('DAwJBQEMAA0');
 
     // Select other workout.
-    fireEvent(element, 'valueChange', 'DAwJBQEMAA0');
-    expect(element.props.selectedValue).toBe('DAwJBQEMAA0');
+    fireEvent(element, 'valueChange', 'DQkECwYLCQQ');
+    expect(element.props.selectedValue).toBe('DQkECwYLCQQ');
 
   });
 
@@ -55,7 +56,7 @@ describe('<Home />', () => {
     // Sessions.
     fireEvent(navigationButtons[2], 'press');
     expect(navigation.navigate).toHaveBeenCalledWith('Workout', {action: 'go'});
-    expect(handle.nextWorkoutInteraction).toHaveBeenCalledWith('DQkECwYLCQQ');
+    expect(handle.nextWorkoutInteraction).toHaveBeenCalledWith('DAwJBQEMAA0');
 
     // Sessions.
     fireEvent(navigationButtons[3], 'press');

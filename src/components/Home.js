@@ -1,19 +1,21 @@
 import React, {useState} from 'react';
 import {Picker, Text, View} from "react-native";
 import {styles, home} from './Styles';
-import SessionTeaserProvider from "./sessions/SessionTeaserProvider";
+import SessionTeaser from "./sessions/SessionTeaser";
 import ActionButton from "./utility/ActionButton";
-import NavigationService from "../services/NavigationService";
 import ActionCard from "./utility/ActionCard";
 
-function Home({navigation, workouts, handle}) {
-  const [nextWorkoutKey, setNextWorkoutKey] = useState(workouts[0].key);
+function Home({navigation, workouts, handle, sessionTeaser}) {
+  // Since there are only two workouts so far, set the next workout to be the opposite of the last workout.
+  const [nextWorkoutKey, setNextWorkoutKey] = useState(
+    sessionTeaser.workoutName === 'Stronglifts A' ? workouts[1].key : workouts[0].key);
 
   return (
     <View style={[styles.container]} testID="home-root">
       <ActionCard
         actionComponent={<ActionButton text="List" action={() => navigation.navigate('SessionsList')}/>}>
         <Text style={home.sectionHeaderText}>Sessions</Text>
+        <SessionTeaser styles={{flex: 3}} session={sessionTeaser}/>
       </ActionCard>
       <ActionCard actionComponent={<ActionButton text="Go" action={() => {
         handle.nextWorkoutInteraction(nextWorkoutKey);

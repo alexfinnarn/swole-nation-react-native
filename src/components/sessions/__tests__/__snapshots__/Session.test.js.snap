@@ -61,6 +61,7 @@ exports[`<Session /> Renders correctly 1`] = `
           Object {
             "backgroundColor": "#69D1C5",
             "flex": 1,
+            "padding": 5,
           }
         }
       >
@@ -70,18 +71,20 @@ exports[`<Session /> Renders correctly 1`] = `
               "alignSelf": "center",
               "color": "#ffffff",
               "flex": 1,
+              "fontSize": 16,
             }
           }
           testID=""
         >
-          
+          &lt;- N/A &lt;-
         </Text>
       </View>
       <View
         style={
           Object {
             "backgroundColor": "#3BA99C",
-            "flex": 2,
+            "flex": 1,
+            "padding": 5,
           }
         }
       >
@@ -91,6 +94,7 @@ exports[`<Session /> Renders correctly 1`] = `
               "alignSelf": "center",
               "color": "#ffffff",
               "flex": 1,
+              "fontSize": 16,
             }
           }
           testID="current-exercise"
@@ -103,6 +107,7 @@ exports[`<Session /> Renders correctly 1`] = `
           Object {
             "backgroundColor": "#21897E",
             "flex": 1,
+            "padding": 5,
           }
         }
       >
@@ -112,11 +117,12 @@ exports[`<Session /> Renders correctly 1`] = `
               "alignSelf": "center",
               "color": "#ffffff",
               "flex": 1,
+              "fontSize": 16,
             }
           }
           testID=""
         >
-          Squats
+          -&gt; Squats -&gt;
         </Text>
       </View>
     </View>

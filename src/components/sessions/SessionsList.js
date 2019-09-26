@@ -3,6 +3,7 @@ import {FlatList, Text, View} from "react-native";
 import {home, styles} from '../Styles';
 import ActionButton from "../utility/ActionButton";
 import ActionCard from "../utility/ActionCard";
+import SessionTeaser from "./SessionTeaser";
 
 export default function SessionsList({ sessions, navigation, handle, thing }) {
   return (
@@ -33,8 +34,7 @@ export default function SessionsList({ sessions, navigation, handle, thing }) {
           }}/>
         </>
       }>
-        <Text style={home.sectionHeaderText}>{session.item.name}</Text>
-        <Text style={{flex: 4, marginTop: 15}}>Other content</Text>
+        <SessionTeaser session={session.item}/>
       </ActionCard>
     );
   }

@@ -75,6 +75,7 @@ export default function Session({session, navigation, handle}) {
   function handleSets(forward, completed = false) {
     if (completed) {
       session.exercises[exercise].sets[set].completed = true;
+      session.completed++;
     }
     backgroundTimer.stop();
 
@@ -126,7 +127,7 @@ export default function Session({session, navigation, handle}) {
     session.duration = seconds + sessionDuration;
     session.progress = progress;
     handle.finishSession(session);
-    navigation.navigate('SessionsList');
+    navigation.navigate('Home');
   }
 
   function ActionButtons() {
@@ -151,8 +152,8 @@ export default function Session({session, navigation, handle}) {
 
   function StyleTile({color, bgColor, text, flex, textID = ''}) {
     return (
-      <View style={{flex: flex, backgroundColor: bgColor}}>
-        <Text style={{flex: 1, color: color, alignSelf: 'center'}} testID={textID}>
+      <View style={{flex: flex, backgroundColor: bgColor, padding: 5}}>
+        <Text style={{flex: 1, color: color, alignSelf: 'center', fontSize: 16}} testID={textID}>
           {text}
         </Text>
       </View>
@@ -169,11 +170,11 @@ export default function Session({session, navigation, handle}) {
         </View>
         <View style={{flex: 1, flexDirection: 'column'}}>
           <StyleTile color={'#ffffff'} bgColor={'#69D1C5'} flex={1}
-                     text={session.exercises[exercise - 1] ? session.exercises[exercise - 1].name : ''}/>
-          <StyleTile color={'#ffffff'} bgColor={'#3BA99C'} flex={2} textID='current-exercise'
-                     text={session.exercises[exercise].name}/>
+                     text={`<- ${session.exercises[exercise - 1] ? session.exercises[exercise - 1].name : 'N/A'} <-`}/>
+          <StyleTile color={'#ffffff'} bgColor={'#3BA99C'} flex={1} textID='current-exercise'
+                     text={`${session.exercises[exercise].name}`}/>
           <StyleTile color={'#ffffff'} bgColor={'#21897E'} flex={1}
-                     text={session.exercises[exercise + 1] ? session.exercises[exercise + 1].name : ''}/>
+                     text={`-> ${session.exercises[exercise + 1] ? session.exercises[exercise + 1].name : 'N/A'} ->`}/>
         </View>
       </View>
       <View style={{flex: 1, padding: 5, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end'}}>

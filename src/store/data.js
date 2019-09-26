@@ -253,12 +253,180 @@ const data = {
   },
   sessions: {
     BwgFDQ8CCg8: {
-      name: "new ...date",
+      completed: 18,
+      duration: 15,
       key: "BwgFDQ8CCg8",
-      workoutKeys: [],
-      exercises: [],
-      progress: [0,0],
-      duration: 0,
+      name: "Thu Sep 26 12:19:14 2019",
+      progress: [
+        5,
+        1,
+      ],
+      workoutName: "Stronglifts A",
+      exercises: [
+        {
+          image: 1,
+          instructions: "Do with a barbell",
+          key: "BwEBDwoFBgQ",
+          name: "Squats Warmup",
+          sets: [
+            {
+              completed: true,
+              reps: 5,
+              weight: 45,
+            },
+            {
+              completed: true,
+              reps: 5,
+              weight: 45,
+            },
+            {
+              completed: true,
+              reps: 5,
+              weight: 95,
+            },
+            {
+              completed: true,
+              reps: 5,
+              weight: 135,
+            },
+            {
+              completed: true,
+              reps: 3,
+              weight: 185,
+            },
+            {
+              completed: true,
+              reps: 2,
+              weight: 205,
+            },
+          ],
+        },
+        {
+          image: 1,
+          instructions: "Do with a barbell",
+          key: "Bw0ECwAKBws",
+          name: "Squats",
+          sets: [
+            {
+              completed: false,
+              reps: 5,
+              weight: 230,
+            },
+            {
+              completed: true,
+              reps: 5,
+              weight: 230,
+            },
+            {
+              completed: true,
+              reps: 5,
+              weight: 230,
+            },
+            {
+              completed: false,
+              reps: 5,
+              weight: 230,
+            },
+            {
+              completed: true,
+              reps: 5,
+              weight: 230,
+            },
+          ],
+        },
+        {
+          image: 2,
+          instructions: "Do with a barbell",
+          key: "BwwBDAIJDgw",
+          name: "Bench Press Warmup",
+          sets: [
+            {
+              completed: true,
+              reps: 5,
+              weight: 45,
+            },
+            {
+              completed: true,
+              reps: 5,
+              weight: 45,
+            },
+            {
+              completed: true,
+              reps: 5,
+              weight: 95,
+            },
+            {
+              completed: true,
+              reps: 3,
+              weight: 135,
+            },
+          ],
+        },
+        {
+          image: 2,
+          instructions: "Do with a barbell",
+          key: "DgcBCA8BCQo",
+          name: "Bench Press",
+          sets: [
+            {
+              completed: true,
+              reps: 5,
+              weight: 165,
+            },
+            {
+              completed: false,
+              reps: 5,
+              weight: 165,
+            },
+            {
+              completed: true,
+              reps: 5,
+              weight: 165,
+            },
+            {
+              completed: true,
+              reps: 5,
+              weight: 165,
+            },
+            {
+              completed: true,
+              reps: 5,
+              weight: 165,
+            },
+          ],
+        },
+        {
+          image: 4,
+          instructions: "Do with a barbell",
+          key: "BwYGAw0NDwo",
+          name: "Barbell Row Warmup",
+          sets: [
+            {
+              completed: true,
+              reps: 5,
+              weight: 95,
+            },
+          ],
+        },
+        {
+          image: 4,
+          instructions: "Do with a barbell",
+          key: "BwQKAwYKAgA",
+          name: "Barbell Row",
+          sets: [
+            {
+              completed: false,
+              reps: 5,
+              weight: 115,
+            },
+            {
+              completed: false,
+              reps: 5,
+              weight: 115,
+            },
+          ],
+        },
+      ],
     }
   },
   transformers: {
