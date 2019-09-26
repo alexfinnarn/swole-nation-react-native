@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import {Picker, Text, View} from "react-native";
 import {styles, home} from './Styles';
-import SessionTeaserProvider from "./sessions/SessionTeaserProvider";
+import SessionTeaser from "./sessions/SessionTeaser";
 import ActionButton from "./utility/ActionButton";
 import NavigationService from "../services/NavigationService";
 import ActionCard from "./utility/ActionCard";
 
-function Home({navigation, workouts, handle}) {
+function Home({navigation, workouts, handle, sessionTeaser}) {
   const [nextWorkoutKey, setNextWorkoutKey] = useState(workouts[0].key);
 
   return (
@@ -14,6 +14,7 @@ function Home({navigation, workouts, handle}) {
       <ActionCard
         actionComponent={<ActionButton text="List" action={() => navigation.navigate('SessionsList')}/>}>
         <Text style={home.sectionHeaderText}>Sessions</Text>
+        <SessionTeaser styles={{flex: 3}} session={sessionTeaser}/>
       </ActionCard>
       <ActionCard actionComponent={<ActionButton text="Go" action={() => {
         handle.nextWorkoutInteraction(nextWorkoutKey);
