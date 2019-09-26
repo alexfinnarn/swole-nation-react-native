@@ -3,11 +3,12 @@ import {Picker, Text, View} from "react-native";
 import {styles, home} from './Styles';
 import SessionTeaser from "./sessions/SessionTeaser";
 import ActionButton from "./utility/ActionButton";
-import NavigationService from "../services/NavigationService";
 import ActionCard from "./utility/ActionCard";
 
 function Home({navigation, workouts, handle, sessionTeaser}) {
-  const [nextWorkoutKey, setNextWorkoutKey] = useState(workouts[0].key);
+  // Since there are only two workouts so far, set the next workout to be the opposite of the last workout.
+  const [nextWorkoutKey, setNextWorkoutKey] = useState(
+    sessionTeaser.workoutName === 'Stronglifts A' ? workouts[1].key : workouts[0].key);
 
   return (
     <View style={[styles.container]} testID="home-root">

@@ -85,7 +85,7 @@ function mainStore(state = data, action) {
         progress: [0,0],
         completed: 0,
         name: new Date(Date.now()).toLocaleString('en-US'),
-        workoutName: [state.workouts[state.activeWorkoutKey].name],
+        workoutName: state.workouts[state.activeWorkoutKey].name,
         exercises: state.workouts[state.activeWorkoutKey].exercises.map((name) => {
           const foundKey = Object.keys(state.exercises).find(key => state.exercises[key].name === name);
           return state.exercises[foundKey];

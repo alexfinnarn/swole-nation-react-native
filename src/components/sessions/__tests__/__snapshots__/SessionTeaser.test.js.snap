@@ -1,0 +1,94 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<SessionsList /> Renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "flex": 1,
+      "flexDirection": "column",
+      "justifyContent": "space-evenly",
+    }
+  }
+  testID="session-teaser-root"
+>
+  <View
+    style={
+      Object {
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "padding": 10,
+      }
+    }
+  >
+    <Text
+      testID="session-name"
+    >
+      Thu Sep 26 12:19:14 2019
+    </Text>
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 2,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "padding": 10,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "flex-start",
+          "flexDirection": "column",
+        }
+      }
+    >
+      <Text>
+        Workout:
+      </Text>
+      <Text
+        testID="workout-name"
+      >
+        Stronglifts A
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "column",
+        }
+      }
+    >
+      <Text>
+        Completed:
+      </Text>
+      <Text
+        testID="completion-percentage"
+      >
+        78%
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flexDirection": "column",
+        }
+      }
+    >
+      <Text>
+        Duration:
+      </Text>
+      <Text
+        testID="session-duration"
+      >
+        15
+        s
+      </Text>
+    </View>
+  </View>
+</View>
+`;

@@ -33,7 +33,16 @@ describe('<SessionsList />', () => {
 
     expect(renderer.queryByText('Workout C')).toBeNull();
 
-    sessions.push({key: 'DWYVDAQWAw4', name: 'Workout C', description: 'blah', exercises: []});
+    sessions.push({
+      key: 'DWYVDAQWAw4',
+      name: 'Workout C',
+      description: 'blah',
+      exercises: [],
+      workoutName: 'Stronglifts B',
+      progress: [2, 4],
+      duration: 50,
+      completed: 12,
+    });
     renderer.update(<SessionsList sessions={sessions} navigation={navigation} handle={handle} thing={shortId.generate()} />);
     instance = renderer.getByTestId('sessions-list-root');
 

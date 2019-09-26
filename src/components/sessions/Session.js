@@ -127,7 +127,7 @@ export default function Session({session, navigation, handle}) {
     session.duration = seconds + sessionDuration;
     session.progress = progress;
     handle.finishSession(session);
-    navigation.navigate('SessionsList');
+    navigation.navigate('Home');
   }
 
   function ActionButtons() {
