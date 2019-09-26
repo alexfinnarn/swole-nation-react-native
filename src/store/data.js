@@ -256,7 +256,9 @@ const data = {
       name: "new ...date",
       key: "BwgFDQ8CCg8",
       workoutKeys: [],
-      exercises: []
+      exercises: [],
+      progress: [0,0],
+      duration: 0,
     }
   },
   transformers: {

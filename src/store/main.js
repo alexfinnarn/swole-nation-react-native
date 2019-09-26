@@ -82,6 +82,7 @@ function mainStore(state = data, action) {
       let session = {
         key: shortId.generate(),
         duration: 0,
+        progress: [0,0],
         name: new Date(Date.now()).toLocaleString('en-US'),
         workoutKeys: [state.workouts[state.activeWorkoutKey].key],
         exercises: state.workouts[state.activeWorkoutKey].exercises.map((name) => {
@@ -122,7 +123,10 @@ function mainStore(state = data, action) {
       return Object.assign({}, state, {activeSessionKey: action.key});
 
     case WorkoutActions.FINISH_SESSION:
-      return Object.assign({}, state, {sessions: {...state.sessions, [action.session.key]: action.session}});
+      return Object.assign({}, state, {
+        sessions: {...state.sessions, [action.session.key]: action.session},
+        activeSessionKey: '',
+      });
 
     case WorkoutActions.SAVE_SETTINGS:
       return Object.assign({}, state, {theSetting: action.setting});
