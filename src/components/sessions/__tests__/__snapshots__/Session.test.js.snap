@@ -1,0 +1,694 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Session /> Renders correctly 1`] = `
+<View
+  style={
+    Array [
+      Object {
+        "backgroundColor": "#F5FCFF",
+        "flex": 1,
+        "flexDirection": "column",
+        "paddingTop": 5,
+      },
+      Object {
+        "flex": 1,
+        "flexDirection": "column",
+        "justifyContent": "space-between",
+      },
+    ]
+  }
+  testID="session-root"
+>
+  <View
+    style={
+      Object {
+        "flex": 5,
+        "flexDirection": "row",
+        "padding": 10,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignItems": "center",
+          "flex": 3,
+          "justifyContent": "center",
+        }
+      }
+    >
+      <Image
+        resizeMode="contain"
+        source={1}
+        style={
+          Object {
+            "flex": 1,
+          }
+        }
+        testID="squats-warmup-image"
+      />
+    </View>
+    <View
+      style={
+        Object {
+          "flex": 1,
+          "flexDirection": "column",
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "backgroundColor": "#69D1C5",
+            "flex": 1,
+            "padding": 5,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "alignSelf": "center",
+              "color": "#ffffff",
+              "flex": 1,
+              "fontSize": 16,
+            }
+          }
+          testID=""
+        >
+          &lt;- N/A &lt;-
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#3BA99C",
+            "flex": 1,
+            "padding": 5,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "alignSelf": "center",
+              "color": "#ffffff",
+              "flex": 1,
+              "fontSize": 16,
+            }
+          }
+          testID="current-exercise"
+        >
+          Squats Warmup
+        </Text>
+      </View>
+      <View
+        style={
+          Object {
+            "backgroundColor": "#21897E",
+            "flex": 1,
+            "padding": 5,
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "alignSelf": "center",
+              "color": "#ffffff",
+              "flex": 1,
+              "fontSize": 16,
+            }
+          }
+          testID=""
+        >
+          -&gt; Squats -&gt;
+        </Text>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "flex-end",
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "padding": 5,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignSelf": "stretch",
+            "backgroundColor": "#bababa",
+            "flex": 1,
+            "opacity": 1,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "alignSelf": "center",
+                "color": "#ffffff",
+                "fontSize": 20,
+              }
+            }
+          >
+            Previous
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+          },
+          Object {
+            "paddingLeft": 5,
+            "paddingRight": 5,
+          },
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignSelf": "stretch",
+            "backgroundColor": "#21897E",
+            "flex": 1,
+            "opacity": 1,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "alignSelf": "center",
+                "color": "#ffffff",
+                "fontSize": 20,
+              }
+            }
+          >
+            Complete
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignSelf": "stretch",
+            "backgroundColor": "#21897E",
+            "flex": 1,
+            "opacity": 1,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "alignSelf": "center",
+                "color": "#ffffff",
+                "fontSize": 20,
+              }
+            }
+          >
+            Skip
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "flex": 4,
+        "flexDirection": "column",
+        "justifyContent": "space-around",
+        "padding": 10,
+      }
+    }
+  >
+    <View
+      style={
+        Object {
+          "alignSelf": "stretch",
+          "flex": 1,
+          "flexDirection": "row",
+          "marginTop": 10,
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontWeight": "bold",
+            },
+            Object {
+              "alignSelf": "stretch",
+              "borderColor": "#d6d7da",
+              "borderWidth": 1,
+              "flex": 1,
+              "paddingLeft": 7,
+            },
+          ]
+        }
+      >
+        Completed
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "fontWeight": "bold",
+            },
+            Object {
+              "alignSelf": "stretch",
+              "borderColor": "#d6d7da",
+              "borderWidth": 1,
+              "flex": 1,
+              "paddingLeft": 7,
+            },
+          ]
+        }
+      >
+        Sets
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "fontWeight": "bold",
+            },
+            Object {
+              "alignSelf": "stretch",
+              "borderColor": "#d6d7da",
+              "borderWidth": 1,
+              "flex": 1,
+              "paddingLeft": 7,
+            },
+          ]
+        }
+      >
+        Reps
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "fontWeight": "bold",
+            },
+            Object {
+              "alignSelf": "stretch",
+              "borderColor": "#d6d7da",
+              "borderWidth": 1,
+              "flex": 1,
+              "paddingLeft": 7,
+            },
+          ]
+        }
+      >
+        Weight
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignSelf": "stretch",
+          "flex": 1,
+          "flexDirection": "row",
+          "marginBottom": 10,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "alignSelf": "stretch",
+            "borderColor": "#d6d7da",
+            "borderWidth": 1,
+            "flex": 1,
+            "paddingLeft": 7,
+          }
+        }
+        testID="sets-reps-table-completed"
+      >
+        false
+      </Text>
+      <Text
+        style={
+          Object {
+            "alignSelf": "stretch",
+            "borderColor": "#d6d7da",
+            "borderWidth": 1,
+            "flex": 1,
+            "paddingLeft": 7,
+          }
+        }
+        testID="sets-reps-table-sets"
+      >
+        1/6
+      </Text>
+      <Text
+        style={
+          Object {
+            "alignSelf": "stretch",
+            "borderColor": "#d6d7da",
+            "borderWidth": 1,
+            "flex": 1,
+            "paddingLeft": 7,
+          }
+        }
+        testID="sets-reps-table-reps"
+      >
+        5
+      </Text>
+      <Text
+        style={
+          Object {
+            "alignSelf": "stretch",
+            "borderColor": "#d6d7da",
+            "borderWidth": 1,
+            "flex": 1,
+            "paddingLeft": 7,
+          }
+        }
+        testID="sets-reps-table-weight"
+      >
+        45 lbs
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignSelf": "stretch",
+          "flex": 1,
+          "flexDirection": "row",
+          "marginTop": 10,
+        }
+      }
+    >
+      <Text
+        style={
+          Array [
+            Object {
+              "fontWeight": "bold",
+            },
+            Object {
+              "alignSelf": "stretch",
+              "borderColor": "#d6d7da",
+              "borderWidth": 1,
+              "flex": 1,
+              "paddingLeft": 7,
+            },
+          ]
+        }
+      >
+        Set
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "fontWeight": "bold",
+            },
+            Object {
+              "alignSelf": "stretch",
+              "borderColor": "#d6d7da",
+              "borderWidth": 1,
+              "flex": 3,
+              "paddingLeft": 7,
+            },
+          ]
+        }
+      >
+        Plates
+      </Text>
+      <Text
+        style={
+          Array [
+            Object {
+              "fontWeight": "bold",
+            },
+            Object {
+              "alignSelf": "stretch",
+              "borderColor": "#d6d7da",
+              "borderWidth": 1,
+              "flex": 1,
+              "paddingLeft": 7,
+            },
+          ]
+        }
+      >
+        Session
+      </Text>
+    </View>
+    <View
+      style={
+        Object {
+          "alignSelf": "stretch",
+          "flex": 1,
+          "flexDirection": "row",
+          "marginBottom": 10,
+        }
+      }
+    >
+      <Text
+        style={
+          Object {
+            "alignSelf": "stretch",
+            "borderColor": "#d6d7da",
+            "borderWidth": 1,
+            "flex": 1,
+            "paddingLeft": 7,
+          }
+        }
+        testID="time-plates-table-set"
+      >
+        0
+      </Text>
+      <Text
+        style={
+          Object {
+            "alignSelf": "stretch",
+            "borderColor": "#d6d7da",
+            "borderWidth": 1,
+            "flex": 3,
+            "paddingLeft": 7,
+          }
+        }
+        testID="time-plates-table-plates"
+      >
+         None
+      </Text>
+      <Text
+        style={
+          Object {
+            "alignSelf": "stretch",
+            "borderColor": "#d6d7da",
+            "borderWidth": 1,
+            "flex": 1,
+            "paddingLeft": 7,
+          }
+        }
+        testID="time-plates-table-session"
+      >
+        0
+      </Text>
+    </View>
+  </View>
+  <View
+    style={
+      Object {
+        "alignItems": "center",
+        "flex": 1,
+        "flexDirection": "row",
+        "justifyContent": "space-evenly",
+        "padding": 10,
+      }
+    }
+  >
+    <View
+      style={
+        Array [
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+          },
+          Object {
+            "paddingRight": 5,
+          },
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignSelf": "stretch",
+            "backgroundColor": "#21897E",
+            "flex": 1,
+            "opacity": 1,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "alignSelf": "center",
+                "color": "#ffffff",
+                "fontSize": 20,
+              }
+            }
+          >
+            Start
+          </Text>
+        </View>
+      </View>
+    </View>
+    <View
+      style={
+        Array [
+          Object {
+            "flex": 1,
+            "flexDirection": "column",
+          },
+          undefined,
+        ]
+      }
+    >
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "alignSelf": "stretch",
+            "backgroundColor": "#21897E",
+            "flex": 1,
+            "opacity": 1,
+          }
+        }
+      >
+        <View
+          style={
+            Object {
+              "flex": 1,
+              "justifyContent": "center",
+            }
+          }
+        >
+          <Text
+            style={
+              Object {
+                "alignSelf": "center",
+                "color": "#ffffff",
+                "fontSize": 20,
+              }
+            }
+          >
+            Quit
+          </Text>
+        </View>
+      </View>
+    </View>
+  </View>
+</View>
+`;
