@@ -8,4 +8,11 @@ jest.mock("react-native-background-timer", () => {
     stopBackgroundTimer: jest.fn(),
   }
 });
-// jest.mock("react-navigation", () => {});
+jest.mock("react-native-tts", () => {
+  return {
+    getInitStatus: jest.fn(),
+    setDucking: jest.fn(),
+    speak: jest.fn(),
+    stop: jest.fn(),
+  }
+});
