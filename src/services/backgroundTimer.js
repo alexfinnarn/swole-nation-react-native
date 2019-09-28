@@ -1,5 +1,5 @@
 import BackgroundTimer from 'react-native-background-timer';
-// import * as Speech from 'expo-speech';
+import Tts from 'react-native-tts';
 
 const timer = (function() {
   this.timeDurations = [
@@ -12,10 +12,14 @@ const timer = (function() {
     start: (exerciseString) => {
       BackgroundTimer.runBackgroundTimer(() => {
         if (typeof this.timeDurations[this.counter] !== 'undefined') {
-          // Speech.speak(`Time for your next set. ${this.timeDurations[this.counter]} has passed.`);
-          console.log(`Time for your next set. ${exerciseString}. ${this.timeDurations[this.counter]} has passed.`);
+          Tts.getInitStatus().then(() => {
+            Tts.stop();
+            Tts.setDucking(true);
+            Tts.speak(`Time for your next set. ${exerciseString}. ${this.timeDurations[this.counter]} has passed.`);
+            console.log(`Time for your next set. ${exerciseString}. ${this.timeDurations[this.counter]} has passed.`);
+            this.counter++;
+          });
         }
-        this.counter++;
       }, (1000 * 90));
     },
     stop: () => {
