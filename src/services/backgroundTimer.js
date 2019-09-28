@@ -1,5 +1,5 @@
 import BackgroundTimer from 'react-native-background-timer';
-import * as Speech from 'expo-speech';
+// import * as Speech from 'expo-speech';
 
 const timer = (function() {
   this.timeDurations = [

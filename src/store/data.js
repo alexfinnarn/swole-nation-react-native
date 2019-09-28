@@ -215,6 +215,18 @@ const data = {
         {
           "reps": 5,
           "weight": 115.0
+        },
+        {
+          "reps": 5,
+          "weight": 115.0
+        },
+        {
+          "reps": 5,
+          "weight": 115.0
+        },
+        {
+          "reps": 5,
+          "weight": 115.0
         }
       ]
     },
@@ -264,7 +276,7 @@ const data = {
       workoutName: "Stronglifts A",
       exercises: [
         {
-          image: 1,
+          image: require("../../assets/squats.gif"),
           instructions: "Do with a barbell",
           key: "BwEBDwoFBgQ",
           name: "Squats Warmup",
@@ -302,7 +314,7 @@ const data = {
           ],
         },
         {
-          image: 1,
+          image: require("../../assets/squats.gif"),
           instructions: "Do with a barbell",
           key: "Bw0ECwAKBws",
           name: "Squats",
@@ -335,7 +347,7 @@ const data = {
           ],
         },
         {
-          image: 2,
+          image: require("../../assets/bench-press.gif"),
           instructions: "Do with a barbell",
           key: "BwwBDAIJDgw",
           name: "Bench Press Warmup",
@@ -363,7 +375,7 @@ const data = {
           ],
         },
         {
-          image: 2,
+          image: require("../../assets/bench-press.gif"),
           instructions: "Do with a barbell",
           key: "DgcBCA8BCQo",
           name: "Bench Press",
@@ -396,7 +408,7 @@ const data = {
           ],
         },
         {
-          image: 4,
+          image: require("../../assets/barbell-row.gif"),
           instructions: "Do with a barbell",
           key: "BwYGAw0NDwo",
           name: "Barbell Row Warmup",
@@ -409,7 +421,7 @@ const data = {
           ],
         },
         {
-          image: 4,
+          image: require("../../assets/barbell-row.gif"),
           instructions: "Do with a barbell",
           key: "BwQKAwYKAgA",
           name: "Barbell Row",

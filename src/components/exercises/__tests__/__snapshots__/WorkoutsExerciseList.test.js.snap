@@ -8,7 +8,9 @@ exports[`<WorkoutExerciseList /> Renders correctly 1`] = `
     data={
       Array [
         Object {
-          "image": 1,
+          "image": Object {
+            "testUri": "../../../assets/squats.gif",
+          },
           "instructions": "Do with a barbell",
           "key": "BwEBDwoFBgQ",
           "name": "Squats Warmup",
@@ -40,7 +42,9 @@ exports[`<WorkoutExerciseList /> Renders correctly 1`] = `
           ],
         },
         Object {
-          "image": 1,
+          "image": Object {
+            "testUri": "../../../assets/squats.gif",
+          },
           "instructions": "Do with a barbell",
           "key": "Bw0ECwAKBws",
           "name": "Squats",
@@ -68,7 +72,9 @@ exports[`<WorkoutExerciseList /> Renders correctly 1`] = `
           ],
         },
         Object {
-          "image": 1,
+          "image": Object {
+            "testUri": "../../../assets/bench-press.gif",
+          },
           "instructions": "Do with a barbell",
           "key": "BwwBDAIJDgw",
           "name": "Bench Press Warmup",
@@ -92,7 +98,9 @@ exports[`<WorkoutExerciseList /> Renders correctly 1`] = `
           ],
         },
         Object {
-          "image": 1,
+          "image": Object {
+            "testUri": "../../../assets/bench-press.gif",
+          },
           "instructions": "Do with a barbell",
           "key": "DgcBCA8BCQo",
           "name": "Bench Press",
@@ -120,7 +128,9 @@ exports[`<WorkoutExerciseList /> Renders correctly 1`] = `
           ],
         },
         Object {
-          "image": 1,
+          "image": Object {
+            "testUri": "../../../assets/barbell-row.gif",
+          },
           "instructions": "Do with a barbell",
           "key": "BwYGAw0NDwo",
           "name": "Barbell Row Warmup",
@@ -132,11 +142,25 @@ exports[`<WorkoutExerciseList /> Renders correctly 1`] = `
           ],
         },
         Object {
-          "image": 1,
+          "image": Object {
+            "testUri": "../../../assets/barbell-row.gif",
+          },
           "instructions": "Do with a barbell",
           "key": "BwQKAwYKAgA",
           "name": "Barbell Row",
           "sets": Array [
+            Object {
+              "reps": 5,
+              "weight": 115,
+            },
+            Object {
+              "reps": 5,
+              "weight": 115,
+            },
+            Object {
+              "reps": 5,
+              "weight": 115,
+            },
             Object {
               "reps": 5,
               "weight": 115,
@@ -245,7 +269,9 @@ exports[`<WorkoutExerciseList /> Renders correctly 1`] = `
           >
             <View
               accessible={true}
+              focusable={true}
               isTVSelectable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -356,7 +382,9 @@ exports[`<WorkoutExerciseList /> Renders correctly 1`] = `
           >
             <View
               accessible={true}
+              focusable={true}
               isTVSelectable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -466,7 +494,9 @@ exports[`<WorkoutExerciseList /> Renders correctly 1`] = `
           >
             <View
               accessible={true}
+              focusable={true}
               isTVSelectable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -577,7 +607,9 @@ exports[`<WorkoutExerciseList /> Renders correctly 1`] = `
           >
             <View
               accessible={true}
+              focusable={true}
               isTVSelectable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -684,7 +716,9 @@ exports[`<WorkoutExerciseList /> Renders correctly 1`] = `
           >
             <View
               accessible={true}
+              focusable={true}
               isTVSelectable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}
@@ -776,6 +810,9 @@ exports[`<WorkoutExerciseList /> Renders correctly 1`] = `
             </Text>
             <Text>
               5x115 lbs, 
+              5x115 lbs, 
+              5x115 lbs, 
+              5x115 lbs, 
               5x115 lbs
             </Text>
           </View>
@@ -792,7 +829,9 @@ exports[`<WorkoutExerciseList /> Renders correctly 1`] = `
           >
             <View
               accessible={true}
+              focusable={true}
               isTVSelectable={true}
+              onClick={[Function]}
               onResponderGrant={[Function]}
               onResponderMove={[Function]}
               onResponderRelease={[Function]}

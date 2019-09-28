@@ -83,7 +83,7 @@ describe('<AddExercise />', () => {
       name: "Squats Warmup",
       key: "BwEBDwoFBgQ",
       connectedWorkout: true,
-      image: 1,
+      image: {"testUri": "../../../assets/squats.gif"},
       instructions: "Do with a barbell",
       sets: [
         {"reps": 5, "weight": 45.0},
@@ -95,5 +95,4 @@ describe('<AddExercise />', () => {
       ]
     });
   });
-
 });

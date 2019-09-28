@@ -3,8 +3,6 @@ import {render, fireEvent} from 'react-native-testing-library';
 import data from "../../../store/data";
 import WorkoutExerciseList from "../WorkoutExerciseList";
 import ActionCard from "../../utility/ActionCard";
-import {TouchableOpacity} from "react-native-web";
-import ActionButton from "../../utility/ActionButton";
 
 const strongliftsA = 'DQkECwYLCQQ';
 const strongliftsB = 'DAwJBQEMAA0';
@@ -24,7 +22,6 @@ function getExercises(key) {
     return data.exercises[foundKey];
   });
 }
-
 
 beforeEach(() => {
   exercises = getExercises(strongliftsA);

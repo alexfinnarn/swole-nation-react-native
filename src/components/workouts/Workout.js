@@ -39,7 +39,7 @@ function Workout({workout, handle, navigation, transformers, actionType}) {
 
   return (
     <View style={{padding: 10, flex: 1}} testID="workout-root">
-      <View style={{flex: 2}}>
+      <View style={{flex: 3}}>
         <View style={{flex: 1, flexDirection: 'row', alignItems: 'baseline'}}>
           <Text style={[styles.bold, styles.mediumTextInputFont, {flex: 1}]}>Name</Text>
           <TextInput
@@ -70,7 +70,7 @@ function Workout({workout, handle, navigation, transformers, actionType}) {
           </Picker>
         </View>
       </View>
-      <View style={{flex: 6}}>
+      <View style={{flex: 7}}>
         <WorkoutExerciseListProvider workout={workout} navigation={navigation}/>
       </View>
       <View style={{marginTop: 20, flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>

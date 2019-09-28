@@ -23,7 +23,9 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
       data={
         Array [
           Object {
-            "image": 1,
+            "image": Object {
+              "testUri": "../../../assets/squats.gif",
+            },
             "instructions": "Do with a barbell",
             "key": "BwEBDwoFBgQ",
             "name": "Squats Warmup",
@@ -55,7 +57,9 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
             ],
           },
           Object {
-            "image": 1,
+            "image": Object {
+              "testUri": "../../../assets/squats.gif",
+            },
             "instructions": "Do with a barbell",
             "key": "Bw0ECwAKBws",
             "name": "Squats",
@@ -83,7 +87,9 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
             ],
           },
           Object {
-            "image": 1,
+            "image": Object {
+              "testUri": "../../../assets/bench-press.gif",
+            },
             "instructions": "Do with a barbell",
             "key": "BwwBDAIJDgw",
             "name": "Bench Press Warmup",
@@ -107,7 +113,9 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
             ],
           },
           Object {
-            "image": 1,
+            "image": Object {
+              "testUri": "../../../assets/bench-press.gif",
+            },
             "instructions": "Do with a barbell",
             "key": "DgcBCA8BCQo",
             "name": "Bench Press",
@@ -135,7 +143,9 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
             ],
           },
           Object {
-            "image": 1,
+            "image": Object {
+              "testUri": "../../../assets/shoulder-press.gif",
+            },
             "instructions": "Do with a barbell",
             "key": "DwcACw4PCgI",
             "name": "Overhead Press Warmup",
@@ -155,7 +165,9 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
             ],
           },
           Object {
-            "image": 1,
+            "image": Object {
+              "testUri": "../../../assets/shoulder-press.gif",
+            },
             "instructions": "Do with a barbell",
             "key": "CAMBAwsFBwQ",
             "name": "Overhead Press",
@@ -183,7 +195,9 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
             ],
           },
           Object {
-            "image": 1,
+            "image": Object {
+              "testUri": "../../../assets/barbell-row.gif",
+            },
             "instructions": "Do with a barbell",
             "key": "BwYGAw0NDwo",
             "name": "Barbell Row Warmup",
@@ -195,7 +209,9 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
             ],
           },
           Object {
-            "image": 1,
+            "image": Object {
+              "testUri": "../../../assets/barbell-row.gif",
+            },
             "instructions": "Do with a barbell",
             "key": "BwQKAwYKAgA",
             "name": "Barbell Row",
@@ -208,10 +224,24 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
                 "reps": 5,
                 "weight": 115,
               },
+              Object {
+                "reps": 5,
+                "weight": 115,
+              },
+              Object {
+                "reps": 5,
+                "weight": 115,
+              },
+              Object {
+                "reps": 5,
+                "weight": 115,
+              },
             ],
           },
           Object {
-            "image": 1,
+            "image": Object {
+              "testUri": "../../../assets/deadlift.gif",
+            },
             "instructions": "Do with a barbell",
             "key": "AQcNAQkBCwo",
             "name": "Deadlifts Warmup",
@@ -231,7 +261,9 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
             ],
           },
           Object {
-            "image": 1,
+            "image": Object {
+              "testUri": "../../../assets/deadlift.gif",
+            },
             "instructions": "Do with a barbell",
             "key": "DAYCDAQKAw4",
             "name": "Deadlifts",
@@ -334,7 +366,9 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
             >
               <View
                 accessible={true}
+                focusable={true}
                 isTVSelectable={true}
+                onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
@@ -440,7 +474,9 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
             >
               <View
                 accessible={true}
+                focusable={true}
                 isTVSelectable={true}
+                onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
@@ -546,7 +582,9 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
             >
               <View
                 accessible={true}
+                focusable={true}
                 isTVSelectable={true}
+                onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
@@ -652,7 +690,9 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
             >
               <View
                 accessible={true}
+                focusable={true}
                 isTVSelectable={true}
+                onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
@@ -758,7 +798,9 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
             >
               <View
                 accessible={true}
+                focusable={true}
                 isTVSelectable={true}
+                onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
@@ -864,7 +906,9 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
             >
               <View
                 accessible={true}
+                focusable={true}
                 isTVSelectable={true}
+                onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
@@ -970,7 +1014,9 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
             >
               <View
                 accessible={true}
+                focusable={true}
                 isTVSelectable={true}
+                onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
@@ -1076,7 +1122,9 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
             >
               <View
                 accessible={true}
+                focusable={true}
                 isTVSelectable={true}
+                onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
@@ -1182,7 +1230,9 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
             >
               <View
                 accessible={true}
+                focusable={true}
                 isTVSelectable={true}
+                onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
@@ -1288,7 +1338,9 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
             >
               <View
                 accessible={true}
+                focusable={true}
                 isTVSelectable={true}
+                onClick={[Function]}
                 onResponderGrant={[Function]}
                 onResponderMove={[Function]}
                 onResponderRelease={[Function]}
