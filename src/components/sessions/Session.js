@@ -24,9 +24,8 @@ export default function Session({session, navigation, handle}) {
     let interval = null;
     if (isActive) {
       interval = setInterval(() => {
-        // const dateSeconds = dateStamp.setSeconds(dateStamp.getSeconds() + seconds);
         const timeElapsed = Math.floor((new Date(Date.now()) - dateStamp)/1000);
-        console.log(timeElapsed);
+        // This corrects the timer when the app is placed in the background.
         if (timeElapsed - seconds > 2) {
           setSeconds(() => timeElapsed + 1);
         } else {
@@ -57,7 +56,6 @@ export default function Session({session, navigation, handle}) {
       calculateDateStamp();
       setIsActive(true);
     } else {
-      // setDateStamp(new Date(Date.now()));
       setIsActive(false);
     }
 
@@ -146,7 +144,6 @@ export default function Session({session, navigation, handle}) {
 
   function finishWorkout() {
     backgroundTimer.stop();
-    toggle();
     setIsActive(false);
     session.duration = seconds + sessionDuration;
     session.progress = progress;
