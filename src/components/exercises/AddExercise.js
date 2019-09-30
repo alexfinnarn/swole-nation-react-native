@@ -4,7 +4,7 @@ import {styles} from "../Styles";
 import AddExerciseSet from "./AddExerciseSet";
 import ActionButton from "../utility/ActionButton";
 
-export default function AddExercise({exercises, handle, navigation, theExercise, pickerEnabled}) {
+export default function AddExercise({exercises, handle, navigation, theExercise, pickerEnabled, thing}) {
   const exerciseSelected = theExercise.name !== '';
   const [choice, setChoice] = useState(theExercise.key);
   const [name, setName] = useState(theExercise.name);
@@ -16,14 +16,15 @@ export default function AddExercise({exercises, handle, navigation, theExercise,
   }
 
   return (
-    <View style={{flex: 1, flexDirection: 'column'}} testID="add-exercise-root">
-      <View style={{flex: 1, flexDirection: 'row', marginBottom: 5}}>
+    <View style={{flex: 1, flexDirection: 'column', padding: 5}} testID="add-exercise-root">
+      <View style={{flex: 1, flexDirection: 'row', marginBottom: 5, alignItems: 'center'}}>
+        <Text style={[styles.bold, styles.mediumTextInputFont, {flex: 1}]}>Exercise:</Text>
         {exerciseSelected
           ? <Picker
             testID="exercise-picker"
             enabled={pickerEnabled}
             selectedValue={choice}
-            style={{height: 70, width: 300}}
+            style={{height: 70, width: 300, flex: 3}}
             onValueChange={(itemValue) => updateExercisePicker(itemValue)}>
             {Object.keys(exercises).map((key) => <Picker.Item key={key} label={exercises[key].name} value={key}/>)}
           </Picker>
@@ -36,15 +37,16 @@ export default function AddExercise({exercises, handle, navigation, theExercise,
         }
       </View>
       <View style={{flex: 8}}>
-        <Text style={{fontSize: 16}}>Sets</Text>
+        <Text style={[styles.bold, styles.mediumTextInputFont, {paddingBottom: 5}]}>Sets</Text>
         <FlatList
           data={exercise.sets}
+          extraData={thing}
           keyExtractor={(item, index) => index.toString()}
           renderItem={(item) => <AddExerciseSet updater={handle.update} exercise={exercise} item={item}/>}
         />
       </View>
       <View style={{flex: 2, marginTop: 5}}>
-        <Text style={{fontSize: 16}}>Add Exercise:</Text>
+        <Text style={[styles.bold, styles.mediumTextInputFont, {paddingBottom: 5}]}>Add Set</Text>
         <AddExerciseSet updater={handle.update} exercise={exercise} toAdd={true}/>
       </View>
       <ActionButton text={exercise.connectedWorkout ? 'Add' : 'Save'}

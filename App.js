@@ -24,15 +24,12 @@ export default function App() {
     key: 'root',
     keyPrefix: '',
     storage: AsyncStorage,
-    // stateReconciler: autoMergeLevel2,
-    // manualPersist: true,
   };
 
   const persistedReducer = persistReducer(persistConfig, mainStore);
-  // const store = createStore(persistedReducer, applyMiddleware(logger));
   const store = createStore(persistedReducer);
   let persistor = persistStore(store);
-  // persistor.purge();
+  persistor.purge();
 
   const AppNavigator = createStackNavigator(
     {

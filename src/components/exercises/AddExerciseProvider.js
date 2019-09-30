@@ -37,7 +37,7 @@ const mapDispatchToProps = dispatch => {
       update: (updatedSet, index, action) => {
         dispatch({set: updatedSet, index, type: action});
       },
-      save: (exercise, exerciseIsNew) => {
+      save: (exercise) => {
         if (exercise.connectedWorkout) {
           dispatch({exercise, type: 'ADD_EXERCISE'});
         } else {

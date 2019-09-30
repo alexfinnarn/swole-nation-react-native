@@ -40,19 +40,19 @@ function Workout({workout, handle, navigation, transformers, actionType}) {
   return (
     <View style={{padding: 10, flex: 1}} testID="workout-root">
       <View style={{flex: 3}}>
-        <View style={{flex: 1, flexDirection: 'row', alignItems: 'baseline'}}>
+        <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
           <Text style={[styles.bold, styles.mediumTextInputFont, {flex: 1}]}>Name</Text>
           <TextInput
-            style={[styles.editText, styles.mediumTextInputFont, {flex: 3}]}
+            style={[styles.editText, styles.smallTextInputFont, {flex: 4}]}
             placeholder="Workout A"
             onChangeText={(text) => setName(text)}
             value={name}
           />
         </View>
-        <View style={{flex: 1, flexDirection: 'row', alignItems: 'baseline'}}>
-          <Text style={[styles.bold, styles.smallTextInputFont, {flex: 1}]}>Description</Text>
+        <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+          <Text style={[styles.bold, styles.mediumTextInputFont, {flex: 1}]}>Info</Text>
           <TextInput
-            style={[styles.editText, styles.smallTextInputFont, {flex: 3}]}
+            style={[styles.editText, styles.smallTextInputFont, {flex: 4}]}
             multiline
             placeholder="Workout Description"
             onChangeText={(text) => setDescription(text)}
@@ -60,17 +60,17 @@ function Workout({workout, handle, navigation, transformers, actionType}) {
           />
         </View>
         <View style={{flex: 1, flexDirection: 'row', alignItems: 'baseline', marginBottom: 15}}>
-          <Text style={[styles.bold, styles.smallTextInputFont, {flex: 1, paddingBottom: 15}]}>Transformer</Text>
+          <Text style={[styles.bold, styles.mediumTextInputFont, {flex: 1, paddingBottom: 15}]}>Mod</Text>
           <Picker
             selectedValue={transformerKey}
             testID="transformer-picker"
-            style={{ flex: 3}}
+            style={{ flex: 4}}
             onValueChange={(value) => setTransformerKey(value)}>
             {transformers.map((tr) => <Picker.Item key={tr.key} label={tr.label} value={tr.key}/>)}
           </Picker>
         </View>
       </View>
-      <View style={{flex: 7}}>
+      <View style={{flex: 8}}>
         <WorkoutExerciseListProvider workout={workout} navigation={navigation}/>
       </View>
       <View style={{marginTop: 20, flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>

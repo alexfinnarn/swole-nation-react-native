@@ -31,7 +31,7 @@ exports[`<AddExerciseSet /> Renders correctly 1`] = `
     style={
       Object {
         "alignItems": "center",
-        "flex": 4,
+        "flex": 6,
         "flexDirection": "row",
       }
     }
@@ -40,6 +40,7 @@ exports[`<AddExerciseSet /> Renders correctly 1`] = `
       style={
         Object {
           "flex": 1,
+          "paddingLeft": 5,
         }
       }
     >
