@@ -8,19 +8,26 @@ export default function AddExerciseSet({item = {item: {reps: 0, weight: 100}, in
   const [weight, setWeight] = useState(item.item.weight.toString());
 
   function updatePicker(value, type) {
+    let newReps = reps;
+    let newWeight = weight;
+
     if (type === 'reps') {
       setReps(value);
-      updater({reps: value, weight: weight}, item.index, 'UPDATE_SET');
+      newReps = value;
     } else {
       setWeight(value);
-      updater({reps: reps, weight: value}, item.index, 'UPDATE_SET');
+      newWeight = value;
+    }
+
+    if (!toAdd) {
+      updater({reps: newReps, weight: newWeight}, item.index, 'UPDATE_SET');
     }
   }
 
   return (
     <View style={[home.sectionContainer, {alignItems: 'center', justifyContent: 'space-between'}]} testID="add-exercise-set-root">
-      <View style={{flex: 4, flexDirection: 'row', alignItems: 'center'}}>
-        <Text style={{flex: 1}}>Reps</Text>
+      <View style={{flex: 6, flexDirection: 'row', alignItems: 'center'}}>
+        <Text style={{flex: 1, paddingLeft: 5}}>Reps</Text>
         <Picker
           selectedValue={reps}
           testID="reps-picker"

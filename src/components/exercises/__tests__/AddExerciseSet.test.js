@@ -51,7 +51,9 @@ describe('<AddExerciseSet />', () => {
     expect(weightPicker.props.selectedValue).toBe('160');
 
     fireEvent(renderer.getByText('+'), 'press');
-    expect(updater).toHaveBeenCalledTimes(4);
+
+    // Should not be called the previous two times on changing reps and weight numbers.
+    expect(updater).toHaveBeenCalledTimes(2);
     expect(updater).toHaveBeenLastCalledWith({reps: '4', weight: '160'}, 0, 'ADD_SET');
   });
 });

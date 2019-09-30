@@ -6,6 +6,7 @@ exports[`<AddExercise /> Renders correctly 1`] = `
     Object {
       "flex": 1,
       "flexDirection": "column",
+      "padding": 5,
     }
   }
   testID="add-exercise-root"
@@ -13,12 +14,30 @@ exports[`<AddExercise /> Renders correctly 1`] = `
   <View
     style={
       Object {
+        "alignItems": "center",
         "flex": 1,
         "flexDirection": "row",
         "marginBottom": 5,
       }
     }
   >
+    <Text
+      style={
+        Array [
+          Object {
+            "fontWeight": "bold",
+          },
+          Object {
+            "fontSize": 18,
+          },
+          Object {
+            "flex": 1,
+          },
+        ]
+      }
+    >
+      Exercise:
+    </Text>
     <TextInput
       allowFontScaling={true}
       onChangeText={[Function]}
@@ -53,9 +72,17 @@ exports[`<AddExercise /> Renders correctly 1`] = `
   >
     <Text
       style={
-        Object {
-          "fontSize": 16,
-        }
+        Array [
+          Object {
+            "fontWeight": "bold",
+          },
+          Object {
+            "fontSize": 18,
+          },
+          Object {
+            "paddingBottom": 5,
+          },
+        ]
       }
     >
       Sets
@@ -98,12 +125,20 @@ exports[`<AddExercise /> Renders correctly 1`] = `
   >
     <Text
       style={
-        Object {
-          "fontSize": 16,
-        }
+        Array [
+          Object {
+            "fontWeight": "bold",
+          },
+          Object {
+            "fontSize": 18,
+          },
+          Object {
+            "paddingBottom": 5,
+          },
+        ]
       }
     >
-      Add Exercise:
+      Add Set
     </Text>
     <View
       style={
@@ -135,7 +170,7 @@ exports[`<AddExercise /> Renders correctly 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "flex": 4,
+            "flex": 6,
             "flexDirection": "row",
           }
         }
@@ -144,6 +179,7 @@ exports[`<AddExercise /> Renders correctly 1`] = `
           style={
             Object {
               "flex": 1,
+              "paddingLeft": 5,
             }
           }
         >
