@@ -17,19 +17,27 @@ export default function Session({session, navigation, handle}) {
   const [sessionDuration, setSessionDuration] = useState(session.duration);
   const [isActive, setIsActive] = useState(false);
   const [weightPlateString, setWeightPlateString] = useState(' None');
+  const [dateStamp, setDateStamp] = useState('');
 
   // Create timer used for workout.
   useEffect(() => {
     let interval = null;
     if (isActive) {
       interval = setInterval(() => {
-        setSeconds(seconds => seconds + 1);
+        // const dateSeconds = dateStamp.setSeconds(dateStamp.getSeconds() + seconds);
+        const timeElapsed = Math.floor((new Date(Date.now()) - dateStamp)/1000);
+        console.log(timeElapsed);
+        if (timeElapsed - seconds > 2) {
+          setSeconds(() => timeElapsed + 1);
+        } else {
+          setSeconds(seconds => seconds + 1);
+        }
       }, 1000);
     } else if (!isActive && seconds !== 0) {
       clearInterval(interval);
     }
     return () => clearInterval(interval);
-  }, [isActive, seconds]);
+  }, [isActive, seconds, dateStamp]);
 
   // Start timer at the beginning of workout and set initial weight plate string.
   useEffect(() => {
@@ -38,9 +46,22 @@ export default function Session({session, navigation, handle}) {
     }, 200);
   }, []);
 
+  function calculateDateStamp(time = seconds) {
+    let newDate = new Date(Date.now());
+    newDate.setSeconds(newDate.getSeconds() - time);
+    setDateStamp(newDate);
+  }
+
   function toggle() {
+    if (!isActive) {
+      calculateDateStamp();
+      setIsActive(true);
+    } else {
+      // setDateStamp(new Date(Date.now()));
+      setIsActive(false);
+    }
+
     backgroundTimer.stop();
-    setIsActive(!isActive);
   }
 
   function resetTimer() {
@@ -86,6 +107,7 @@ export default function Session({session, navigation, handle}) {
       updateProgress([exercise + 1, 0]);
       calculateWeightPlates((session.exercises[exercise + 1].sets[0].weight - 45.0) / 2);
       resetTimer();
+      calculateDateStamp(0);
       if (!session.exercises[exercise + 1].name.includes('Warmup')) {
         backgroundTimer.start(`${session.exercises[exercise + 1].name}, 0 of ${session.exercises[exercise].sets.length}`);
       }
@@ -104,6 +126,7 @@ export default function Session({session, navigation, handle}) {
 
     if (forward) {
       resetTimer();
+      calculateDateStamp(0);
       updateSet(set + 1);
       updateProgress([progress[0], set + 1]);
       calculateWeightPlates((session.exercises[exercise].sets[set + 1].weight - 45.0) / 2);
@@ -123,6 +146,7 @@ export default function Session({session, navigation, handle}) {
 
   function finishWorkout() {
     backgroundTimer.stop();
+    toggle();
     setIsActive(false);
     session.duration = seconds + sessionDuration;
     session.progress = progress;
