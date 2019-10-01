@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Provider} from 'react-redux';
 import {createStore, applyMiddleware} from 'redux';
 import logger from 'redux-logger';
@@ -9,6 +9,7 @@ import mainStore from './src/store/main';
 import AsyncStorage from '@react-native-community/async-storage';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
+import SplashScreen from 'react-native-splash-screen';
 import WorkoutsListProvider from "./src/components/workouts/WorkoutsListProvider";
 import WorkoutProvider from "./src/components/workouts/WorkoutProvider";
 import SessionProvider from "./src/components/sessions/SessionProvider";
@@ -51,8 +52,11 @@ export default function App() {
       initialRouteName: 'Home'
     }
   );
-
   const AppContainer = createAppContainer(AppNavigator);
+
+  useEffect(() => {
+    SplashScreen.hide();
+  }, []);
 
   return (
     <Provider store={store}>
