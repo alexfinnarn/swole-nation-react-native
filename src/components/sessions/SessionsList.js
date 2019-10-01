@@ -26,7 +26,7 @@ export default function SessionsList({ sessions, navigation, handle, thing }) {
         <>
           <ActionButton styles={{marginRight: 2}} text="Edit" action={() => {
             handle.setActiveSessionKey(session.item.key);
-            navigation.navigate('Session', {sessionId: session.item.key})
+            navigation.navigate('Session', {sessionId: session.item.key, title: session.item.name})
           }}/>
           <ActionButton text="X" action={() => {
             handle.deleteSession(session.item.key);
@@ -38,7 +38,6 @@ export default function SessionsList({ sessions, navigation, handle, thing }) {
       </ActionCard>
     );
   }
-
 }
 
 

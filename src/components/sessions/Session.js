@@ -4,8 +4,9 @@ import {styles} from "../Styles";
 import Table from "../utility/Table";
 import ActionButton from "../utility/ActionButton";
 import backgroundTimer from '../../services/backgroundTimer.js';
+import Workout from "../workouts/Workout";
 
-export default function Session({session, navigation, handle}) {
+function Session({session, navigation, handle}) {
   if (typeof session === 'undefined') {
     return (<Text>No session found to render.</Text>);
   }
@@ -227,3 +228,13 @@ export default function Session({session, navigation, handle}) {
     </View>
   );
 }
+
+
+Session.navigationOptions = ({navigation}) => {
+  console.log(navigation);
+  return {
+    title: navigation.getParam('title', 'Session')
+  };
+};
+
+export default Session;

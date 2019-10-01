@@ -31,7 +31,11 @@ export default function WorkoutsList({workouts, navigation, handle, thing}) {
       <ActionCard actionComponent={
         <ActionButton text="Edit" styles={{marginRight: 2}} action={() => {
           handle.setActiveWorkoutKey(workout.item.key);
-          navigation.navigate('Workout', {workoutKey: workout.item.key, action: 'edit'});
+          navigation.navigate('Workout', {
+            workoutKey: workout.item.key,
+            title: workout.item.name,
+            action: 'edit'
+          });
         }}/>
       }>
         <Text style={home.sectionHeaderText}>{workout.item.name}</Text>

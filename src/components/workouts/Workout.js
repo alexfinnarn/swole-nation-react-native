@@ -17,7 +17,7 @@ function Workout({workout, handle, navigation, transformers, actionType}) {
     handle.update(newWorkout, action, transformerKey);
 
     if (action === 'CREATE_SESSION') {
-      navigation.navigate('Session');
+      navigation.navigate('Session', { title: new Date(Date.now()).toLocaleString('en-US')});
     } else {
       navigation.goBack();
     }
@@ -39,16 +39,17 @@ function Workout({workout, handle, navigation, transformers, actionType}) {
 
   return (
     <View style={{padding: 10, flex: 1}} testID="workout-root">
-      <View style={{flex: 3}}>
-        <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
-          <Text style={[styles.bold, styles.mediumTextInputFont, {flex: 1}]}>Name</Text>
-          <TextInput
-            style={[styles.editText, styles.smallTextInputFont, {flex: 4}]}
-            placeholder="Workout A"
-            onChangeText={(text) => setName(text)}
-            value={name}
-          />
-        </View>
+      <View style={{flex: 2}}>
+
+        {/*<View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>*/}
+        {/*  <Text style={[styles.bold, styles.mediumTextInputFont, {flex: 1}]}>Name</Text>*/}
+        {/*  <TextInput*/}
+        {/*    style={[styles.editText, styles.smallTextInputFont, {flex: 4}]}*/}
+        {/*    placeholder="Workout A"*/}
+        {/*    onChangeText={(text) => setName(text)}*/}
+        {/*    value={name}*/}
+        {/*  />*/}
+        {/*</View>*/}
         <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
           <Text style={[styles.bold, styles.mediumTextInputFont, {flex: 1}]}>Info</Text>
           <TextInput
@@ -80,8 +81,10 @@ function Workout({workout, handle, navigation, transformers, actionType}) {
   );
 }
 
-Workout.navigationOptions = {
-  title: 'Workout'
+Workout.navigationOptions = ({navigation}) => {
+  return {
+    title: navigation.getParam('title', 'Workout')
+  };
 };
 
 export default Workout;
