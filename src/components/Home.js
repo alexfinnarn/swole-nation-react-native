@@ -19,7 +19,7 @@ function Home({navigation, workouts, handle, sessionTeaser}) {
       </ActionCard>
       <ActionCard actionComponent={<ActionButton text="Go" action={() => {
         handle.nextWorkoutInteraction(nextWorkoutKey);
-        navigation.navigate('Workout', {action: 'go'});
+        navigation.navigate('Workout', {action: 'go', title: workouts.find((el) => el.key === nextWorkoutKey).name});
       }}/>}>
         <Text style={home.sectionHeaderText}>Next Workout</Text>
         <View style={{flex: 2}}>
@@ -42,9 +42,10 @@ function Home({navigation, workouts, handle, sessionTeaser}) {
   );
 }
 
-// Home.navigationOptions = {
-//   headerRight: <ActionButton action={() => NavigationService.navigate('Settings')} text="Settings"/>
-// };
+Home.navigationOptions = {
+  title: 'Swole Nation',
+  // headerRight: <ActionButton action={() => NavigationService.navigate('Settings')} text="Settings"/>
+};
 
 
 export default Home;

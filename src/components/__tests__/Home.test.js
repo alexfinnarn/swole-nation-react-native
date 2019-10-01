@@ -55,7 +55,10 @@ describe('<Home />', () => {
 
     // Sessions.
     fireEvent(navigationButtons[2], 'press');
-    expect(navigation.navigate).toHaveBeenCalledWith('Workout', {action: 'go'});
+    expect(navigation.navigate).toHaveBeenCalledWith('Workout', {
+      action: 'go',
+      title: "Stronglifts B"
+    });
     expect(handle.nextWorkoutInteraction).toHaveBeenCalledWith('DAwJBQEMAA0');
 
     // Sessions.

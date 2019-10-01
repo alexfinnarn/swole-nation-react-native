@@ -14,58 +14,6 @@ exports[`<AddExercise /> Renders correctly 1`] = `
   <View
     style={
       Object {
-        "alignItems": "center",
-        "flex": 1,
-        "flexDirection": "row",
-        "marginBottom": 5,
-      }
-    }
-  >
-    <Text
-      style={
-        Array [
-          Object {
-            "fontWeight": "bold",
-          },
-          Object {
-            "fontSize": 18,
-          },
-          Object {
-            "flex": 1,
-          },
-        ]
-      }
-    >
-      Exercise:
-    </Text>
-    <TextInput
-      allowFontScaling={true}
-      onChangeText={[Function]}
-      placeholder="Enter Exercise"
-      rejectResponderTermination={true}
-      style={
-        Array [
-          Object {
-            "borderBottomColor": "grey",
-            "borderBottomWidth": 2,
-            "color": "black",
-            "marginTop": 5,
-          },
-          Object {
-            "fontSize": 16,
-          },
-          Object {
-            "flex": 4,
-          },
-        ]
-      }
-      underlineColorAndroid="transparent"
-      value=""
-    />
-  </View>
-  <View
-    style={
-      Object {
         "flex": 8,
       }
     }

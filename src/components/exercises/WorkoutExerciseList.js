@@ -19,7 +19,7 @@ export default function WorkoutExerciseList({exercises, navigation, handle}) {
       <ActionCard actionComponent={
         <ActionButton text="Edit" action={() => {
           handle.setActiveExerciseKey(exercise.item.key);
-          navigation.navigate('AddExercise');
+          navigation.navigate('AddExercise', {title: exercise.item.name});
         }}/>
       }>
         <Text style={[styles.mediumTextInputFont, styles.bold, {flex: 4, paddingBottom: 10}]}>{exercise.item.name}</Text>

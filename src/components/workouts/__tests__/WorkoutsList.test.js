@@ -44,14 +44,22 @@ describe('<WorkoutsList />', () => {
   it('Should navigate to the Workout screen when edit button pressed', () => {
     // Expect navigate to Stronglifts A workout.
     fireEvent(renderer.getAllByText('Edit')[0], 'press');
-    expect(navigation.navigate).toHaveBeenCalledWith('Workout', {action: 'edit', workoutKey: 'DQkECwYLCQQ'});
+    expect(navigation.navigate).toHaveBeenCalledWith('Workout', {
+      action: 'edit',
+      title: "Stronglifts A",
+      workoutKey: 'DQkECwYLCQQ'
+    });
     expect(handle.setActiveWorkoutKey).toHaveBeenCalledTimes(1);
     expect(handle.setActiveWorkoutKey).toHaveBeenCalledWith('DQkECwYLCQQ');
 
 
     // Expect navigate to Stronglifts B workout.
     fireEvent(renderer.getAllByText('Edit')[1], 'press');
-    expect(navigation.navigate).toHaveBeenCalledWith('Workout', {action: 'edit', workoutKey: 'DAwJBQEMAA0'});
+    expect(navigation.navigate).toHaveBeenLastCalledWith('Workout', {
+      action: 'edit',
+      title: "Stronglifts B",
+      workoutKey: 'DAwJBQEMAA0'
+    });
     expect(handle.setActiveWorkoutKey).toHaveBeenCalledTimes(2);
     expect(handle.setActiveWorkoutKey).toHaveBeenCalledWith('DAwJBQEMAA0');
   });

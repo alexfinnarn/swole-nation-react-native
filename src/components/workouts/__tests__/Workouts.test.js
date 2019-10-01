@@ -35,16 +35,14 @@ describe('<Workout />', () => {
   // });
 
   it('Displays the name and description of workout and updates text inputs correctly', () => {
-    const nameInput = renderer.getByPlaceholder('Workout A');
+    // const nameInput = renderer.getByPlaceholder('Workout A');
+    // expect(nameInput.props.value).toBe('Stronglifts A');
+    // fireEvent.changeText(nameInput, 'Foo');
+    // expect(nameInput.props.value).toBe('Foo');
+
     const descriptionInput = renderer.getByPlaceholder('Workout Description');
-
-    expect(nameInput.props.value).toBe('Stronglifts A');
     expect(descriptionInput.props.value).toBe('Squats, Bench Press, Barbell Row');
-
-    fireEvent.changeText(nameInput, 'Foo');
     fireEvent.changeText(descriptionInput, 'Bar');
-
-    expect(nameInput.props.value).toBe('Foo');
     expect(descriptionInput.props.value).toBe('Bar');
   });
 

@@ -56,7 +56,10 @@ describe('<SessionsList />', () => {
   it('Should navigate to the Session screen when edit button pressed', () => {
     // Expect navigate to first session.
     fireEvent(renderer.getAllByText('Edit')[0], 'press');
-    expect(navigation.navigate).toHaveBeenCalledWith('Session', {sessionId: "BwgFDQ8CCg8"});
+    expect(navigation.navigate).toHaveBeenCalledWith('Session', {
+      sessionId: "BwgFDQ8CCg8",
+      title: "Thu Sep 26 12:19:14 2019"
+    });
     expect(handle.setActiveSessionKey).toHaveBeenCalledTimes(1);
     expect(handle.setActiveSessionKey).toHaveBeenCalledWith('BwgFDQ8CCg8');
   });
