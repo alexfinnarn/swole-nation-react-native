@@ -41,11 +41,17 @@ describe('<ExercisesList />', () => {
 
     // Navigate to Squats Warmup.
     fireEvent(navigationButtons[0], 'press');
-    expect(navigation.navigate).toHaveBeenCalledWith("AddExercise", {"exerciseKey": "BwEBDwoFBgQ"});
+    expect(navigation.navigate).toHaveBeenCalledWith("AddExercise", {
+      exerciseKey: "BwEBDwoFBgQ",
+      title: "Squats Warmup"
+    });
 
     // Navigate to Deadlifts.
     fireEvent(navigationButtons[9], 'press');
-    expect(navigation.navigate).toHaveBeenCalledWith("AddExercise", {"exerciseKey": "DAYCDAQKAw4"});
+    expect(navigation.navigate).toHaveBeenLastCalledWith("AddExercise", {
+      exerciseKey: "DAYCDAQKAw4",
+      title: "Deadlifts"
+    });
 
     // Navigate to New Exercise.
     // fireEvent(renderer.getByText('Add Exercise'), 'press');
@@ -59,7 +65,10 @@ describe('<ExercisesList />', () => {
 
     // Navigate to Squats.
     fireEvent(navigationButtons[0], 'press');
-    expect(navigation.navigate).toHaveBeenCalledWith("AddExercise", {"exerciseKey": "BwEBDwoFBgQ"});
+    expect(navigation.navigate).toHaveBeenCalledWith("AddExercise", {
+      exerciseKey: "BwEBDwoFBgQ",
+      title: "Squats Warmup"
+    });
 
     // Rearrange Deadlifts to take Squats place in array.
     const squats = exercises.shift();
@@ -73,6 +82,9 @@ describe('<ExercisesList />', () => {
 
     // Navigate to Deadlifts.
     fireEvent(navigationButtons[0], 'press');
-    expect(navigation.navigate).toHaveBeenCalledWith("AddExercise", {"exerciseKey": "DAYCDAQKAw4"});
+    expect(navigation.navigate).toHaveBeenLastCalledWith("AddExercise", {
+      exerciseKey: "DAYCDAQKAw4",
+      title: "Deadlifts"
+    });
   });
 });
