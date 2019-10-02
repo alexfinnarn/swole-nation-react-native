@@ -4,7 +4,6 @@ import {styles} from "../Styles";
 import Table from "../utility/Table";
 import ActionButton from "../utility/ActionButton";
 import backgroundTimer from '../../services/backgroundTimer.js';
-import Workout from "../workouts/Workout";
 
 function Session({session, navigation, handle}) {
   if (typeof session === 'undefined') {
@@ -39,7 +38,7 @@ function Session({session, navigation, handle}) {
     return () => clearInterval(interval);
   }, [isActive, seconds, dateStamp]);
 
-  // Start timer at the beginning of workout and set initial weight plate string.
+  // Set initial weight plate string.
   useEffect(() => {
     setTimeout(() => {
       calculateWeightPlates((session.exercises[exercise].sets[set].weight - 45.0) / 2);
@@ -93,11 +92,11 @@ function Session({session, navigation, handle}) {
   }
 
   function handleSets(forward, completed = false) {
+    backgroundTimer.stop();
     if (completed) {
       session.exercises[exercise].sets[set].completed = true;
       session.completed++;
     }
-    backgroundTimer.stop();
 
     // If forwards and at the end of the sets, move to the next exercise.
     if (forward && set === session.exercises[exercise].sets.length - 1) {
