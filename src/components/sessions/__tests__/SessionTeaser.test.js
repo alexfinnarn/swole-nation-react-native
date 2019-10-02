@@ -31,7 +31,7 @@ describe('<SessionsList />', () => {
   });
 
   it('Should render workout name', () => {
-    expect(renderer.getByTestId('workout-name').props.children).toBe('Stronglifts A');
+    expect(renderer.getByTestId('workout-name').props.children).toBe('Texas Method A');
   });
 
   it('Should render completed percentage', () => {

@@ -2,8 +2,8 @@ import store from '../main';
 import data from '../data';
 import {WorkoutActions} from '../actions';
 
-const strongliftsA = 'DQkECwYLCQQ';
-const strongliftsB = 'DAwJBQEMAA0';
+const texasMethodA = 'DQkECwYLCQQ';
+const texasMethodB = 'DAwJBQEMAA0';
 const squatsKey = 'Bw0ECwAKBws';
 const firstSession = 'BwgFDQ8CCg8';
 
@@ -28,30 +28,30 @@ describe('Workouts Reducer', () => {
   });
 
   it('DELETE_WORKOUT', () => {
-    expect(data.workouts[strongliftsA]).toBeDefined();
-    const reducer = store(undefined, {type: WorkoutActions.DELETE_WORKOUT, key: strongliftsA});
+    expect(data.workouts[texasMethodA]).toBeDefined();
+    const reducer = store(undefined, {type: WorkoutActions.DELETE_WORKOUT, key: texasMethodA});
     expect(Object.keys(reducer.workouts).length).toBe(1);
     expect(Object.keys(reducer.workouts).length).not.toEqual(Object.keys(data.workouts).length);
   });
 
   it('UPDATE_WORKOUT', () => {
-    expect(data.workouts[strongliftsB]).toBeDefined();
+    expect(data.workouts[texasMethodB]).toBeDefined();
     const newData = Object.assign({}, data);
-    newData.workouts[strongliftsB].name = 'Workout C';
-    const reducer = store(undefined, {type: WorkoutActions.UPDATE_WORKOUT, workout: newData.workouts[strongliftsB]});
+    newData.workouts[texasMethodB].name = 'Workout C';
+    const reducer = store(undefined, {type: WorkoutActions.UPDATE_WORKOUT, workout: newData.workouts[texasMethodB]});
 
-    expect(reducer.workouts[strongliftsB].name).toBe('Workout C');
-    expect(reducer.workouts[strongliftsB]).toEqual(newData.workouts[strongliftsB]);
+    expect(reducer.workouts[texasMethodB].name).toBe('Workout C');
+    expect(reducer.workouts[texasMethodB]).toEqual(newData.workouts[texasMethodB]);
     expect(reducer.theThing).not.toEqual(data.theThing);
   });
 
   it('SET_ACTIVE_WORKOUT', () => {
     const reducer = store(undefined, {
       type: WorkoutActions.SET_ACTIVE_WORKOUT,
-      key: strongliftsA,
+      key: texasMethodA,
       transformerKey: 'addFive'
     });
-    expect(reducer.activeWorkoutKey).toBe(strongliftsA);
+    expect(reducer.activeWorkoutKey).toBe(texasMethodA);
     expect(reducer.activeWorkoutKey).not.toEqual(data.activeWorkoutKey);
     expect(reducer.activeTransformerKey).toBe('addFive');
     expect(reducer.activeTransformerKey).not.toEqual(data.activeTransformerKey);
@@ -62,11 +62,11 @@ describe('Workouts Reducer', () => {
 describe('Exercises Reducer', () => {
 
   it('ADD_EXERCISE', () => {
-    expect(data.workouts[strongliftsA].exercises.includes('Deadlifts')).not.toBeTruthy();
+    expect(data.workouts[texasMethodA].exercises.includes('Deadlifts')).not.toBeTruthy();
     let newData = Object.assign({}, data);
-    newData.activeWorkoutKey = strongliftsA;
+    newData.activeWorkoutKey = texasMethodA;
     const reducer = store(newData, {type: WorkoutActions.ADD_EXERCISE, exercise: {name: 'Deadlifts'}});
-    expect(reducer.workouts[strongliftsA].exercises.includes('Deadlifts')).toBeTruthy();
+    expect(reducer.workouts[texasMethodA].exercises.includes('Deadlifts')).toBeTruthy();
     expect(reducer.theThing).not.toEqual(data.theThing);
   });
 
@@ -119,7 +119,7 @@ describe('Sessions Reducer', () => {
 
   it('CREATE_SESSION', () => {
     // let newData = Object.assign({}, data);
-    // newData.activeWorkoutKey = strongliftsA;
+    // newData.activeWorkoutKey = texasMethodA;
     // const reducer = store(newData, {type: WorkoutActions.CREATE_SESSION});
     // expect(Object.keys(reducer.sessions).length).toBeGreaterThan(Object.keys(data.sessions).length);
   });

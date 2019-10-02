@@ -102,7 +102,7 @@ exports[`<Home /> Renders correctly 1`] = `
             <Text
               testID="workout-name"
             >
-              Stronglifts A
+              Texas Method A
             </Text>
           </View>
           <View
@@ -254,12 +254,12 @@ exports[`<Home /> Renders correctly 1`] = `
             items={
               Array [
                 Object {
-                  "label": "Stronglifts A",
+                  "label": "Texas Method A",
                   "textColor": undefined,
                   "value": "DQkECwYLCQQ",
                 },
                 Object {
-                  "label": "Stronglifts B",
+                  "label": "Texas Method B",
                   "textColor": undefined,
                   "value": "DAwJBQEMAA0",
                 },

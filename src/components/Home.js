@@ -8,7 +8,7 @@ import ActionCard from "./utility/ActionCard";
 function Home({navigation, workouts, handle, sessionTeaser}) {
   // Since there are only two workouts so far, set the next workout to be the opposite of the last workout.
   const [nextWorkoutKey, setNextWorkoutKey] = useState(
-    sessionTeaser.workoutName === 'Stronglifts A' ? workouts[1].key : workouts[0].key);
+    sessionTeaser.workoutName === 'Texas Method A' ? workouts[1].key : workouts[0].key);
 
   return (
     <View style={[styles.container]} testID="home-root">

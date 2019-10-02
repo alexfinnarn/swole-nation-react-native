@@ -51,7 +51,7 @@ exports[`<SessionsList /> Renders correctly 1`] = `
       <Text
         testID="workout-name"
       >
-        Stronglifts A
+        Texas Method A
       </Text>
     </View>
     <View

@@ -10,7 +10,7 @@ const timerStop = jest.spyOn(backgroundTimer, 'stop');
 const timerStart = jest.spyOn(backgroundTimer, 'start');
 
 let renderer, instance = {};
-const strongliftsA = 'DQkECwYLCQQ';
+const texasMethodA = 'DQkECwYLCQQ';
 
 function getSession() {
   let session = {
@@ -18,8 +18,8 @@ function getSession() {
     duration: 0,
     progress: [0,0],
     name: new Date(Date.now()).toLocaleString('en-US'),
-    workoutKeys: [data.workouts[strongliftsA].key],
-    exercises: data.workouts[strongliftsA].exercises.map((name) => {
+    workoutKeys: [data.workouts[texasMethodA].key],
+    exercises: data.workouts[texasMethodA].exercises.map((name) => {
       const foundKey = Object.keys(data.exercises).find(key => data.exercises[key].name === name);
       return data.exercises[foundKey];
     })

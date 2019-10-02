@@ -42,22 +42,22 @@ describe('<WorkoutsList />', () => {
   });
 
   it('Should navigate to the Workout screen when edit button pressed', () => {
-    // Expect navigate to Stronglifts A workout.
+    // Expect navigate to Texas Method A workout.
     fireEvent(renderer.getAllByText('Edit')[0], 'press');
     expect(navigation.navigate).toHaveBeenCalledWith('Workout', {
       action: 'edit',
-      title: "Stronglifts A",
+      title: "Texas Method A",
       workoutKey: 'DQkECwYLCQQ'
     });
     expect(handle.setActiveWorkoutKey).toHaveBeenCalledTimes(1);
     expect(handle.setActiveWorkoutKey).toHaveBeenCalledWith('DQkECwYLCQQ');
 
 
-    // Expect navigate to Stronglifts B workout.
+    // Expect navigate to Texas Method B workout.
     fireEvent(renderer.getAllByText('Edit')[1], 'press');
     expect(navigation.navigate).toHaveBeenLastCalledWith('Workout', {
       action: 'edit',
-      title: "Stronglifts B",
+      title: "Texas Method B",
       workoutKey: 'DAwJBQEMAA0'
     });
     expect(handle.setActiveWorkoutKey).toHaveBeenCalledTimes(2);
@@ -65,13 +65,13 @@ describe('<WorkoutsList />', () => {
   });
 
   // it('Should delete a workout and remove it from the list', () => {
-  //   expect(renderer.queryByText('Stronglifts A')).not.toBeNull();
+  //   expect(renderer.queryByText('Texas Method A')).not.toBeNull();
   //   fireEvent(renderer.getAllByText('X')[0], 'press');
   //   expect(handle.deleteWorkout).toHaveBeenCalledTimes(1);
   //   expect(handle.deleteWorkout).toHaveBeenCalledWith('DQkECwYLCQQ');
   //
   //   workouts.shift();
   //   renderer.update(<WorkoutsList workouts={workouts} navigation={navigation} handle={handle} thing={shortId.generate()}/>);
-  //   expect(renderer.queryByText('Stronglifts A')).toBeNull();
+  //   expect(renderer.queryByText('Texas Method A')).toBeNull();
   // });
 });
