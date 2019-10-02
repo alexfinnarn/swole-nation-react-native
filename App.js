@@ -1,8 +1,6 @@
 import React, {useEffect} from 'react';
 import {Provider} from 'react-redux';
-import {createStore, applyMiddleware} from 'redux';
-import logger from 'redux-logger';
-import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
+import {createStore} from 'redux';
 import {persistStore, persistReducer} from 'redux-persist';
 import {PersistGate} from 'redux-persist/integration/react';
 import mainStore from './src/store/main';
@@ -10,7 +8,6 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import SplashScreen from 'react-native-splash-screen';
-import {Image, TouchableOpacity} from 'react-native';
 import WorkoutsListProvider from "./src/components/workouts/WorkoutsListProvider";
 import WorkoutProvider from "./src/components/workouts/WorkoutProvider";
 import SessionProvider from "./src/components/sessions/SessionProvider";
@@ -20,6 +17,8 @@ import SessionsListProvider from "./src/components/sessions/SessionsListProvider
 import ExercisesListProvider from "./src/components/exercises/ExercisesListProvider";
 import NavigationService from './src/services/NavigationService';
 import SettingsProvider from "./src/components/SettingsProvider";
+import HeaderRight from "./src/components/utility/HeaderRight";
+import SNwebView from "./src/components/utility/SNwebView";
 
 export default function App() {
   const persistConfig = {
@@ -31,7 +30,7 @@ export default function App() {
   const persistedReducer = persistReducer(persistConfig, mainStore);
   const store = createStore(persistedReducer);
   let persistor = persistStore(store);
-  persistor.purge();
+  // persistor.purge();
 
   const AppNavigator = createStackNavigator(
     {
@@ -74,6 +73,12 @@ export default function App() {
           title: 'Settings',
         },
       },
+      WebView: {
+        screen: SNwebView,
+        navigationOptions: {
+          title: 'User Guide',
+        },
+      }
     },
     {
       initialRouteName: 'Home',
@@ -85,12 +90,7 @@ export default function App() {
         headerTitleStyle: {
           fontWeight: 'bold',
         },
-        headerRight: (
-          <TouchableOpacity onPress={() => NavigationService.navigate('Home')}>
-            <Image resizeMode="contain" style={{flex: 1, height: 56, width: 80}}
-                   source={require('./assets/sn-logo.png')}/>
-          </TouchableOpacity>
-        )
+        headerRight: <HeaderRight/>
       },
     }
   );
