@@ -38,7 +38,7 @@ describe('<SessionsList />', () => {
       name: 'Workout C',
       description: 'blah',
       exercises: [],
-      workoutName: 'Stronglifts B',
+      workoutName: 'Texas Method B',
       progress: [2, 4],
       duration: 50,
       completed: 12,

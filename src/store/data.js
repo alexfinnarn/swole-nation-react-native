@@ -3,7 +3,7 @@ import addFive from '../transformers/addFive'
 const data = {
   workouts: {
     DQkECwYLCQQ: {
-      name: "Stronglifts A",
+      name: "Texas Method A",
       key: "DQkECwYLCQQ",
       description: "Squats, Bench Press, Barbell Row",
       exercises: [
@@ -16,7 +16,7 @@ const data = {
       ]
     },
     DAwJBQEMAA0: {
-      name: "Stronglifts B",
+      name: "Texas Method B",
       key: "DAwJBQEMAA0",
       description: "Squats, Overhead Press, Deadlifts",
       exercises: [
@@ -273,7 +273,7 @@ const data = {
         5,
         1,
       ],
-      workoutName: "Stronglifts A",
+      workoutName: "Texas Method A",
       exercises: [
         {
           image: require("../../assets/squats.gif"),

@@ -4,8 +4,8 @@ import data from "../../../store/data";
 import WorkoutExerciseList from "../WorkoutExerciseList";
 import ActionCard from "../../utility/ActionCard";
 
-const strongliftsA = 'DQkECwYLCQQ';
-const strongliftsB = 'DAwJBQEMAA0';
+const texasMethodA = 'DQkECwYLCQQ';
+const texasMethodB = 'DAwJBQEMAA0';
 const handle = {
   createExercise: jest.fn(),
   setActiveExerciseKey: jest.fn(),
@@ -24,7 +24,7 @@ function getExercises(key) {
 }
 
 beforeEach(() => {
-  exercises = getExercises(strongliftsA);
+  exercises = getExercises(texasMethodA);
   renderer = render(<WorkoutExerciseList exercises={exercises} navigation={navigation} handle={handle} />);
   instance = renderer.getByTestId('workout-exercise-list-root');
 }, 0);
@@ -41,7 +41,7 @@ describe('<WorkoutExerciseList />', () => {
     expect(renderer.queryByText('Deadlifts')).toBeNull();
     expect(renderer.queryByText('Bench Press')).not.toBeNull();
 
-    exercises = getExercises(strongliftsB);
+    exercises = getExercises(texasMethodB);
     renderer.update(<WorkoutExerciseList exercises={exercises} navigation={navigation} handle={handle} />)
 
     actionCards = instance.findAllByType(ActionCard);

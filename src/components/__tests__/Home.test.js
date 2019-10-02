@@ -57,7 +57,7 @@ describe('<Home />', () => {
     fireEvent(navigationButtons[2], 'press');
     expect(navigation.navigate).toHaveBeenCalledWith('Workout', {
       action: 'go',
-      title: "Stronglifts B"
+      title: "Texas Method B"
     });
     expect(handle.nextWorkoutInteraction).toHaveBeenCalledWith('DAwJBQEMAA0');
 
