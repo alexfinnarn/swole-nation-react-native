@@ -24,3 +24,5 @@ As Swole Nation is still in early alpha testing, the roadmap will be hard to
 
 ## Wiki
 
+There is more detailed developer information and a user guide within the wiki: https://github.com/alexfinnarn/swole-nation-react-native/wiki 
+
