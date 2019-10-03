@@ -26,7 +26,7 @@ function Home({navigation, workouts, handle, sessionTeaser}) {
           <Picker
             testID="workout-picker"
             selectedValue={nextWorkoutKey}
-            style={{height: 70, width: 160}}
+            style={{height: 70, width: 180}}
             onValueChange={(value) => setNextWorkoutKey(value)}>
             {workouts.map((workout) => <Picker.Item key={workout.key} label={workout.name} value={workout.key}/>)}
           </Picker>
