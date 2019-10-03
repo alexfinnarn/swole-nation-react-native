@@ -17,7 +17,9 @@ export default function WorkoutExerciseList({exercises, navigation, handle}) {
   function WorkoutExerciseListItem({exercise}) {
     return (
       <ActionCard actionComponent={
-        <ActionButton text="Edit" action={() => {
+        <ActionButton text="Edit"
+                      label={`Edit ${exercise.item.name} exercise`}
+                      action={() => {
           handle.setActiveExerciseKey(exercise.item.key);
           navigation.navigate('AddExercise', {title: exercise.item.name});
         }}/>

@@ -13,11 +13,11 @@ function Home({navigation, workouts, handle, sessionTeaser}) {
   return (
     <View style={[styles.container]} testID="home-root">
       <ActionCard
-        actionComponent={<ActionButton text="List" action={() => navigation.navigate('SessionsList')}/>}>
+        actionComponent={<ActionButton text="List" label="List Sessions" action={() => navigation.navigate('SessionsList')}/>}>
         <Text style={home.sectionHeaderText}>Sessions</Text>
         <SessionTeaser styles={{flex: 3}} session={sessionTeaser}/>
       </ActionCard>
-      <ActionCard actionComponent={<ActionButton text="Go" action={() => {
+      <ActionCard actionComponent={<ActionButton text="Go" label="Go to next workout" action={() => {
         handle.nextWorkoutInteraction(nextWorkoutKey);
         navigation.navigate('Workout', {action: 'go', title: workouts.find((el) => el.key === nextWorkoutKey).name});
       }}/>}>
@@ -32,20 +32,14 @@ function Home({navigation, workouts, handle, sessionTeaser}) {
           </Picker>
         </View>
       </ActionCard>
-      <ActionCard actionComponent={<ActionButton text="Edit" action={() => navigation.navigate('WorkoutsList')}/>}>
+      <ActionCard actionComponent={<ActionButton text="Edit" label="Edit Workouts" action={() => navigation.navigate('WorkoutsList')}/>}>
         <Text style={home.sectionHeaderText}>Workouts</Text>
       </ActionCard>
-      <ActionCard actionComponent={<ActionButton text="Edit" action={() => navigation.navigate('ExercisesList')}/>}>
+      <ActionCard actionComponent={<ActionButton text="Edit" label="Edit Exercises" action={() => navigation.navigate('ExercisesList')}/>}>
         <Text style={home.sectionHeaderText}>Exercises</Text>
       </ActionCard>
     </View>
   );
 }
-
-Home.navigationOptions = {
-  title: 'Swole Nation',
-  // headerRight: <ActionButton action={() => NavigationService.navigate('Settings')} text="Settings"/>
-};
-
 
 export default Home;

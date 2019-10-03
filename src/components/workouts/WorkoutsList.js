@@ -14,7 +14,7 @@ export default function WorkoutsList({workouts, navigation, handle, thing}) {
           renderItem={(item) => <WorkoutsListItem workout={item}/>}
         />
       </View>
-      {/*<ActionButton text="Add Workout" action={() => {*/}
+      {/*<ActionButton label="Add new workout" text="Add Workout" action={() => {*/}
       {/*  handle.createWorkout();*/}
       {/*  navigation.navigate('Workout', {action: 'save'});*/}
       {/*}}/>*/}
@@ -22,14 +22,14 @@ export default function WorkoutsList({workouts, navigation, handle, thing}) {
   );
 
   function WorkoutsListItem({workout}) {
-    {/*  <ActionButton text="X" action={() => {*/}
+    {/*  <ActionButton label={`Delete ${workout.item.name} workout`} text="X" action={() => {*/}
     {/*    handle.deleteWorkout(workout.item.key);*/}
     {/*  }}/>*/}
     {/*</>*/}
 
     return (
       <ActionCard actionComponent={
-        <ActionButton text="Edit" styles={{marginRight: 2}} action={() => {
+        <ActionButton label={`Edit ${workout.item.name} workout`} text="Edit" styles={{marginRight: 2}} action={() => {
           handle.setActiveWorkoutKey(workout.item.key);
           navigation.navigate('Workout', {
             workoutKey: workout.item.key,

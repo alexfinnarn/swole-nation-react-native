@@ -365,6 +365,7 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
               }
             >
               <View
+                accessibilityLabel="Edit Squats Warmup exercise"
                 accessible={true}
                 focusable={true}
                 isTVSelectable={true}
@@ -473,6 +474,7 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
               }
             >
               <View
+                accessibilityLabel="Edit Squats exercise"
                 accessible={true}
                 focusable={true}
                 isTVSelectable={true}
@@ -581,6 +583,7 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
               }
             >
               <View
+                accessibilityLabel="Edit Bench Press Warmup exercise"
                 accessible={true}
                 focusable={true}
                 isTVSelectable={true}
@@ -689,6 +692,7 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
               }
             >
               <View
+                accessibilityLabel="Edit Bench Press exercise"
                 accessible={true}
                 focusable={true}
                 isTVSelectable={true}
@@ -797,6 +801,7 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
               }
             >
               <View
+                accessibilityLabel="Edit Overhead Press Warmup exercise"
                 accessible={true}
                 focusable={true}
                 isTVSelectable={true}
@@ -905,6 +910,7 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
               }
             >
               <View
+                accessibilityLabel="Edit Overhead Press exercise"
                 accessible={true}
                 focusable={true}
                 isTVSelectable={true}
@@ -1013,6 +1019,7 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
               }
             >
               <View
+                accessibilityLabel="Edit Barbell Row Warmup exercise"
                 accessible={true}
                 focusable={true}
                 isTVSelectable={true}
@@ -1121,6 +1128,7 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
               }
             >
               <View
+                accessibilityLabel="Edit Barbell Row exercise"
                 accessible={true}
                 focusable={true}
                 isTVSelectable={true}
@@ -1229,6 +1237,7 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
               }
             >
               <View
+                accessibilityLabel="Edit Deadlifts Warmup exercise"
                 accessible={true}
                 focusable={true}
                 isTVSelectable={true}
@@ -1337,6 +1346,7 @@ exports[`<ExercisesList /> Renders correctly 1`] = `
               }
             >
               <View
+                accessibilityLabel="Edit Deadlifts exercise"
                 accessible={true}
                 focusable={true}
                 isTVSelectable={true}

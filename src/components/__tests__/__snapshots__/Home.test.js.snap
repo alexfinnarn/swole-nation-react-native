@@ -155,6 +155,7 @@ exports[`<Home /> Renders correctly 1`] = `
       }
     >
       <View
+        accessibilityLabel="List Sessions"
         accessible={true}
         focusable={true}
         isTVSelectable={true}
@@ -294,6 +295,7 @@ exports[`<Home /> Renders correctly 1`] = `
       }
     >
       <View
+        accessibilityLabel="Go to next workout"
         accessible={true}
         focusable={true}
         isTVSelectable={true}
@@ -387,6 +389,7 @@ exports[`<Home /> Renders correctly 1`] = `
       }
     >
       <View
+        accessibilityLabel="Edit Workouts"
         accessible={true}
         focusable={true}
         isTVSelectable={true}
@@ -480,6 +483,7 @@ exports[`<Home /> Renders correctly 1`] = `
       }
     >
       <View
+        accessibilityLabel="Edit Exercises"
         accessible={true}
         focusable={true}
         isTVSelectable={true}

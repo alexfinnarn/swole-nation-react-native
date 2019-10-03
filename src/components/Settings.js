@@ -17,7 +17,7 @@ export default function Settings({ theSetting, handle }) {
         />
       </View>
       <View style={{flex: 1}}>
-        <ActionButton action={() => handle.saveSettings(name)} text="Save" />
+        <ActionButton label="Save Settings" action={() => handle.saveSettings(name)} text="Save" />
       </View>
     </View>
   );

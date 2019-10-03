@@ -51,6 +51,7 @@ function AddExercise({exercises, handle, navigation, theExercise, pickerEnabled,
         <AddExerciseSet updater={handle.update} exercise={exercise} toAdd={true}/>
       </View>
       <ActionButton text={exercise.connectedWorkout ? 'Add' : 'Save'}
+                    label={exercise.connectedWorkout ? 'Add exercise' : 'Save exercise'}
                     action={() => {
                       if (!exerciseSelected) {
                         exercise.name = name;
