@@ -154,6 +154,7 @@ exports[`<Session /> Renders correctly 1`] = `
       }
     >
       <View
+        accessibilityLabel="Previous set"
         accessible={true}
         focusable={true}
         isTVSelectable={true}
@@ -210,6 +211,7 @@ exports[`<Session /> Renders correctly 1`] = `
       }
     >
       <View
+        accessibilityLabel="Complete set"
         accessible={true}
         focusable={true}
         isTVSelectable={true}
@@ -263,6 +265,7 @@ exports[`<Session /> Renders correctly 1`] = `
       }
     >
       <View
+        accessibilityLabel="No next set available"
         accessible={true}
         focusable={true}
         isTVSelectable={true}
@@ -609,6 +612,7 @@ exports[`<Session /> Renders correctly 1`] = `
       }
     >
       <View
+        accessibilityLabel="Start or resume session"
         accessible={true}
         focusable={true}
         isTVSelectable={true}
@@ -662,6 +666,7 @@ exports[`<Session /> Renders correctly 1`] = `
       }
     >
       <View
+        accessibilityLabel="Quit session"
         accessible={true}
         focusable={true}
         isTVSelectable={true}

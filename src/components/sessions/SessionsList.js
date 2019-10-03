@@ -16,7 +16,7 @@ export default function SessionsList({ sessions, navigation, handle, thing }) {
           renderItem={(item) => <SessionsListItem session={item}/>}
         />
       </View>
-      {/*<ActionButton text="Add session" action={() => navigation.navigate('Session')} />*/}
+      {/*<ActionButton text="Add session" label="Add Session" action={() => navigation.navigate('Session')} />*/}
     </View>
   );
 
@@ -24,11 +24,15 @@ export default function SessionsList({ sessions, navigation, handle, thing }) {
     return (
       <ActionCard actionComponent={
         <>
-          <ActionButton styles={{marginRight: 2}} text="Edit" action={() => {
+          <ActionButton styles={{marginRight: 2}} text="Edit"
+                        label={`Edit session: ${session.item.name}`}
+                        action={() => {
             handle.setActiveSessionKey(session.item.key);
             navigation.navigate('Session', {sessionId: session.item.key, title: session.item.name})
           }}/>
-          <ActionButton text="X" action={() => {
+          <ActionButton text="X"
+                        label={`Delete session: ${session.item.name}`}
+                        action={() => {
             handle.deleteSession(session.item.key);
             // navigation.navigate('Home');
           }}/>

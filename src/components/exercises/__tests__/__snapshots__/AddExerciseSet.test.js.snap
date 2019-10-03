@@ -568,6 +568,7 @@ exports[`<AddExerciseSet /> Renders correctly 1`] = `
       }
     >
       <View
+        accessibilityLabel="Add set to exercise"
         accessible={true}
         focusable={true}
         isTVSelectable={true}

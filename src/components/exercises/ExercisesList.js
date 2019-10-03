@@ -14,7 +14,7 @@ export default function ExercisesList({ exercises, navigation, handle }) {
           renderItem={(item) => <ExercisesListItem exercise={item}/>}
         />
       </View>
-      {/*<ActionButton text="Add Exercise" action={() => {*/}
+      {/*<ActionButton label="Create new exercise" text="Add Exercise" action={() => {*/}
       {/*  handle.createExercise();*/}
       {/*  navigation.navigate('AddExercise');*/}
       {/*}} />*/}
@@ -24,10 +24,12 @@ export default function ExercisesList({ exercises, navigation, handle }) {
   function ExercisesListItem({exercise}) {
     return (
       <ActionCard actionComponent={
-        <ActionButton text="Edit" action={() => {
-          handle.setActiveExerciseKey(exercise.item.key);
-          navigation.navigate('AddExercise', {exerciseKey: exercise.item.key, title: exercise.item.name})
-        }}/>
+        <ActionButton text="Edit"
+                      label={`Edit ${exercise.item.name} exercise`}
+                      action={() => {
+                        handle.setActiveExerciseKey(exercise.item.key);
+                        navigation.navigate('AddExercise', {exerciseKey: exercise.item.key, title: exercise.item.name})
+                      }}/>
       }>
         <Text style={home.sectionHeaderText}>{exercise.item.name}</Text>
         <Text style={{flex: 4, marginTop: 15}}>{exercise.item.instructions}</Text>

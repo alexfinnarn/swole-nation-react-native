@@ -48,10 +48,12 @@ export default function AddExerciseSet({item = {item: {reps: 0, weight: 100}, in
       </View>
       <View style={{flex: 1}}>
         {toAdd
-          ? <ActionButton text="+" action={() =>
-            updater({reps: reps, weight: weight}, item.index, 'ADD_SET')}/>
-          : <ActionButton text="X" action={() =>
-            updater({reps: reps, weight: weight}, item.index, 'REMOVE_SET')}/>
+          ? <ActionButton text="+"
+                          label="Add set to exercise"
+                          action={() => updater({reps: reps, weight: weight}, item.index, 'ADD_SET')}/>
+          : <ActionButton text="X"
+                          label={`Remove set at index of ${item.index} from exercise`}
+                          action={() => updater({reps: reps, weight: weight}, item.index, 'REMOVE_SET')}/>
         }
       </View>
     </View>

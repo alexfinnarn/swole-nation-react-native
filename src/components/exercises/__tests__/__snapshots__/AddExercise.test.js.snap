@@ -655,6 +655,7 @@ exports[`<AddExercise /> Renders correctly 1`] = `
           }
         >
           <View
+            accessibilityLabel="Add set to exercise"
             accessible={true}
             focusable={true}
             isTVSelectable={true}
@@ -711,6 +712,7 @@ exports[`<AddExercise /> Renders correctly 1`] = `
     }
   >
     <View
+      accessibilityLabel="Save exercise"
       accessible={true}
       focusable={true}
       isTVSelectable={true}

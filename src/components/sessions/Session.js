@@ -154,19 +154,19 @@ function Session({session, navigation, handle}) {
   function ActionButtons() {
     let last, current, next = '';
     if (!session.exercises[exercise - 1] && set === 0) {
-      last = <ActionButton key="previous" disabled={true} text="Previous" action={() => {
+      last = <ActionButton label="Previous set" key="previous" disabled={true} text="Previous" action={() => {
       }}/>;
     } else {
-      last = <ActionButton key="previous" text="Previous" action={() => handleSets(false)}/>;
+      last = <ActionButton label="No previous set available" key="previous" text="Previous" action={() => handleSets(false)}/>;
     }
 
     if (onLastExercise()) {
-      current = <ActionButton styles={{paddingLeft: 5, paddingRight: 5}} key="current" text="Finish" action={() => finishWorkout()}/>;
-      next = <ActionButton key="next" disabled={true} text="Skip" action={() => {}}/>;
+      current = <ActionButton label="Finish session" styles={{paddingLeft: 5, paddingRight: 5}} key="current" text="Finish" action={() => finishWorkout()}/>;
+      next = <ActionButton label="Next set" key="next" disabled={true} text="Skip" action={() => {}}/>;
     } else {
-      current = <ActionButton styles={{paddingLeft: 5, paddingRight: 5}}
+      current = <ActionButton label="Complete set" styles={{paddingLeft: 5, paddingRight: 5}}
                               key="current" text="Complete" action={() => handleSets(true, true)}/>;
-      next = <ActionButton key="next" text="Skip" action={() => handleSets(true)}/>;
+      next = <ActionButton label="No next set available" key="next" text="Skip" action={() => handleSets(true)}/>;
     }
     return ([last, current, next]);
   }
@@ -221,8 +221,11 @@ function Session({session, navigation, handle}) {
         />
       </View>
       <View style={{flex: 1, padding: 10, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center'}}>
-        <ActionButton styles={{paddingRight: 5}} text={isActive ? 'Pause' : 'Start'} action={() => toggle()}/>
-        <ActionButton text="Quit" action={() => {finishWorkout()}}/>
+        <ActionButton styles={{paddingRight: 5}}
+                      text={isActive ? 'Pause' : 'Start'}
+                      label={isActive ? 'Pause session' : 'Start or resume session'}
+                      action={() => toggle()}/>
+        <ActionButton label="Quit session" text="Quit" action={() => {finishWorkout()}}/>
       </View>
     </View>
   );
