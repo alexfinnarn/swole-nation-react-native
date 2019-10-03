@@ -233,7 +233,6 @@ function Session({session, navigation, handle}) {
 
 
 Session.navigationOptions = ({navigation}) => {
-  console.log(navigation);
   return {
     title: navigation.getParam('title', 'Session')
   };

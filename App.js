@@ -19,6 +19,7 @@ import NavigationService from './src/services/NavigationService';
 import SettingsProvider from "./src/components/SettingsProvider";
 import HeaderRight from "./src/components/utility/HeaderRight";
 import SNwebView from "./src/components/utility/SNwebView";
+import UserGuide from "./src/components/UserGuide";
 
 export default function App() {
   const persistConfig = {
@@ -78,6 +79,9 @@ export default function App() {
         navigationOptions: {
           title: 'User Guide',
         },
+      },
+      UserGuide: {
+        screen: UserGuide,
       }
     },
     {

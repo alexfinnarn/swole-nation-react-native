@@ -9,8 +9,8 @@ export default function HeaderRight() {
       <TouchableOpacity style={{flex: 1, marginRight: 10}}
                         accessible={true}
                         accessibilityLabel="Navigate to user guide"
-                        onPress={() => NavigationService.navigate('WebView', {
-                          url: 'https://github.com/alexfinnarn/swole-nation-react-native/wiki/User-Guide'
+                        onPress={() => NavigationService.navigate('UserGuide', {
+                          content: '',
                         })}>
         <FontAwesome5 style={{fontSize: 30, color: '#ffffff'}} name="question"/>
       </TouchableOpacity>

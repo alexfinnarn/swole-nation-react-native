@@ -6,6 +6,10 @@
  */
 
 module.exports = {
+  resolver: {
+    // sourceExts: ['md'],
+    assetExts: ['md', 'png', 'gif']
+  },
   transformer: {
     getTransformOptions: async () => ({
       transform: {
