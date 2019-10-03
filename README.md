@@ -16,9 +16,15 @@ Features:
 
 ## Roadmap
 
-As Swole Nation is still in early alpha testing, the roadmap will be hard to
+As Swole Nation is still in early alpha testing, the roadmap will be hard to pin down until more testing is done. I can tell you that I want to expand the app to include exercises that have a count-down timer (e.g. planks) and work better with exercises that only have one set.
+
+The other goal is to place workouts, exercises, and sessions in an online repository so that users can add and edit their workouts in the cloud on a laptop, if they choose to do so.
+
+Ideally, this app will replace all the exercise apps I currently use, so any missing features will be included until I reach that holy grail.
 
 ## Develop Locally
+
+Like a normal React Native app, you can run this app locally via the scripts in `package.json`. 
 
 ## Run Tests
 
