@@ -103,6 +103,7 @@ function mainStore(state = data, action) {
 
       // Apply session transformer if there is one.
       if (action.transformerKey !== 'none') {
+        // console.log(state.transformers[action.transformerKey]);
         session = state.transformers[action.transformerKey].callback(session);
       }
 
@@ -124,8 +125,35 @@ function mainStore(state = data, action) {
       return Object.assign({}, state, {activeSessionKey: action.key});
 
     case WorkoutActions.FINISH_SESSION:
+      // Check if exercises need to updated.
+      let updatedExerciseKeys = [];
+      let updatedExercises = action.session.exercises.filter((exercise) => {
+        if (!exercise.name.includes('Warmup')) {
+          let update = true;
+          exercise.sets.forEach((set) => {
+            if (set.completed === false) {
+              update = false;
+            }
+          });
+          update === true && updatedExerciseKeys.push(exercise.key);
+          return update === true;
+        }
+        return false;
+      });
+
+      let newExercises = Object.assign({}, state.exercises);
+      Object.keys(newExercises).forEach((key) => {
+        if (updatedExerciseKeys.includes(key)) {
+          let exer = updatedExercises.find((ex) => ex.key === key);
+          console.log(exer);
+          newExercises[exer.key] = exer;
+        }
+      });
+
+
       return Object.assign({}, state, {
         sessions: {...state.sessions, [action.session.key]: action.session},
+        exercises: {...newExercises},
         activeSessionKey: '',
       });
 

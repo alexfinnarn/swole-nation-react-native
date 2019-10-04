@@ -144,6 +144,8 @@ function Session({session, navigation, handle}) {
 
   function finishWorkout() {
     backgroundTimer.stop();
+    session.exercises[exercise].sets[set].completed = true;
+    session.completed++;
     setIsActive(false);
     session.duration = seconds + sessionDuration;
     session.progress = progress;
@@ -231,9 +233,7 @@ function Session({session, navigation, handle}) {
   );
 }
 
-
 Session.navigationOptions = ({navigation}) => {
-  console.log(navigation);
   return {
     title: navigation.getParam('title', 'Session')
   };
