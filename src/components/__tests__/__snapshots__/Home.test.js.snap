@@ -247,7 +247,7 @@ exports[`<Home /> Renders correctly 1`] = `
           style={
             Object {
               "height": 70,
-              "width": 160,
+              "width": 180,
             }
           }
         >
