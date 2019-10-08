@@ -1,11 +1,11 @@
-import {StyleSheet} from "react-native";
+import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
     backgroundColor: '#F5FCFF',
     flex: 1,
     paddingTop: 5,
-    flexDirection: 'column'
+    flexDirection: 'column',
   },
   editText: {
     // alignSelf: 'flex-start',
@@ -13,32 +13,31 @@ export const styles = StyleSheet.create({
     // marginBottom: 20,
     marginTop: 5,
     borderBottomColor: 'grey',
-    borderBottomWidth: 2
+    borderBottomWidth: 2,
   },
   mediumTextInputFont: {
-    fontSize: 18
+    fontSize: 18,
   },
   smallTextInputFont: {
-    fontSize: 16
+    fontSize: 16,
   },
   multiline: {
-    textAlignVertical: 'top'
+    textAlignVertical: 'top',
   },
   bold: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
   autocompleteContainer: {
     left: 0,
     position: 'absolute',
     right: 50,
     top: 20,
-    zIndex: 1
+    zIndex: 1,
   },
   itemText: {
     fontSize: 18,
-    margin: 2
+    margin: 2,
   },
-
 });
 
 export const home = StyleSheet.create({
@@ -48,14 +47,14 @@ export const home = StyleSheet.create({
     backgroundColor: '#ffffff',
     marginTop: 4,
     marginBottom: 4,
-    shadowColor: "#000",
+    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5
+    elevation: 5,
   },
   sectionHeaderText: {
     flex: 1,
@@ -69,15 +68,13 @@ export const home = StyleSheet.create({
   actionButtonText: {
     alignSelf: 'center',
     color: '#ffffff',
-    fontSize: 20
+    fontSize: 20,
   },
   sectionLeft: {
     flex: 4,
     padding: 10,
-    flexDirection: 'column'
-  }
+    flexDirection: 'column',
+  },
 });
 
-export const workouts = StyleSheet.create({
-
-});
+export const workouts = StyleSheet.create({});

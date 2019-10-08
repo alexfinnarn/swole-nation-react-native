@@ -7,23 +7,23 @@ function getSession(sessions, key) {
 
 const mapStateToProps = (state, otherProps) => {
   return {
-    session: getSession(state.sessions, state.activeSessionKey)
+    session: getSession(state.sessions, state.activeSessionKey),
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     handle: {
-      finishSession: (updatedSession) => {
+      finishSession: updatedSession => {
         dispatch({session: updatedSession, type: 'FINISH_SESSION'});
       },
-    }
+    },
   };
 };
 
 const SessionProvider = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(Session);
 
 export default SessionProvider;

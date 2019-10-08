@@ -1,8 +1,8 @@
 import React from 'react';
-import {FlatList, Text, View} from "react-native";
+import {FlatList, Text, View} from 'react-native';
 import {home, styles} from '../Styles';
-import ActionButton from "../utility/ActionButton";
-import ActionCard from "../utility/ActionCard";
+import ActionButton from '../utility/ActionButton';
+import ActionCard from '../utility/ActionCard';
 
 export default function WorkoutsList({workouts, navigation, handle, thing}) {
   return (
@@ -11,7 +11,7 @@ export default function WorkoutsList({workouts, navigation, handle, thing}) {
         <FlatList
           extraData={thing}
           data={workouts}
-          renderItem={(item) => <WorkoutsListItem workout={item}/>}
+          renderItem={item => <WorkoutsListItem workout={item} />}
         />
       </View>
       {/*<ActionButton label="Add new workout" text="Add Workout" action={() => {*/}
@@ -22,26 +22,31 @@ export default function WorkoutsList({workouts, navigation, handle, thing}) {
   );
 
   function WorkoutsListItem({workout}) {
-    {/*  <ActionButton label={`Delete ${workout.item.name} workout`} text="X" action={() => {*/}
-    {/*    handle.deleteWorkout(workout.item.key);*/}
-    {/*  }}/>*/}
-    {/*</>*/}
+    /*  <ActionButton label={`Delete ${workout.item.name} workout`} text="X" action={() => {*/
+    /*    handle.deleteWorkout(workout.item.key);*/
+    /*  }}/>*/
+    /*</>*/
 
     return (
-      <ActionCard actionComponent={
-        <ActionButton label={`Edit ${workout.item.name} workout`} text="Edit" styles={{marginRight: 2}} action={() => {
-          handle.setActiveWorkoutKey(workout.item.key);
-          navigation.navigate('Workout', {
-            workoutKey: workout.item.key,
-            title: workout.item.name,
-            action: 'edit'
-          });
-        }}/>
-      }>
+      <ActionCard
+        actionComponent={
+          <ActionButton
+            label={`Edit ${workout.item.name} workout`}
+            text="Edit"
+            styles={{marginRight: 2}}
+            action={() => {
+              handle.setActiveWorkoutKey(workout.item.key);
+              navigation.navigate('Workout', {
+                workoutKey: workout.item.key,
+                title: workout.item.name,
+                action: 'edit',
+              });
+            }}
+          />
+        }>
         <Text style={home.sectionHeaderText}>{workout.item.name}</Text>
         <Text style={{flex: 4, marginTop: 15}}>{workout.item.description}</Text>
       </ActionCard>
     );
   }
 }
-

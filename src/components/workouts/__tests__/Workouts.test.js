@@ -2,15 +2,18 @@ import React from 'react';
 import {render, fireEvent} from 'react-native-testing-library';
 import data from '../../../store/data';
 import main from '../../../store/main';
-import Workout from "../Workout";
+import Workout from '../Workout';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
-import {Picker} from "react-native";
+import {Picker} from 'react-native';
 import WorkoutsExerciseList from '../../exercises/WorkoutExerciseList';
 
-let renderer, instance = {};
+let renderer,
+  instance = {};
 let workouts = Object.keys(data.workouts).map(key => data.workouts[key]);
-const transformers = Object.keys(data.transformers).map((key) => data.transformers[key]);
+const transformers = Object.keys(data.transformers).map(
+  key => data.transformers[key],
+);
 const handle = {
   update: jest.fn(),
 };
@@ -22,9 +25,16 @@ const navigation = {
 
 beforeEach(() => {
   renderer = render(
-    (<Provider store={createStore(main)}>
-      <Workout workout={workouts[0]} navigation={navigation} handle={handle} transformers={transformers} actionType="save"/>
-    </Provider>));
+    <Provider store={createStore(main)}>
+      <Workout
+        workout={workouts[0]}
+        navigation={navigation}
+        handle={handle}
+        transformers={transformers}
+        actionType="save"
+      />
+    </Provider>,
+  );
   instance = renderer.getByTestId('workout-root');
 }, 0);
 
@@ -41,7 +51,9 @@ describe('<Workout />', () => {
     // expect(nameInput.props.value).toBe('Foo');
 
     const descriptionInput = renderer.getByPlaceholder('Workout Description');
-    expect(descriptionInput.props.value).toBe('Squats, Bench Press, Barbell Row');
+    expect(descriptionInput.props.value).toBe(
+      'Squats, Bench Press, Barbell Row',
+    );
     fireEvent.changeText(descriptionInput, 'Bar');
     expect(descriptionInput.props.value).toBe('Bar');
   });
@@ -64,9 +76,17 @@ describe('<Workout />', () => {
     expect(renderer.queryByText('Go')).toBeNull();
 
     // Trigger re-render with simulated navigation parameter.
-    renderer.update(<Provider store={createStore(main)}>
-      <Workout workout={workouts[0]} navigation={navigation} handle={handle} transformers={transformers} actionType="go"/>
-    </Provider>);
+    renderer.update(
+      <Provider store={createStore(main)}>
+        <Workout
+          workout={workouts[0]}
+          navigation={navigation}
+          handle={handle}
+          transformers={transformers}
+          actionType="go"
+        />
+      </Provider>,
+    );
 
     expect(renderer.queryByText('Save')).toBeNull();
     expect(renderer.queryByText('Go')).not.toBeNull();
