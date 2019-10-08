@@ -1,11 +1,12 @@
 import React from 'react';
 import WorkoutsList from '../WorkoutsList';
-import { render, fireEvent } from 'react-native-testing-library';
+import {render, fireEvent} from 'react-native-testing-library';
 import data from '../../../store/data';
-import ActionCard from "../../utility/ActionCard";
-import shortId from "shortid";
+import ActionCard from '../../utility/ActionCard';
+import shortId from 'shortid';
 
-let renderer, instance ={};
+let renderer,
+  instance = {};
 let workouts = Object.keys(data.workouts).map(key => data.workouts[key]);
 const handle = {
   createWorkout: jest.fn(),
@@ -13,11 +14,18 @@ const handle = {
   setActiveWorkoutKey: jest.fn(),
 };
 const navigation = {
-  navigate: jest.fn()
+  navigate: jest.fn(),
 };
 
 beforeEach(() => {
-  renderer = render(<WorkoutsList workouts={workouts} navigation={navigation} handle={handle} thing={shortId.generate()}/>);
+  renderer = render(
+    <WorkoutsList
+      workouts={workouts}
+      navigation={navigation}
+      handle={handle}
+      thing={shortId.generate()}
+    />,
+  );
   instance = renderer.getByTestId('workouts-list-root');
 }, 0);
 
@@ -32,8 +40,20 @@ describe('<WorkoutsList />', () => {
     expect(actionCards.length).toBe(2);
     expect(renderer.getAllByText('Edit').length).toBe(2);
 
-    workouts.push({key: 'DWYVDAQWAw4', name: 'Workout C', description: 'blah', exercises: []});
-    renderer.update(<WorkoutsList workouts={workouts} navigation={navigation} handle={handle} thing={shortId.generate()}/>);
+    workouts.push({
+      key: 'DWYVDAQWAw4',
+      name: 'Workout C',
+      description: 'blah',
+      exercises: [],
+    });
+    renderer.update(
+      <WorkoutsList
+        workouts={workouts}
+        navigation={navigation}
+        handle={handle}
+        thing={shortId.generate()}
+      />,
+    );
     instance = renderer.getByTestId('workouts-list-root');
 
     actionCards = instance.findAllByType(ActionCard);
@@ -46,19 +66,18 @@ describe('<WorkoutsList />', () => {
     fireEvent(renderer.getAllByText('Edit')[0], 'press');
     expect(navigation.navigate).toHaveBeenCalledWith('Workout', {
       action: 'edit',
-      title: "Texas Method A",
-      workoutKey: 'DQkECwYLCQQ'
+      title: 'Texas Method A',
+      workoutKey: 'DQkECwYLCQQ',
     });
     expect(handle.setActiveWorkoutKey).toHaveBeenCalledTimes(1);
     expect(handle.setActiveWorkoutKey).toHaveBeenCalledWith('DQkECwYLCQQ');
-
 
     // Expect navigate to Texas Method B workout.
     fireEvent(renderer.getAllByText('Edit')[1], 'press');
     expect(navigation.navigate).toHaveBeenLastCalledWith('Workout', {
       action: 'edit',
-      title: "Texas Method B",
-      workoutKey: 'DAwJBQEMAA0'
+      title: 'Texas Method B',
+      workoutKey: 'DAwJBQEMAA0',
     });
     expect(handle.setActiveWorkoutKey).toHaveBeenCalledTimes(2);
     expect(handle.setActiveWorkoutKey).toHaveBeenCalledWith('DAwJBQEMAA0');

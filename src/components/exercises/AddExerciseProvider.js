@@ -10,8 +10,10 @@ function getExercises(exercises, workouts, key, navigation) {
   const workout = navigation.getParam('workout', null);
 
   if (workout) {
-    const exers = Object.keys(exercises).map((exerciseKey) => {
-      if (workouts[key].exercises.includes(exercises[exerciseKey].name) === false) {
+    const exers = Object.keys(exercises).map(exerciseKey => {
+      if (
+        workouts[key].exercises.includes(exercises[exerciseKey].name) === false
+      ) {
         return exercises[exerciseKey];
       }
     });
@@ -24,10 +26,23 @@ function getExercises(exercises, workouts, key, navigation) {
 
 const mapStateToProps = (state, otherProps) => {
   return {
-    theExercise: getExercise(getExercises(state.exercises, state.workouts, state.activeWorkoutKey, otherProps.navigation), state.activeExerciseKey),
-    exercises: getExercises(state.exercises, state.workouts, state.activeWorkoutKey, otherProps.navigation),
+    theExercise: getExercise(
+      getExercises(
+        state.exercises,
+        state.workouts,
+        state.activeWorkoutKey,
+        otherProps.navigation,
+      ),
+      state.activeExerciseKey,
+    ),
+    exercises: getExercises(
+      state.exercises,
+      state.workouts,
+      state.activeWorkoutKey,
+      otherProps.navigation,
+    ),
     thing: state.theThing,
-    pickerEnabled: otherProps.navigation.getParam('pickerEnabled', true)
+    pickerEnabled: otherProps.navigation.getParam('pickerEnabled', true),
   };
 };
 
@@ -37,20 +52,20 @@ const mapDispatchToProps = dispatch => {
       update: (updatedSet, index, action) => {
         dispatch({set: updatedSet, index, type: action});
       },
-      save: (exercise) => {
+      save: exercise => {
         if (exercise.connectedWorkout) {
           dispatch({exercise, type: 'ADD_EXERCISE'});
         } else {
           dispatch({exercise, type: 'UPDATE_EXERCISE'});
         }
-      }
-    }
+      },
+    },
   };
 };
 
 const AddExerciseProvider = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(AddExercise);
 
 export default AddExerciseProvider;

@@ -1,15 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import {Text, View, Button, Image} from "react-native";
-import {styles} from "../Styles";
-import Table from "../utility/Table";
-import ActionButton from "../utility/ActionButton";
+import {Text, View, Button, Image} from 'react-native';
+import {styles} from '../Styles';
+import Table from '../utility/Table';
+import ActionButton from '../utility/ActionButton';
 import backgroundTimer from '../../services/backgroundTimer.js';
 
 function Session({session, navigation, handle}) {
-  if (typeof session === 'undefined') {
-    return (<Text>No session found to render.</Text>);
-  }
-
   const [exercise, updateExercise] = useState(session.progress[0]);
   const [set, updateSet] = useState(session.progress[1]);
   const [progress, updateProgress] = useState(session.progress);
@@ -24,7 +20,9 @@ function Session({session, navigation, handle}) {
     let interval = null;
     if (isActive) {
       interval = setInterval(() => {
-        const timeElapsed = Math.floor((new Date(Date.now()) - dateStamp)/1000);
+        const timeElapsed = Math.floor(
+          (new Date(Date.now()) - dateStamp) / 1000,
+        );
         // This corrects the timer when the app is placed in the background.
         if (timeElapsed - seconds > 2) {
           setSeconds(() => timeElapsed + 1);
@@ -41,7 +39,9 @@ function Session({session, navigation, handle}) {
   // Set initial weight plate string.
   useEffect(() => {
     setTimeout(() => {
-      calculateWeightPlates((session.exercises[exercise].sets[set].weight - 45.0) / 2);
+      calculateWeightPlates(
+        (session.exercises[exercise].sets[set].weight - 45.0) / 2,
+      );
     }, 200);
   }, []);
 
@@ -79,13 +79,18 @@ function Session({session, navigation, handle}) {
       // To display them, we add a multiplier to the display to tell the user how many of the plates
       // to put on the barbell.
       let multiplier = 1;
-      if ((weight / weightPlates[counter]) >= 2 && [45, 10].includes(weightPlates[counter])) {
+      if (
+        weight / weightPlates[counter] >= 2 &&
+        [45, 10].includes(weightPlates[counter])
+      ) {
         multiplier = Math.floor(weight / weightPlates[counter]);
       }
 
-      if ((weight - weightPlates[counter]) >= 0) {
-        weight = weight - (weightPlates[counter] * multiplier);
-        platesString = `${platesString} - ${multiplier.toString()}x${weightPlates[counter].toString()}`;
+      if (weight - weightPlates[counter] >= 0) {
+        weight = weight - weightPlates[counter] * multiplier;
+        platesString = `${platesString} - ${multiplier.toString()}x${weightPlates[
+          counter
+        ].toString()}`;
       }
       calculateWeightPlates(weight, platesString, counter + 1);
     }
@@ -103,11 +108,15 @@ function Session({session, navigation, handle}) {
       updateExercise(exercise + 1);
       updateSet(0);
       updateProgress([exercise + 1, 0]);
-      calculateWeightPlates((session.exercises[exercise + 1].sets[0].weight - 45.0) / 2);
+      calculateWeightPlates(
+        (session.exercises[exercise + 1].sets[0].weight - 45.0) / 2,
+      );
       resetTimer();
       calculateDateStamp(0);
       if (!session.exercises[exercise + 1].name.includes('Warmup')) {
-        backgroundTimer.start(`${session.exercises[exercise + 1].name}, 0 of ${session.exercises[exercise].sets.length}`);
+        backgroundTimer.start(
+          `${session.exercises[exercise + 1].name}, 0 of ${session.exercises[exercise].sets.length}`,
+        );
       }
       return;
     }
@@ -118,7 +127,9 @@ function Session({session, navigation, handle}) {
       updateExercise(exercise - 1);
       updateSet(lastSet);
       updateProgress([exercise - 1, lastSet]);
-      calculateWeightPlates((session.exercises[exercise - 1].sets[lastSet].weight - 45.0) / 2);
+      calculateWeightPlates(
+        (session.exercises[exercise - 1].sets[lastSet].weight - 45.0) / 2,
+      );
       return;
     }
 
@@ -127,19 +138,30 @@ function Session({session, navigation, handle}) {
       calculateDateStamp(0);
       updateSet(set + 1);
       updateProgress([progress[0], set + 1]);
-      calculateWeightPlates((session.exercises[exercise].sets[set + 1].weight - 45.0) / 2);
+      calculateWeightPlates(
+        (session.exercises[exercise].sets[set + 1].weight - 45.0) / 2,
+      );
       if (!session.exercises[exercise].name.includes('Warmup')) {
-        backgroundTimer.start(`${session.exercises[exercise].name}, ${set + 1} of ${session.exercises[exercise].sets.length}`);
+        backgroundTimer.start(
+          `${session.exercises[exercise].name}, ${set + 1} of ${
+            session.exercises[exercise].sets.length
+          }`,
+        );
       }
     } else {
       updateSet(set - 1);
       updateProgress([progress[0], set - 1]);
-      calculateWeightPlates((session.exercises[exercise].sets[set - 1].weight - 45.0) / 2);
+      calculateWeightPlates(
+        (session.exercises[exercise].sets[set - 1].weight - 45.0) / 2,
+      );
     }
   }
 
   function onLastExercise() {
-    return session.exercises.length - 1 === exercise && session.exercises[exercise].sets.length - 1 === set;
+    return (
+      session.exercises.length - 1 === exercise &&
+      session.exercises[exercise].sets.length - 1 === set
+    );
   }
 
   function finishWorkout() {
@@ -152,29 +174,77 @@ function Session({session, navigation, handle}) {
   }
 
   function ActionButtons() {
-    let last, current, next = '';
+    let last,
+      current,
+      next = '';
     if (!session.exercises[exercise - 1] && set === 0) {
-      last = <ActionButton label="Previous set" key="previous" disabled={true} text="Previous" action={() => {
-      }}/>;
+      last = (
+        <ActionButton
+          label="Previous set"
+          key="previous"
+          disabled={true}
+          text="Previous"
+          action={() => {}}
+        />
+      );
     } else {
-      last = <ActionButton label="No previous set available" key="previous" text="Previous" action={() => handleSets(false)}/>;
+      last = (
+        <ActionButton
+          label="No previous set available"
+          key="previous"
+          text="Previous"
+          action={() => handleSets(false)}
+        />
+      );
     }
 
     if (onLastExercise()) {
-      current = <ActionButton label="Finish session" styles={{paddingLeft: 5, paddingRight: 5}} key="current" text="Finish" action={() => finishWorkout()}/>;
-      next = <ActionButton label="Next set" key="next" disabled={true} text="Skip" action={() => {}}/>;
+      current = (
+        <ActionButton
+          label="Finish session"
+          styles={{paddingLeft: 5, paddingRight: 5}}
+          key="current"
+          text="Finish"
+          action={() => finishWorkout()}
+        />
+      );
+      next = (
+        <ActionButton
+          label="Next set"
+          key="next"
+          disabled={true}
+          text="Skip"
+          action={() => {}}
+        />
+      );
     } else {
-      current = <ActionButton label="Complete set" styles={{paddingLeft: 5, paddingRight: 5}}
-                              key="current" text="Complete" action={() => handleSets(true, true)}/>;
-      next = <ActionButton label="No next set available" key="next" text="Skip" action={() => handleSets(true)}/>;
+      current = (
+        <ActionButton
+          label="Complete set"
+          styles={{paddingLeft: 5, paddingRight: 5}}
+          key="current"
+          text="Complete"
+          action={() => handleSets(true, true)}
+        />
+      );
+      next = (
+        <ActionButton
+          label="No next set available"
+          key="next"
+          text="Skip"
+          action={() => handleSets(true)}
+        />
+      );
     }
-    return ([last, current, next]);
+    return [last, current, next];
   }
 
   function StyleTile({color, bgColor, text, flex, textID = ''}) {
     return (
       <View style={{flex: flex, backgroundColor: bgColor, padding: 5}}>
-        <Text style={{flex: 1, color: color, alignSelf: 'center', fontSize: 16}} testID={textID}>
+        <Text
+          style={{flex: 1, color: color, alignSelf: 'center', fontSize: 16}}
+          testID={textID}>
           {text}
         </Text>
       </View>
@@ -182,26 +252,70 @@ function Session({session, navigation, handle}) {
   }
 
   return (
-    <View style={[styles.container, {flex: 1, flexDirection: 'column', justifyContent: 'space-between'}]} testID="session-root">
+    <View
+      style={[
+        styles.container,
+        {flex: 1, flexDirection: 'column', justifyContent: 'space-between'},
+      ]}
+      testID="session-root">
       <View style={{flex: 5, padding: 10, flexDirection: 'row'}}>
         <View style={{flex: 3, justifyContent: 'center', alignItems: 'center'}}>
-          <Image testID={`${session.exercises[exercise].name.replace(/\s+/g, '-').toLowerCase()}-image`}
-                 resizeMode="contain" style={{flex: 1}}
-                 source={session.exercises[exercise].image}/>
+          <Image
+            testID={`${session.exercises[exercise].name
+              .replace(/\s+/g, '-')
+              .toLowerCase()}-image`}
+            resizeMode="contain"
+            style={{flex: 1}}
+            source={session.exercises[exercise].image}
+          />
         </View>
         <View style={{flex: 1, flexDirection: 'column'}}>
-          <StyleTile color={'#ffffff'} bgColor={'#69D1C5'} flex={1}
-                     text={`<- ${session.exercises[exercise - 1] ? session.exercises[exercise - 1].name : 'N/A'} <-`}/>
-          <StyleTile color={'#ffffff'} bgColor={'#3BA99C'} flex={1} textID='current-exercise'
-                     text={`${session.exercises[exercise].name}`}/>
-          <StyleTile color={'#ffffff'} bgColor={'#21897E'} flex={1}
-                     text={`-> ${session.exercises[exercise + 1] ? session.exercises[exercise + 1].name : 'N/A'} ->`}/>
+          <StyleTile
+            color={'#ffffff'}
+            bgColor={'#69D1C5'}
+            flex={1}
+            text={`<- ${
+              session.exercises[exercise - 1]
+                ? session.exercises[exercise - 1].name
+                : 'N/A'
+            } <-`}
+          />
+          <StyleTile
+            color={'#ffffff'}
+            bgColor={'#3BA99C'}
+            flex={1}
+            textID="current-exercise"
+            text={`${session.exercises[exercise].name}`}
+          />
+          <StyleTile
+            color={'#ffffff'}
+            bgColor={'#21897E'}
+            flex={1}
+            text={`-> ${
+              session.exercises[exercise + 1]
+                ? session.exercises[exercise + 1].name
+                : 'N/A'
+            } ->`}
+          />
         </View>
       </View>
-      <View style={{flex: 1, padding: 5, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end'}}>
-        <ActionButtons/>
+      <View
+        style={{
+          flex: 1,
+          padding: 5,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'flex-end',
+        }}>
+        <ActionButtons />
       </View>
-      <View style={{flex: 4, padding: 10, flexDirection: 'column', justifyContent: 'space-around'}}>
+      <View
+        style={{
+          flex: 4,
+          padding: 10,
+          flexDirection: 'column',
+          justifyContent: 'space-around',
+        }}>
         <Table
           columnFlex={[1, 1, 1, 1]}
           label="sets-reps-table"
@@ -210,32 +324,50 @@ function Session({session, navigation, handle}) {
             session.exercises[exercise].sets[set].completed.toString(),
             `${set + 1}/${session.exercises[exercise].sets.length}`,
             session.exercises[exercise].sets[set].reps.toString(),
-            `${session.exercises[exercise].sets[set].weight} lbs`
+            `${session.exercises[exercise].sets[set].weight} lbs`,
           ]}
         />
         <Table
           columnFlex={[1, 3, 1]}
           label="time-plates-table"
           headers={['Set', 'Plates', 'Session']}
-          rowData={[seconds, weightPlateString !== '' ? weightPlateString : ' None', (seconds + sessionDuration)]}
+          rowData={[
+            seconds,
+            weightPlateString !== '' ? weightPlateString : ' None',
+            seconds + sessionDuration,
+          ]}
         />
       </View>
-      <View style={{flex: 1, padding: 10, flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center'}}>
-        <ActionButton styles={{paddingRight: 5}}
-                      text={isActive ? 'Pause' : 'Start'}
-                      label={isActive ? 'Pause session' : 'Start or resume session'}
-                      action={() => toggle()}/>
-        <ActionButton label="Quit session" text="Quit" action={() => {finishWorkout()}}/>
+      <View
+        style={{
+          flex: 1,
+          padding: 10,
+          flexDirection: 'row',
+          justifyContent: 'space-evenly',
+          alignItems: 'center',
+        }}>
+        <ActionButton
+          styles={{paddingRight: 5}}
+          text={isActive ? 'Pause' : 'Start'}
+          label={isActive ? 'Pause session' : 'Start or resume session'}
+          action={() => toggle()}
+        />
+        <ActionButton
+          label="Quit session"
+          text="Quit"
+          action={() => {
+            finishWorkout();
+          }}
+        />
       </View>
     </View>
   );
 }
 
-
 Session.navigationOptions = ({navigation}) => {
   console.log(navigation);
   return {
-    title: navigation.getParam('title', 'Session')
+    title: navigation.getParam('title', 'Session'),
   };
 };
 

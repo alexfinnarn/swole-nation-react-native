@@ -4,7 +4,7 @@ import ExercisesList from './ExercisesList';
 const mapStateToProps = state => {
   return {
     exercises: Object.keys(state.exercises).map(key => state.exercises[key]),
-    thing: state.theThing
+    thing: state.theThing,
   };
 };
 
@@ -14,10 +14,10 @@ const mapDispatchToProps = dispatch => {
       createExercise: () => {
         dispatch({type: 'CREATE_EXERCISE'});
       },
-      setActiveExerciseKey: (key) => {
+      setActiveExerciseKey: key => {
         dispatch({key, type: 'SET_ACTIVE_EXERCISE'});
-      }
-    }
+      },
+    },
   };
 };
 

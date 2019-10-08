@@ -1,8 +1,14 @@
 import React from 'react';
 import {Text, TouchableOpacity, View} from 'react-native';
-import {home} from "../Styles";
+import {home} from '../Styles';
 
-export default function ActionButton({text, action, label, styles, disabled = false}) {
+export default function ActionButton({
+  text,
+  action,
+  label,
+  styles,
+  disabled = false,
+}) {
   const bgColor = disabled ? '#bababa' : '#21897E';
 
   return (

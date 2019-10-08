@@ -1,25 +1,33 @@
 import React from 'react';
-import { render, fireEvent } from 'react-native-testing-library';
-import data from '../../store/data'
+import {render, fireEvent} from 'react-native-testing-library';
+import data from '../../store/data';
 import Home from '../Home';
-import ActionCard from "../utility/ActionCard";
-import {TouchableOpacity} from "react-native";
+import ActionCard from '../utility/ActionCard';
+import {TouchableOpacity} from 'react-native';
 
-let renderer, instance ={};
-const workouts = Object.keys(data.workouts).map((key) => data.workouts[key]);
+let renderer,
+  instance = {};
+const workouts = Object.keys(data.workouts).map(key => data.workouts[key]);
 let session = data.sessions[Object.keys(data.sessions)[0]];
 const handle = {
-  nextWorkoutInteraction: jest.fn()
+  nextWorkoutInteraction: jest.fn(),
 };
 const navigation = {
-  navigate: jest.fn()
+  navigate: jest.fn(),
 };
 
 beforeEach(() => {
   // renderer = TestRenderer.create(<Home workouts={workouts} navigation={navigation} handle={handle}/>);
   // instance = renderer.root;
 
-  renderer = render(<Home workouts={workouts} navigation={navigation} handle={handle} sessionTeaser={session}/>);
+  renderer = render(
+    <Home
+      workouts={workouts}
+      navigation={navigation}
+      handle={handle}
+      sessionTeaser={session}
+    />,
+  );
   instance = renderer.getByTestId('home-root');
 }, 0);
 
@@ -39,7 +47,6 @@ describe('<Home />', () => {
     // Select other workout.
     fireEvent(element, 'valueChange', 'DQkECwYLCQQ');
     expect(element.props.selectedValue).toBe('DQkECwYLCQQ');
-
   });
 
   it('Navigates correctly to all four navigation routes', () => {
@@ -57,7 +64,7 @@ describe('<Home />', () => {
     fireEvent(navigationButtons[2], 'press');
     expect(navigation.navigate).toHaveBeenCalledWith('Workout', {
       action: 'go',
-      title: "Texas Method B"
+      title: 'Texas Method B',
     });
     expect(handle.nextWorkoutInteraction).toHaveBeenCalledWith('DAwJBQEMAA0');
 

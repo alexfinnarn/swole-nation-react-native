@@ -1,5 +1,5 @@
 export default function addFive(session) {
-  session.exercises = session.exercises.map((exercise) => {
+  session.exercises = session.exercises.map(exercise => {
     if (exercise.name.includes('Warmup')) {
       return exercise;
     }

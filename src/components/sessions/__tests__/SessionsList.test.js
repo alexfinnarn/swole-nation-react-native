@@ -1,22 +1,30 @@
 import React from 'react';
 import SessionsList from '../SessionsList';
-import { render, fireEvent } from 'react-native-testing-library';
+import {render, fireEvent} from 'react-native-testing-library';
 import data from '../../../store/data';
-import ActionCard from "../../utility/ActionCard";
-import shortId from "shortid";
+import ActionCard from '../../utility/ActionCard';
+import shortId from 'shortid';
 
-let renderer, instance ={};
+let renderer,
+  instance = {};
 let sessions = Object.keys(data.sessions).map(key => data.sessions[key]);
 const handle = {
   setActiveSessionKey: jest.fn(),
   deleteSession: jest.fn(),
 };
 const navigation = {
-  navigate: jest.fn()
+  navigate: jest.fn(),
 };
 
 beforeEach(() => {
-  renderer = render(<SessionsList sessions={sessions} navigation={navigation} handle={handle} thing={shortId.generate()}/>);
+  renderer = render(
+    <SessionsList
+      sessions={sessions}
+      navigation={navigation}
+      handle={handle}
+      thing={shortId.generate()}
+    />,
+  );
   instance = renderer.getByTestId('sessions-list-root');
 }, 0);
 
@@ -43,7 +51,14 @@ describe('<SessionsList />', () => {
       duration: 50,
       completed: 12,
     });
-    renderer.update(<SessionsList sessions={sessions} navigation={navigation} handle={handle} thing={shortId.generate()} />);
+    renderer.update(
+      <SessionsList
+        sessions={sessions}
+        navigation={navigation}
+        handle={handle}
+        thing={shortId.generate()}
+      />,
+    );
     instance = renderer.getByTestId('sessions-list-root');
 
     actionCards = instance.findAllByType(ActionCard);
@@ -57,8 +72,8 @@ describe('<SessionsList />', () => {
     // Expect navigate to first session.
     fireEvent(renderer.getAllByText('Edit')[0], 'press');
     expect(navigation.navigate).toHaveBeenCalledWith('Session', {
-      sessionId: "BwgFDQ8CCg8",
-      title: "Thu Sep 26 12:19:14 2019"
+      sessionId: 'BwgFDQ8CCg8',
+      title: 'Thu Sep 26 12:19:14 2019',
     });
     expect(handle.setActiveSessionKey).toHaveBeenCalledTimes(1);
     expect(handle.setActiveSessionKey).toHaveBeenCalledWith('BwgFDQ8CCg8');
@@ -71,7 +86,14 @@ describe('<SessionsList />', () => {
 
     fireEvent(renderer.getAllByText('X')[0], 'press');
     sessions = [];
-    renderer.update(<SessionsList sessions={sessions} navigation={navigation} handle={handle} thing={shortId.generate()} />);
+    renderer.update(
+      <SessionsList
+        sessions={sessions}
+        navigation={navigation}
+        handle={handle}
+        thing={shortId.generate()}
+      />,
+    );
 
     actionCards = instance.findAllByType(ActionCard);
     expect(actionCards.length).toBe(0);
