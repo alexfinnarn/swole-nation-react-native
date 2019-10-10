@@ -1,6 +1,6 @@
 import React from 'react';
 import {FlatList, Text, View} from 'react-native';
-import {home, styles} from '../Styles';
+import {styles} from '../Styles';
 import ActionButton from '../utility/ActionButton';
 import ActionCard from '../utility/ActionCard';
 import SessionTeaser from './SessionTeaser';
