@@ -149,7 +149,7 @@ function mainStore(state = data, action) {
     case WorkoutActions.FINISH_SESSION:
       return Object.assign({}, state, {
         sessions: {...state.sessions, [action.session.key]: action.session},
-        activeSessionKey: '',
+        // activeSessionKey: '',
       });
 
     case WorkoutActions.SAVE_SETTINGS:
