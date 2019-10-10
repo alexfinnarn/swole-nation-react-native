@@ -7,7 +7,7 @@ import mainStore from './src/store/main';
 import AsyncStorage from '@react-native-community/async-storage';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
-import SplashScreen from 'react-native-splash-screen';
+// import SplashScreen from 'react-native-splash-screen';
 import WorkoutsListProvider from './src/components/workouts/WorkoutsListProvider';
 import WorkoutProvider from './src/components/workouts/WorkoutProvider';
 import SessionProvider from './src/components/sessions/SessionProvider';
@@ -30,7 +30,7 @@ export default function App() {
   const persistedReducer = persistReducer(persistConfig, mainStore);
   const store = createStore(persistedReducer);
   let persistor = persistStore(store);
-  // persistor.purge();
+  persistor.purge();
 
   const AppNavigator = createStackNavigator(
     {
@@ -96,9 +96,9 @@ export default function App() {
   );
   const AppContainer = createAppContainer(AppNavigator);
 
-  useEffect(() => {
-    SplashScreen.hide();
-  }, []);
+  // useEffect(() => {
+  //   SplashScreen.hide();
+  // }, []);
 
   return (
     <Provider store={store}>

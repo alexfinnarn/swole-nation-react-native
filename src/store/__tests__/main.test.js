@@ -143,7 +143,6 @@ describe('Exercises Reducer', () => {
 
   // it('REMOVE_SET', () => {
   //   let newData = Object.assign({}, data, {activeExerciseKey: squatsKey});
-  //   console.log(newData.exercises[squatsKey].sets);
   //   const reducer = store(newData, {type: WorkoutActions.REMOVE_SET, index: 0});
   //   expect(reducer.exercises[squatsKey].sets.length).toBeLessThan(newData.exercises[squatsKey].sets.length);
   //   expect(reducer.theThing).not.toEqual(data.theThing);
