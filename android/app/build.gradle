@@ -81,7 +81,7 @@ project.ext.react = [
     bundleInAlpha: true,
     bundleInBeta: true,
     bundleAssetName: "index.android.bundle",
-    enableHermes: true,  // clean and rebuild if changing
+    enableHermes: false,  // clean and rebuild if changing
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
