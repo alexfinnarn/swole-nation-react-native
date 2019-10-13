@@ -77,6 +77,10 @@ import com.android.build.OutputFile
 
 project.ext.react = [
     entryFile: "index.js",
+    bundleInRelease: true,
+    bundleInAlpha: true,
+    bundleInBeta: true,
+    bundleAssetName: "index.android.bundle",
     enableHermes: true,  // clean and rebuild if changing
 ]
 
@@ -132,8 +136,8 @@ android {
         applicationId "com.swolenation"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode 4
+        versionName "0.2.2"
     }
     splits {
         abi {
