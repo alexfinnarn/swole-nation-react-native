@@ -156,7 +156,7 @@ function mainStore(state = data, action) {
       return Object.assign({}, state, {theSetting: action.setting});
 
     default:
-      return state;
+      throw new Error();
   }
 }
 
